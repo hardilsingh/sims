@@ -131,13 +131,26 @@ Search By Station
                             var cell9 = row.insertCell(8);
 
 
+                            var gradeName;
+
+                            if(grade == 100) {
+                                gradeName = 'Pre Nursery-1'
+                            }else if (grade == 101){
+                                gradeName ='LKG'
+                            }else if(grade == 102) {
+                                gradeName = 'UKG'
+                            }else {
+                                gradeName = getNumberWithOrdinal(grade);
+                            }
+
+
 
                             // Add some text to the new cells:
                             cell1.innerHTML = j++;
                             cell2.innerHTML = name;
                             cell3.innerHTML = adm_no;
                             cell4.innerHTML = father;
-                            cell5.innerHTML = grade == 100 ? 'Pre-Nursery 1' : getNumberWithOrdinal(grade);
+                            cell5.innerHTML = gradeName;
                             cell6.innerHTML = section;
                             cell7.innerHTML = tel;
                             cell8.innerHTML = gender == 0 ? 'Male' : 'Female';

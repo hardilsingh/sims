@@ -17,7 +17,7 @@ Dashboard
                 <a href="#" class="nav-link" style="font-size:35px;"><b>Welcome {{Auth::user()->name}}</b></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link" style="font-size:35px;">{{now()}}</a>
+                <a href="#" class="nav-link" style="font-size:35px;">{{now()->format('d/m/Y')}}</a>
             </li>
 
         </ul>
@@ -48,8 +48,8 @@ Dashboard
             <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-money-check-alt"></i></span>
 
             <div class="info-box-content">
-                <span class="info-box-text">Collection <b>({{now()->toDateString()}})</b></span>
-                <span class="info-box-number">{{$collection}}</span>
+                <span class="info-box-text">Collection <b>({{now()->format('d/m/Y')}})</b></span>
+                <span class="info-box-number">₹ {{number_format($collection)}}</span>
             </div>
             <!-- /.info-box-content -->
         </div>
@@ -154,7 +154,7 @@ Dashboard
                             <a href="/students/{{$student->id}}" class="product-title">{{$student->name}}
                                 <span class="badge badge-warning float-right"></span></a>
                             <span class="product-description">
-                                {{$student->admission_date}} | Class: {{$student->grade->class}}-{{$student->section}} | Admission No. {{$student->adm_no}}
+                            {{\Carbon\Carbon::parse($student->admission_date)->format('d/m/Y')}} | Class: {{$student->grade->class}}-{{$student->section}} | Admission No. {{$student->adm_no}}
                             </span>
                         </div>
                     </li>

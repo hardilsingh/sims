@@ -98,12 +98,6 @@ Concessions
                     <td>{{$concession->examination}}%</td>
                     <td>{{$concession->stationary}}%</td>
                     <td style="display:flex;">
-                        {!! Form::model($concession , [
-                        'action'=>['ConcessionController@destroy' , $concession->id],
-                        'method'=>'DELETE'
-                        ]) !!}
-                        {!! Form::submit('Delete' , ['class'=>'btn btn-danger btn-md']) !!}
-                        {!! Form::close() !!}
                         <a href="{{route('concession.edit' , $concession->id)}}" style="margin-left:10px;" class="btn btn-md btn-warning">Edit</a>
                     </td>
                 </tr>
@@ -117,4 +111,3 @@ Concessions
 
 
 @stop
-

@@ -90,6 +90,7 @@ class DeactivatedController extends Controller
     public function activate() {
         $id = $_GET['student_id'];
         Students::findOrFail($id)->update([
+            'section'=>'ROSE',
             'status'=>1,
         ]);
 
@@ -100,6 +101,7 @@ class DeactivatedController extends Controller
     public function deactivate() {
         $id = $_GET['student_id'];
         Students::findOrFail($id)->update([
+            'section'=>'X',
             'status'=>0,
         ]);
 

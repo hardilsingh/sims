@@ -46,6 +46,8 @@
             <div class="form-group"> <label>Mother Name</label> <input name="mother_name" value="{{$certificate->mother_name}}" type="text" class="form-control" placeholder="Enter name"> </div>
 
 
+            <div class="form-group"> <label>Address.</label> <input name="address" value="{{$certificate->address}}" type="text" class="form-control" 
+
 
             <div class="form-group"> <label>Class</label> <input name="class" value="{{$certificate->class}}" type="text" class="form-control" placeholder="Enter class"> </div>
 

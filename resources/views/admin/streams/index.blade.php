@@ -64,13 +64,6 @@ Streams
                     <td>{{$stream->id}}</td>
                     <td>{{$stream->name}}</td>
                     <td style="display:flex;">
-                        {!! Form::model($stream , [
-                        'action'=>['StreamController@destroy' , $stream->id],
-                        'method'=>'DELETE'
-
-                        ]) !!}
-                        {!! Form::submit('Delete' , ['class'=>'btn btn-danger btn-md']) !!}
-                        {!! Form::close() !!}
                         <a href="{{route('streams.edit' , $stream->id)}}" style="margin-left:10px;" class="btn btn-md btn-warning">Edit</a>
                     </td>
                 </tr>

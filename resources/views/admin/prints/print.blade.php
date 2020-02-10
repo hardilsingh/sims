@@ -25,7 +25,6 @@ Search Students
                 <th scope="col">Class</th>
                 <th scope="col">Section</th>
                 <th scope="col">Telephone</th>
-                <th scope="col">Documents Verified</th>
                 <th scope="col">Gender</th>
                 <th scope="col">Caste</th>
                 <th scope="col">Religion</th>
@@ -43,13 +42,30 @@ Search Students
                 <td>{{$i++}}</td>
                 <td>{{$result->name}}</td>
                 <td>{{$result->adm_no}}</td>
-                <td>{{$result->dob}}</td>
+                <td>{{\Carbon\Carbon::parse($result->dob)->format('d/m/Y')}}</td>
                 <td>{{$result->father}}</td>
                 <td>{{$result->mother}}</td>
-                <td>{{$result->class == 100 ? 'Pre Primary-1' : $result->class}}</td>
+                <td>
+                    @if($result->class == 100)
+                    Pre Nursery-1
+                    @endif
+                    @if($result->class == 101)
+                    L.K.G
+                    @endif
+                    @if($result->class == 102)
+                    U.K.G
+                    @endif
+                    @if($result->class !== 100 && $result->class !== 101 &&$result->class !== 102)
+                    <?php
+
+                    $a = $result->class;
+                    echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
+
+                    ?>
+                    @endif
+                </td>
                 <td>{{$result->section}}</td>
                 <td>{{$result->tel1}}</td>
-                <td>{{$result->document_verified == 1 ? 'Verified' : 'Not Verfied'}}</td>
                 <td>{{$result->gender == 0 ? 'Male' : 'Female'}}</td>
                 <td>
                     @if($result->cast_category == 1)General @endif

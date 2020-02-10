@@ -38,11 +38,19 @@
 
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed;">
 
     <style>
         .table {
             text-transform: uppercase;
+        }
+
+        body {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        input {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         }
     </style>
     <div class="wrapper">
@@ -184,6 +192,23 @@
         $('.js-example-basic-single').select2({
             theme: "classic"
         });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2({
+                placeholder: "Select subjects",
+            });
+        });
+    </script>
+
+    <script language="javascript" type="text/javascript">
+        function removeSpaces(string) {
+            return string.split(' ').join('');
+        }
+
+        $("#clearSpace").val($(this).val().replace(/ +?/g, ''));
+        
     </script>
 
 

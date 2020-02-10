@@ -81,13 +81,6 @@ Stations
                     <td>{{$station->bus}}</td>
                     <td>{{$station->route}}</td>
                     <td style="display:flex;">
-                        {!! Form::model($station , [
-                        'action'=>['StationController@destroy' , $station->id],
-                        'method'=>'DELETE'
-
-                        ]) !!}
-                        {!! Form::submit('Delete' , ['class'=>'btn btn-danger btn-md']) !!}
-                        {!! Form::close() !!}
                         <a href="{{route('stations.edit' , $station->id)}}" style="margin-left:10px;" class="btn btn-md btn-warning">Edit</a>
                     </td>
                 </tr>

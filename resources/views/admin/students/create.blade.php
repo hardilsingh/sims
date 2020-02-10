@@ -164,7 +164,7 @@ Register Students
         <div class="row">
             <div class="col-lg-12" style="display: flex;">
                 <div class="col-lg-4">
-                    <div class="form-group"> <label for="exampleInputName2">Name: <span class="badge badge-danger">Required</span></label> <input type="text" name="name" class="form-control" id="roll_number" placeholder="Enter Name"> </div>
+                    <div class="form-group"> <label for="exampleInputName2">Name: <span class="badge badge-danger">Required</span></label> <input type="text" name="name" class="form-control" oninput="this.value = this.value.toUpperCase()" id="roll_number" placeholder="Enter Name"> </div>
 
                 </div>
                 <div class="col-lg-4">
@@ -228,29 +228,29 @@ Register Students
 
         <div class="div" style="display: flex">
             <div class="col-lg-6">
-                <div class="form-group"> <label for="exampleInputName2">Father Name: <span class="badge badge-danger">Required</span></label> <input type="text" class="form-control" name="father_name" id="exampleInputName2" placeholder="Father Name"> </div>
+                <div class="form-group"> <label for="exampleInputName2">Father Name: <span class="badge badge-danger">Required</span></label> <input type="text" class="form-control" name="father_name" id="exampleInputName2" oninput="this.value = this.value.toUpperCase()" placeholder="Father Name"> </div>
 
 
-                <div class="form-group"> <label for="exampleInputName2">Father Occupation: <span class="badge badge-warning">Optional</span></label> <input type="text" class="form-control" name="father_occup" id="exampleInputName2" placeholder="Occupation Name"> </div>
+                <div class="form-group"> <label for="exampleInputName2">Father Occupation: <span class="badge badge-warning">Optional</span></label> <input type="text" class="form-control" name="father_occup" oninput="this.value = this.value.toUpperCase()" id="exampleInputName2" placeholder="Occupation Name"> </div>
 
 
-                <div class="form-group"> <label for="exampleInputName2">Father UID: <span class="badge badge-warning">Optional</span></label> <input type="text" class="form-control" name="father_uid" id="exampleInputName2" placeholder="Father UID"> </div>
+                <div class="form-group"> <label for="exampleInputName2">Father UID: <span class="badge badge-warning">Optional</span></label> <input type="text" class="form-control" name="father_uid" id="exampleInputName2" oninput="this.value = this.value.toUpperCase()" placeholder="Father UID"> </div>
 
 
-                <div class="form-group"> <label for="exampleInputName2">Father Qualification: <span class="badge badge-warning">Optional</span></label> <input type="text" class="form-control" name="father_qual" id="exampleInputName2" placeholder="Father Qualification"> </div>
+                <div class="form-group"> <label for="exampleInputName2">Father Qualification: <span class="badge badge-warning">Optional</span></label> <input type="text" class="form-control" name="father_qual" oninput="this.value = this.value.toUpperCase()" id="exampleInputName2" placeholder="Father Qualification"> </div>
             </div>
 
             <div class="col-lg-6">
-                <div class="form-group"> <label for="exampleInputName2">Mother Name: <span class="badge badge-danger">Required</span></label> <input type="text" class="form-control" name="mother_name" id="exampleInputName2" placeholder="Mother Name"> </div>
+                <div class="form-group"> <label for="exampleInputName2">Mother Name: <span class="badge badge-danger">Required</span></label> <input type="text" class="form-control" name="mother_name" id="exampleInputName2" oninput="this.value = this.value.toUpperCase()" placeholder="Mother Name"> </div>
 
 
-                <div class="form-group"> <label for="exampleInputName2">Mother Occupation: <span class="badge badge-warning">Optional</span></label> <input type="text" class="form-control" name="mother_occup" id="exampleInputName2" placeholder="Occupation Name"> </div>
+                <div class="form-group"> <label for="exampleInputName2">Mother Occupation: <span class="badge badge-warning">Optional</span></label> <input type="text" class="form-control" name="mother_occup" oninput="this.value = this.value.toUpperCase()" id="exampleInputName2" placeholder="Occupation Name"> </div>
 
 
-                <div class="form-group"> <label for="exampleInputName2">Mother UID: <span class="badge badge-warning">Optional</span></label> <input type="text" class="form-control" name="mother_uid" id="exampleInputName2" placeholder="Mother UID"> </div>
+                <div class="form-group"> <label for="exampleInputName2">Mother UID: <span class="badge badge-warning">Optional</span></label> <input type="text" class="form-control" name="mother_uid" id="exampleInputName2" oninput="this.value = this.value.toUpperCase()" placeholder="Mother UID"> </div>
 
 
-                <div class="form-group"> <label for="exampleInputName2">Mother Qualification: <span class="badge badge-warning">Optional</span></label> <input type="text" class="form-control" name="mother_qual" id="exampleInputName2" placeholder="Mother Qualification"> </div>
+                <div class="form-group"> <label for="exampleInputName2">Mother Qualification: <span class="badge badge-warning">Optional</span></label> <input type="text" class="form-control" name="mother_qual" oninput="this.value = this.value.toUpperCase()" id="exampleInputName2" placeholder="Mother Qualification"> </div>
             </div>
         </div>
 
@@ -270,10 +270,10 @@ Register Students
 
         <div class="row">
             <div class="col-lg-6">
-                <div class="form-group"> <label for="exampleInputName2">Contact No. 1: <span class="badge badge-danger">Required</span></label> <input type="tel" class="form-control" name="tel1" id="exampleInputName2" placeholder="Telephone" maxlength="10"> </div>
+                <div class="form-group"> <label for="exampleInputName2">Contact No. 1: <span class="badge badge-danger">Required</span></label> <input type="tel" class="form-control" name="tel1" id="exampleInputName2" placeholder="Telephone" minlength="10" maxlength="10"> </div>
             </div>
             <div class="col-lg-6">
-                <div class="form-group"> <label for="exampleInputName2">Contact No. 2: <span class="badge badge-warning">Optional</span></label> <input type="tel" class="form-control" name="tel2" id="exampleInputName2" placeholder="Telephone" maxlength="12"> </div>
+                <div class="form-group"> <label for="exampleInputName2">Contact No. 2: <span class="badge badge-warning">Optional</span></label> <input type="tel" class="form-control" name="tel2" id="exampleInputName2" maxlength="10" minlength="10" placeholder="Telephone" maxlength="12"> </div>
             </div>
         </div>
 
@@ -283,29 +283,29 @@ Register Students
 
 
 
-        <div class="form-group"> <label for="exampleInputName2">Aadhar UID: <span class="badge badge-warning">Optional</span></label> <input type="text" class="form-control" name="UID" id="exampleInputName2" placeholder="Aadhar UID" maxlength="12"> </div>
+        <div class="form-group"> <label for="exampleInputName2">Aadhar UID: <span class="badge badge-warning">Optional</span></label> <input type="text" class="form-control" name="UID" id="exampleInputName2" placeholder="Aadhar UID" minlength="12" maxlength="12"> </div>
 
 
         <div class="row">
             <div class="col-lg-4">
-                <div class="form-group"> <label for="exampleInputName65656">Vill/Building/House: <span class="badge badge-danger">Required</span></label> <input type="text" class="form-control" name="vill" id="exampleInputName65656" placeholder="Vill/Building/House "> </div>
+                <div class="form-group"> <label for="exampleInputName65656">Vill/Building/House: <span class="badge badge-danger">Required</span></label> <input type="text" class="form-control" name="vill" oninput="this.value = this.value.toUpperCase()" id="exampleInputName65656" placeholder="Vill/Building/House "> </div>
             </div>
             <div class="col-lg-4">
-                <div class="form-group"> <label for="exampleInputName2">Post Office: <span class="badge badge-danger">Required</span></label> <input type="tel" class="form-control" name="postoffice" id="exampleInputName2" placeholder="Post Office"> </div>
+                <div class="form-group"> <label for="exampleInputName2">Post Office: <span class="badge badge-danger">Required</span></label> <input oninput="this.value = this.value.toUpperCase()" type="tel" class="form-control" name="postoffice" id="exampleInputName2" placeholder="Post Office"> </div>
             </div>
             <div class="col-lg-4">
-                <div class="form-group"> <label for="exampleInputName2">Tehsil <span class="badge badge-danger">Required</span></label> <input type="tel" class="form-control" name="tehsil" id="exampleInputName2" placeholder="Tehsil"> </div>
+                <div class="form-group"> <label for="exampleInputName2">Tehsil <span class="badge badge-danger">Required</span></label> <input oninput="this.value = this.value.toUpperCase()" type="tel" class="form-control" name="tehsil" id="exampleInputName2" placeholder="Tehsil"> </div>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-4">
-                <div class="form-group"> <label for="exampleInputName65656">District: <span class="badge badge-danger">Required</span></label> <input type="text" class="form-control" name="district" id="exampleInputName65656" placeholder="District "> </div>
+                <div class="form-group"> <label for="exampleInputName65656">District: <span class="badge badge-danger">Required</span></label> <input oninput="this.value = this.value.toUpperCase()" type="text" class="form-control" name="district" id="exampleInputName65656" placeholder="District "> </div>
             </div>
             <div class="col-lg-4">
-                <div class="form-group"> <label for="exampleInputName2">Pincode: <span class="badge badge-danger">Required</span></label> <input type="tel" class="form-control" name="pincode" id="exampleInputName2" maxlength="6" placeholder="Pincode"> </div>
+                <div class="form-group"> <label for="exampleInputName2">Pincode: <span class="badge badge-danger">Required</span></label> <input oninput="this.value = this.value.toUpperCase()" type="tel" class="form-control" name="pincode" id="exampleInputName2" maxlength="6" placeholder="Pincode"> </div>
             </div>
             <div class="col-lg-4">
-                <div class="form-group"> <label for="exampleInputName2">State: <span class="badge badge-danger">Required</span></label> <input type="tel" class="form-control" name="state" id="exampleInputName2" placeholder="State" value="Punjab"> </div>
+                <div class="form-group"> <label for="exampleInputName2">State: <span class="badge badge-danger">Required</span></label> <input oninput="this.value = this.value.toUpperCase()" type="tel" class="form-control" name="state" id="exampleInputName2" placeholder="State" value="PUNJAB"> </div>
             </div>
         </div>
 
@@ -372,7 +372,7 @@ Register Students
 
 
 
-        <div class="form-group"> <label for="exampleInputName2">Blood Group: <span class="badge badge-warning">Optional</span></label> <input type="text" class="form-control" name="blood" id="exampleInputName2" placeholder="Enter Boold Group"> </div>
+        <div class="form-group"> <label for="exampleInputName2">Blood Group: <span class="badge badge-warning">Optional</span></label> <input oninput="this.value = this.value.toUpperCase()" type="text" class="form-control" name="blood" id="exampleInputName2" placeholder="Enter Boold Group"> </div>
 
 
 
@@ -390,7 +390,6 @@ Register Students
 
     <!-- Circles which indicates the steps of the form: -->
     <div style="text-align:center;margin-top:40px;">
-        <span class="step"></span>
         <span class="step"></span>
         <span class="step"></span>
         <span class="step"></span>

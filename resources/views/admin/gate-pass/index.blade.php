@@ -1,7 +1,9 @@
 @extends('layouts.admin')
 
 
-
+@section("heading")
+Gate Passes
+@stop
 @section('content')
 
 
@@ -36,16 +38,8 @@
                     <td>{{$pass->name}}</td>
                     <td>{{$pass->class}}</td>
                     <td>{{$pass->with_whom}}</td>
-                    <td>{{$pass->created_at->toDateTimeString()}}</td>
+                    <td>{{$pass->created_at->format('d/m/Y')}} {{$pass->created_at->toTimeString()}}</td>
                     <td style="display:flex;">
-                        {!! Form::model($pass , [
-
-                        'action'=>['GatePassController@destroy' , $pass->id],
-                        'method'=>'DELETE'
-
-                        ]) !!}
-                        {!! Form::submit('Delete' , ['class'=>'btn btn-danger btn-md' , 'onclick'=>'checkDel()']) !!}
-                        {!! Form::close() !!}
                         <a href="{{route('gate-passes.edit' , $pass->id)}}" style="margin-left:10px;" class="btn btn-md btn-warning">Edit</a>
                         <a href="{{route('gate-passes.show' , $pass->id)}}" style="margin-left:10px;" class="btn btn-md btn-success" >Show</a>
                     </td>

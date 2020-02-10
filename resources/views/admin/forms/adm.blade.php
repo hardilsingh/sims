@@ -87,7 +87,7 @@
             </tr>
             <tr>
                 <td>5. Date Of Birth</td>
-                <td style="text-transform: uppercase">{{$student->dob}} <br><br>
+                <td style="text-transform: uppercase">{{\Carbon\Carbon::parse($student->dob)->format('d/m/Y')}} <br><br>
                     DOB in words:
 
                     <?php
@@ -139,7 +139,7 @@
             </tr>
             <tr>
                 <td>8. Address</td>
-                <td colspan="2" style="text-transform: uppercase">{{$student->vill}}, {{$student->postoffice}}, {{$student->tehsil}}, {{$student->district}}, {{$student->pincode}}, {{$student->state}}</td>
+                <td colspan="2" style="text-transform: uppercase">{{$student->vill}}, {{$student->postoffice}},<br>{{$student->tehsil}}, {{$student->district}}, {{$student->pincode}}, {{$student->state}}</td>
             </tr>
             <tr>
                 <td colspan="3">9. Name of the person responsible for paying fee</td>
@@ -170,7 +170,7 @@
             <p>I undertake follow all school rules and the payment of fee and all sundry expenses in advance. I shall give one month's notice of withdrawl or shall pay the amount in lieu of notice.</p>
         </b>
 
-        <div style="display: flex; align-items:center; margin-bottom:150px; transform:translateY(50px);">
+        <div style="display: flex; align-items:center; margin-bottom:120px; transform:translateY(50px);">
             <p style="margin-right: 30px;">For office seal</p>
             <div style="height: 120px; width:160px; border:2px solid black; border-radius:7px;">
             </div>
@@ -178,7 +178,7 @@
             <div class="div" style="position:absolute; right:0;">
                 <p>Signature of parents/guardian_______________________________</p>
                 <p style="text-align: right">Registration/Adm No.&nbsp;&nbsp;&nbsp;&nbsp; <b>{{$student->adm_no}}</b></p>
-                <p style="text-align: right">Date of joining:&nbsp;&nbsp;&nbsp;&nbsp;<b>{{$student->admission_date}}</b></p>
+                <p style="text-align: right">Date of joining:&nbsp;&nbsp;&nbsp;&nbsp;<b>{{\Carbon\Carbon::parse($student->admission_date)->format('d/m/Y')}}</b></p>
                 <p style="text-align: right">Class to which admitted: &nbsp;&nbsp;&nbsp;&nbsp;<b> {{$student->grade->class}}</b></p>
             </div>
 

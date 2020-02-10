@@ -16,7 +16,7 @@ class Reciept extends Model
         return $this->belongsTo('App\Students' , 'student_id');
     }
 
-    public function userName() {
+    public function clerkName() {
         return $this->belongsTo('App\User' , 'user_id');
     }
 

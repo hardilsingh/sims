@@ -16,52 +16,69 @@
 
 
 <div class="col-lg-12">
-    <div class="row">
-        <table id="myTable" class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th>#</th>
-                    <th>Admission Number</th>
-                    <th>Name</th>
-                    <th>Father name</th>
-                    <th>Mother name</th>
-                    <th>Class name</th>
-                    <th>Issued On</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($certificates as $certificate)
-                <tr>
-                    <td>{{$certificate->id}}</td>
-                    <td>{{$certificate->adm_no}}</td>
-                    <td>{{$certificate->name}}</td>
-                    <td>{{$certificate->father_name}}</td>
-                    <td>{{$certificate->mother_name}}</td>
-                    <td>{{$certificate->class}}</td>
-                    <td>{{$certificate->created_at->toDateString()}}</td>
-                    <td style="display:flex;">
-                        {!! Form::model($certificate , [
+    <table id="myTable" class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>#</th>
+                <th>Admission Number</th>
+                <th>Name</th>
+                <th>Father name</th>
+                <th>Mother name</th>
+                <th>Class name</th>
+                <th>Issued On</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @php
+            $i = 1
+            @endphp
+            @foreach($certificates as $certificate)
+            <tr>
+                <td>{{$i++}}</td>
+                <td>{{$certificate->adm_no}}</td>
+                <td>{{$certificate->name}}</td>
+                <td>{{$certificate->father_name}}</td>
+                <td>{{$certificate->mother_name}}</td>
+                <td>
+                    @if($certificate->class == 100)
+                    L.K.G
+                    @endif
+                    @if($certificate->class == 101)
+                    U.K.G
+                    @endif
+                    @if($certificate->class == 102)
+                    <?php
 
-                        'action'=>['CcController@destroy' , $certificate->id],
-                        'method'=>'DELETE'
+                    $a = $certificate->class;
+                    echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
 
-                        ]) !!}
-                        {!! Form::submit('Delete' , ['class'=>'btn btn-danger btn-md']) !!}
-                        {!! Form::close() !!}
-                        <a href="{{route('character-certificates.edit' , $certificate->id)}}" style="margin-left:10px;" class="btn btn-md btn-warning">Edit</a>
-                        <a href="{{route('character-certificates.show' , $certificate->id)}}" style="margin-left:10px;" target="_blank" class="btn btn-md btn-success">Show</a>
-                    </td>
+                    ?>
+                    @endif
+                    @if($certificate->class < 100)
+                    <?php
 
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+                    $a = $certificate->class + 1;
+                    echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
+
+                    ?>
+                    @endif
+                </td>
+                <td>{{$certificate->created_at->toDateString()}}</td>
+                <td style="display:flex;">
+                    <a href="{{route('character-certificates.edit' , $certificate->id)}}" style="margin-left:10px;" class="btn btn-md btn-warning">Edit</a>
+                    <a href="{{route('character-certificates.show' , $certificate->id)}}" style="margin-left:10px;" target="_blank" class="btn btn-md btn-success">Show</a>
+                </td>
+
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+
 </div>
 
 
 
 
 @stop
-

@@ -84,7 +84,7 @@
 
 
     $("#search").click(function() {
-        window.location.href = "/getDues?id=" + $('#gMonth2').val() + "&class=" + $("#select_class").val() + "&section=" + $("#select_section").val();
+        window.location.href = "/getDues?month=" + $('#gMonth2').val() + "&class=" + $("#select_class").val() + "&section=" + $("#select_section").val();
     });
 </script>
 

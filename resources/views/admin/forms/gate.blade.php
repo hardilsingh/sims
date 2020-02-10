@@ -82,7 +82,7 @@
                     Bus No:
                 </td>
                 <td>
-                    {{$student->station !== 0 ? $student->stationName->bus : 'N/A'}}
+                    'N/A'
                 </td>
             </tr>
 

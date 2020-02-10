@@ -23,11 +23,24 @@
 
         <tr>
             <td>{{$i++}}</td>
-            <td>{{$reciept->date}}</td>
+            <td>{{$reciept->created_at->format('d/m/Y')}}</td>
             <td>{{$reciept->session}}</td>
             <td>{{$reciept->id}}</td>
             <td>{{$reciept->getStudent->adm_no}}</td>
-            <td>{{$reciept->getStudent->class}}</td>
+            <td>
+                @if($reciept->getStudent->class == 100)
+                Pre Nursery-1
+                @endif
+                @if($reciept->getStudent->class == 101)
+                L.K.G
+                @endif
+                @if($reciept->getStudent->class == 102)
+                U.K.G
+                @endif
+                @if($reciept->getStudent->class !== 100 && $reciept->getStudent->class !== 101 &&$reciept->getStudent->class !== 102)
+                {{$reciept->getStudent->class}}
+                @endif
+            </td>
             <td>{{$reciept->getStudent->section}}</td>
             <td>{{$reciept->getStudent->name}}</td>
             <td>{{$reciept->userName->name}}</td>

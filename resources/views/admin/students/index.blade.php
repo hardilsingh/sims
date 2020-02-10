@@ -34,7 +34,7 @@ Register Students
     <div class="col-lg-12">
         <div class="form-group">
             <label for="">Enter Student Name or Telephone or Admission Number or Father name</label>
-            <input type="text" autofocus name="" id="searchIndex" class="form-control">
+            <input type="text" oninput="this.value = this.value.toUpperCase()" autofocus name="" id="searchIndex" class="form-control">
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-md btn-success" id="search">Search</button>
@@ -71,32 +71,6 @@ Register Students
         </div>
     </div>
 
-</div>
-
-<div class="row" style="padding: 30px;">
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Recently Registered Students</h3>
-
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            </div>
-            <!-- /.card-header -->
-
-            <!-- /.card-body -->
-            <div class="card-footer text-center">
-
-            </div>
-            <!-- /.card-footer -->
-        </div>
-    </div>
 </div>
 
 
@@ -241,6 +215,17 @@ Register Students
                             var cell10 = row.insertCell(9);
 
 
+                            var gradeName;
+
+                            if(grade == 100) {
+                                gradeName = 'Pre Nursery-1'
+                            }else if (grade == 101){
+                                gradeName ='LKG'
+                            }else if(grade == 102) {
+                                gradeName = 'UKG'
+                            }else {
+                                gradeName = getNumberWithOrdinal(grade);
+                            }
 
                             // Add some text to the new cells:
                             cell1.innerHTML = j++;
@@ -248,14 +233,11 @@ Register Students
                             cell3.innerHTML = adm_no;
                             cell4.innerHTML = father;
                             cell5.innerHTML = mother;
-                            cell6.innerHTML = grade == 100 ? 'Pre-Nursery 1' : getNumberWithOrdinal(grade);
+                            cell6.innerHTML = gradeName;
                             cell7.innerHTML = section;
                             cell8.innerHTML = tel;
                             cell9.innerHTML = gender == 0 ? 'Male' : 'Female';
                             cell10.innerHTML = "<a href='students/" + id + "' class='btn btn-success'>View</a>";
-
-
-
                         }
                     } else {
                         alert("No Data Found")
@@ -338,6 +320,18 @@ Register Students
                             var cell9 = row.insertCell(8);
                             var cell10 = row.insertCell(9);
 
+                            var gradeName;
+
+                            if(grade == 100) {
+                                gradeName = 'Pre Nursery-1'
+                            }else if (grade == 101){
+                                gradeName ='LKG'
+                            }else if(grade == 102) {
+                                gradeName = 'UKG'
+                            }else {
+                                gradeName = getNumberWithOrdinal(grade);
+                            }
+
 
 
                             // Add some text to the new cells:
@@ -346,7 +340,7 @@ Register Students
                             cell3.innerHTML = adm_no;
                             cell4.innerHTML = father;
                             cell5.innerHTML = mother;
-                            cell6.innerHTML = grade == 100 ? 'Pre-Nursery 1' : getNumberWithOrdinal(grade);
+                            cell6.innerHTML = gradeName;
                             cell7.innerHTML = section;
                             cell8.innerHTML = tel;
                             cell9.innerHTML = gender == 0 ? 'Male' : 'Female';

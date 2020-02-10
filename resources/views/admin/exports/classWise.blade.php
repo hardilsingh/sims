@@ -33,19 +33,32 @@
 
         <tr>
             <td>{{$i++}}</td>
-            <td>{{$result->class == 100 ? 'Pre Primary-1' : $result->class}}</td>
+            <td>
+                @if($result->class == 100)
+                Pre Nursery-1
+                @endif
+                @if($result->class == 101)
+                L.K.G
+                @endif
+                @if($result->class == 102)
+                U.K.G
+                @endif
+                @if($result->class !== 100 && $result->class !== 101 &&$result->class !== 102)
+                {{$result->class}}
+                @endif
+            </td>
             <td>{{$result->section}}</td>
             <td>{{$result->adm_no}}</td>
             <td>{{$result->name}}</td>
             <td>{{$result->gender == 0 ? 'Male' : 'Female'}}</td>
             <td>{{$result->father}}</td>
             <td>{{$result->mother}}</td>
-            <td>{{$result->dob}}</td>
+            <td>{{\Carbon\Carbon::parse($result->dob)->format('d/m/Y')}}</td>
             <td>{{$result->tel1}}</td>
             <td>{{$result->tel2}}</td>
             <td>{{$result->vill}}, {{$result->postoffice}},{{$result->tehsil}},{{$result->district}},{{$result->state}}</td>
             <td>{{$result->pincode}}</td>
-            <td>{{$result->convinience_req == 1 ? App\Station::findOrFail($result->station)->first('name') : "N/A"}}</td>
+            <td>{{$result->convinience_req == 1 ? App\Station::findOrFail($result->station)->first('name')->name : "N/A"}}</td>
             <td>{{$result->document_verified == 1 ? 'Verified' : 'Not Verfied'}}</td>
             <td>
                 @if($result->cast_category == 1)General @endif

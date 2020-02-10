@@ -18,7 +18,7 @@ Fee Manager
             <div class="icheck-primary d-inline">
                 <input type="radio" checked name="search" id="name" style="margin-right: 10px">
                 <label for="name">Student Name or Telephone or Admission Number
-            </label>
+                </label>
             </div>
             <div class="icheck-primary d-inline">
                 <input type="radio" name="search" id="class" style="margin-right: 10px">
@@ -32,8 +32,8 @@ Fee Manager
             <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-money-check-alt"></i></span>
 
             <div class="info-box-content">
-                <span class="info-box-text">Collection <b>({{now()->toDateString()}})</b></span>
-                <span class="info-box-number">{{$collection}}</span>
+                <span class="info-box-text">Collection <b>({{now()->format('d/m/Y')}})</b></span>
+                <span class="info-box-number">₹ {{number_format($collection)}}</span>
             </div>
             <!-- /.info-box-content -->
         </div>
@@ -49,7 +49,7 @@ Fee Manager
     <div class="col-lg-12">
         <div class="form-group">
             <label for="">Enter Student Name or Telephone or Admission Number or Father name</label>
-            <input type="text" autofocus name="" id="searchIndex" class="form-control">
+            <input type="text" oninput="this.value = this.value.toUpperCase()" autofocus name="" id="searchIndex" class="form-control">
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-md btn-success" id="search">Search</button>
@@ -86,38 +86,6 @@ Fee Manager
         </div>
     </div>
 
-</div>
-
-<div class="row" style="padding: 30px;">
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Recently Made Payments</h3>
-
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body p-0">
-                <ul class="products-list product-list-in-card pl-2 pr-2">
-
-                    
-
-                </ul>
-            </div>
-            <!-- /.card-body -->
-            <div class="card-footer text-center">
-
-            </div>
-            <!-- /.card-footer -->
-        </div>
-    </div>
 </div>
 
 
@@ -259,6 +227,18 @@ Fee Manager
                             var cell10 = row.insertCell(9);
                             var cell11 = row.insertCell(10);
 
+                            var gradeName;
+
+                            if (grade == 100) {
+                                gradeName = 'Pre Nursery-1'
+                            } else if (grade == 101) {
+                                gradeName = 'LKG'
+                            } else if (grade == 102) {
+                                gradeName = 'UKG'
+                            } else {
+                                gradeName = getNumberWithOrdinal(grade);
+                            }
+
 
                             // Add some text to the new cells:
                             cell1.innerHTML = j++;
@@ -266,7 +246,7 @@ Fee Manager
                             cell3.innerHTML = adm_no;
                             cell4.innerHTML = father;
                             cell5.innerHTML = mother;
-                            cell6.innerHTML = grade == 100 ? 'Pre-Nursery 1' : getNumberWithOrdinal(grade);
+                            cell6.innerHTML = gradeName;
                             cell7.innerHTML = section;
                             cell8.innerHTML = tel;
                             cell9.innerHTML = gender == 0 ? 'Male' : 'Female';
@@ -358,6 +338,18 @@ Fee Manager
                             var cell10 = row.insertCell(9);
                             var cell11 = row.insertCell(10);
 
+                            var gradeName;
+
+                            if (grade == 100) {
+                                gradeName = 'Pre Nursery-1'
+                            } else if (grade == 101) {
+                                gradeName = 'LKG'
+                            } else if (grade == 102) {
+                                gradeName = 'UKG'
+                            } else {
+                                gradeName = getNumberWithOrdinal(grade);
+                            }
+
 
                             // Add some text to the new cells:
                             cell1.innerHTML = j++;
@@ -365,7 +357,7 @@ Fee Manager
                             cell3.innerHTML = adm_no;
                             cell4.innerHTML = father;
                             cell5.innerHTML = mother;
-                            cell6.innerHTML = grade == 100 ? 'Pre-Nursery 1' : getNumberWithOrdinal(grade);
+                            cell6.innerHTML = gradeName;
                             cell7.innerHTML = section;
                             cell8.innerHTML = tel;
                             cell9.innerHTML = gender == 0 ? 'Male' : 'Female';

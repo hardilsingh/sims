@@ -55,6 +55,7 @@ Edit Student
     <button class="tablinks" onclick="openCity(event, 'Convinience')">Convinience</button>
     <button class="tablinks" onclick="openCity(event, 'Documents')">Documents</button>
     <button class="tablinks" onclick="openCity(event, 'Other Details')">Other Details</button>
+    <button class="tablinks" onclick="openCity(event, 'Photo')">Photo</button>
 </div>
 
 
@@ -128,11 +129,13 @@ Edit Student
             <div class="form-group"> <label for="exampleInputName2">Section:</label>
                 <select name="section" id="select_section" class="form-control">
                     <option value="{{$student->section}}" selected>{{$student->section}}</option>
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="C">C</option>
+                    <option value="Rose">Rose</option>
+                    <option value="Lotus">Lotus</option>
+                    <option value="Marigold">Marigold</option>
+                    <option value="Tulip">Tulip</option>
+                    <option value="Violet">Violet</option>
                     <option value="D">D</option>
-                    <option value="E">E</option>
+                    <option value="X">X</option>
                 </select>
             </div>
         </div>
@@ -163,19 +166,35 @@ Edit Student
 
 <div id="Contact Details" class="tabcontent">
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-6">
             <div class="form-group"> <label for="exampleInputName2">Contact No. 1: </label> <input type="tel" value="{{$student->tel1}}" class="form-control" name="tel1" id="exampleInputName2" placeholder="Telephone"> </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-6">
             <div class="form-group"> <label for="exampleInputName2">Aadhar UID: </label> <input type="text" value="{{$student->addhar_number}}" class="form-control" name="addhar_number" id="exampleInputName2" placeholder="Aadhar UID"> </div>
         </div>
 
+    </div>
+    <div class="row">
         <div class="col-lg-4">
-            <div class="form-group"> <label for="exampleInputName2">Address: </label>
-                <textarea class="form-control" name="address" id="" placeholder="Enter full address" cols="10" rows="4">{{$student->address}}</textarea>
-            </div>
+            <div class="form-group"> <label for="exampleInputName65656">Vill/Building/House: </label> <input type="text" class="form-control" name="vill" oninput="this.value = this.value.toUpperCase()" value="{{$student->vill}}" id="exampleInputName65656" placeholder="Vill/Building/House "> </div>
         </div>
-
+        <div class="col-lg-4">
+            <div class="form-group"> <label for="exampleInputName2">Post Office: </label> <input oninput="this.value = this.value.toUpperCase()" type="tel" class="form-control" name="postoffice" id="exampleInputName2" value="{{$student->postoffice}}" placeholder="Post Office"> </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group"> <label for="exampleInputName2">Tehsil </label> <input oninput="this.value = this.value.toUpperCase()" value="{{$student->tehsil}}" type="tel" class="form-control" name="tehsil" id="exampleInputName2" placeholder="Tehsil"> </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group"> <label for="exampleInputName65656">District: </label> <input oninput="this.value = this.value.toUpperCase()" value="{{$student->district}}" type="text" class="form-control" name="district" id="exampleInputName65656" placeholder="District "> </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group"> <label for="exampleInputName2">Pincode: </label> <input oninput="this.value = this.value.toUpperCase()" type="tel" class="form-control" name="pincode" id="exampleInputName2" value="{{$student->pincode}}" maxlength="6" placeholder="Pincode"> </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group"> <label for="exampleInputName2">State: </label> <input oninput="this.value = this.value.toUpperCase()" type="tel" class="form-control" name="state" id="exampleInputName2" placeholder="State" value="{{$student->state}}"> </div>
+        </div>
     </div>
 </div>
 
@@ -240,8 +259,8 @@ Edit Student
     <div class="form-group">
         <label for="">Convinience required?</label>
         <div style="display: flex">
-            YES<input value="1" id="req" {{$student->convinience_req == 1 ? 'checked' : false}} name="convinience_req" type="radio"  style="margin-right: 10px; margin-left:10px">
-            NO<input value="0" id="nreq" {{$student->convinience_req == 0 ? 'checked' : false}} name="convinience_req" type="radio"  style="margin-right: 10px; margin-left:10px">
+            YES<input value="1" id="req" {{$student->convinience_req == 1 ? 'checked' : false}} name="convinience_req" type="radio" style="margin-right: 10px; margin-left:10px">
+            NO<input value="0" id="nreq" {{$student->convinience_req == 0 ? 'checked' : false}} name="convinience_req" type="radio" style="margin-right: 10px; margin-left:10px">
         </div>
 
     </div>
@@ -250,23 +269,23 @@ Edit Student
     @if($student->convinience_req == 1)
 
     <div style="margin-top:20px;" id="stations" class="form-group"> <label for="exampleInputName2">Stations:
-        {!! Form::select('station' , $stations , $student->station , ['class'=>'form-control' , 'placeholder'=>'Select Station']) !!}
+            {!! Form::select('station' , $stations , $student->station , ['class'=>'form-control' , 'placeholder'=>'Select Station']) !!}
     </div>
 
     @endif
 
     <div style="margin-top:20px; display:none" id="stations" class="form-group"> <label for="exampleInputName2">Stations:
-        {!! Form::select('station' , $stations , $student->station, ['class'=>'form-control' , 'placeholder'=>'Select Station']) !!}
+            {!! Form::select('station' , $stations , $student->station, ['class'=>'form-control' , 'placeholder'=>'Select Station']) !!}
     </div>
 
     @if($student->convinience_req == 0)
     <div style="margin-top:20px;" id="other_con" class="form-group"> <label for="exampleInputName2">Other Convinience:
-        {!! Form::select('other_con' , $other , $student->other_con , ['class'=>'form-control' , 'placeholder'=>'Select Other convinience']) !!}
+            {!! Form::select('other_con' , $other , $student->other_con , ['class'=>'form-control' , 'placeholder'=>'Select Other convinience']) !!}
     </div>
     @endif
 
     <div style="margin-top:20px; display:none;" id="other_con" class="form-group"> <label for="exampleInputName2">Other Convinience:
-        {!! Form::select('other_con' , $other , $student->other_con , ['class'=>'form-control' , 'placeholder'=>'Select Other convinience']) !!}
+            {!! Form::select('other_con' , $other , $student->other_con , ['class'=>'form-control' , 'placeholder'=>'Select Other convinience']) !!}
     </div>
 </div>
 
@@ -287,6 +306,11 @@ Edit Student
                 {!! Form::select('religion' , $religions , $student->religion , ['class'=>'form-control' , 'placeholder'=>'Select religion']) !!}
             </div>
         </div>
+    </div>
+</div>
+<div id="Photo" class="tabcontent">
+    <div class="col-lg-4">
+        <div class="form-group"> <label for="exampleInputName2">Photo:</label> <input type="file" class="form-control" name="photo" id="exampleInputName2" placeholder=""> </div>
     </div>
 </div>
 

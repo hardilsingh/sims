@@ -46,7 +46,7 @@
         <table style="width: 100%; transform:translateX(30px);">
 
             <tr>
-                <td>Date: {{$reciept->created_at}}</td>
+                <td>Date: {{$reciept->created_at->format('d/m/Y')}} {{$reciept->created_at->toTimeString()}}</td>
                 <td> Reciept No. {{$reciept->id}}</td>
             </tr>
             <tr>
@@ -61,7 +61,20 @@
                     Name: {{$reciept->getStudent->name}}
 
                 </td>
-                <td> Class & Section {{$reciept->getStudent->class == 100 ? 'Pre-Nursery 1' : $reciept->getStudent->class }}-{{$reciept->getStudent->section}}</td>
+                <td> Class & Section
+                    @if($reciept->getStudent->class == 100)
+                    Pre Nursery-1
+                    @endif
+                    @if($reciept->getStudent->class == 101)
+                    L.K.G
+                    @endif
+                    @if($reciept->getStudent->class == 102)
+                    U.K.G
+                    @endif
+                    @if($reciept->getStudent->class !== 100 && $reciept->getStudent->class !== 101 &&$reciept->getStudent->class !== 102)
+                    {{$reciept->getStudent->class}}
+                    @endif
+                    -{{$reciept->getStudent->section}}</td>
             </tr>
             <tr>
                 <td>
@@ -119,7 +132,7 @@
                             echo "<td>$j</td>";
                             echo "<td>$particulars[$i]</td>";
                             echo "<td style='text-align: right'>
-                                    $fee[$i]</td>";
+                                    ".number_format($fee[$i])."</td>";
                             echo "</tr>";
                         }
 
@@ -128,7 +141,7 @@
                         <tr>
                             <td></td>
                             <td>Amount Recieved</td>
-                            <td style="text-align: right; font-size:20px;"><b>{{$reciept->paid}}</b></td>
+                            <td style="text-align: right; font-size:20px;"><b>{{number_format($reciept->paid)}}</b></td>
                         </tr>
                     </tbody>
                 </table>
@@ -165,10 +178,10 @@
                                 @foreach($prev as $p)
                                 <tr>
                                     <td>{{$i++}}</td>
-                                    <td>{{$p->date}}</td>
+                                    <td>{{\Carbon\Carbon::parse($p->date)->format('d/m/Y')}}</td>
                                     <td>{{$p->id}}</td>
-                                    <td style="text-align: right">{{$p->paid}}</td>
-                                    <td style="text-align: right">{{$p->outstanding}}</td>
+                                    <td style="text-align: right">{{number_format($p->paid)}}</td>
+                                    <td style="text-align: right">{{number_format($p->outstanding)}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -219,7 +232,7 @@
             <table style="width: 100%; transform:translateX(30px);">
 
                 <tr>
-                    <td>Date: {{$reciept->created_at}}</td>
+                    <td>Date: {{$reciept->created_at->format('d/m/Y')}} {{$reciept->created_at->toTimeString()}}</td>
                     <td> Reciept No. {{$reciept->id}}</td>
                 </tr>
                 <tr>
@@ -234,7 +247,18 @@
                         Name: {{$reciept->getStudent->name}}
 
                     </td>
-                    <td> Class & Section {{$reciept->getStudent->class == 100 ? 'Pre-Nursery 1' : $reciept->getStudent->class }}-{{$reciept->getStudent->section}}</td>
+                    <td> Class & Section @if($reciept->getStudent->class == 100)
+                        'Pre Nursery-1'
+                        @endif
+                        @if($reciept->getStudent->class == 101)
+                        'L.K.G'
+                        @endif
+                        @if($reciept->getStudent->class == 102)
+                        'U.K.G'
+                        @endif
+                        @if($reciept->getStudent->class !== 100 || $reciept->getStudent->class !== 101 ||$reciept->getStudent->class !== 102)
+                        {{$reciept->getStudent->class}}
+                        @endif -{{$reciept->getStudent->section}}</td>
                 </tr>
                 <tr>
                     <td>
@@ -293,7 +317,7 @@
                                 echo "<td>$j</td>";
                                 echo "<td>$particulars[$i]</td>";
                                 echo "<td style='text-align: right'>
-                                    $fee[$i]</td>";
+                                    ".number_format($fee[$i])."</td>";
 
 
                                 echo "</tr>";
@@ -304,7 +328,7 @@
                             <tr>
                                 <td></td>
                                 <td>Amount Recieved</td>
-                                <td style="text-align: right; font-size:20px;"><b>{{$reciept->paid}}</b></td>
+                                <td style="text-align: right; font-size:20px;"><b>{{number_format($reciept->paid)}}</b></td>
                             </tr>
                         </tbody>
                     </table>
@@ -340,10 +364,10 @@
                                     @foreach($prev as $p)
                                     <tr>
                                         <td>{{$i++}}</td>
-                                        <td>{{$p->date}}</td>
+                                        <td>{{\Carbon\Carbon::parse($p->date)->format('d/m/Y')}}</td>
                                         <td>{{$p->id}}</td>
-                                        <td style="text-align: right">{{$p->paid}}</td>
-                                        <td style="text-align: right">{{$p->outstanding}}</td>
+                                        <td style="text-align: right">{{number_format($p->paid)}}</td>
+                                        <td style="text-align: right">{{number_format($p->outstanding)}}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

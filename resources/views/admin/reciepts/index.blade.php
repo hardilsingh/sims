@@ -10,6 +10,15 @@ Reciepts
 
 
 
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="h3">Transaction Reports</h3>
+
+    </div>
+</div>
+
+
 <div class="row" style="padding:30px 20px;">
     <div class="col-lg-3">
         <div class="form-group">
@@ -34,6 +43,8 @@ Reciepts
 
 
 </div>
+
+<hr class="hr">
 <div class="row">
     <div class="col-lg-12">
         <table id="myTable" class="table">
@@ -44,6 +55,7 @@ Reciepts
                     <th>Class & Section</th>
                     <th>Father Name</th>
                     <th style="text-align: right">Recieved Amount</th>
+                    <th>Recieved By</th>
                     <th>Action</th>
 
                 </tr>
@@ -57,9 +69,23 @@ Reciepts
                 <tr>
                     <td>{{$j++}}</td>
                     <td>{{$reciept->getStudent->name}}</td>
-                    <td>{{$reciept->getStudent->class == 100 ? 'Pre-Nursery 1' : $reciept->getStudent->class}}-{{$reciept->getStudent->section}}</td>
+                    <td>
+                        @if($reciept->getStudent->class == 100)
+                        Pre Nursery-1
+                        @endif
+                        @if($reciept->getStudent->class == 101)
+                        L.K.G
+                        @endif
+                        @if($reciept->getStudent->class == 102)
+                        U.K.G
+                        @endif
+                        @if($reciept->getStudent->class !== 100 && $reciept->getStudent->class !== 101 &&$reciept->getStudent->class !== 102)
+                        {{$reciept->getStudent->class}}
+                        @endif
+                        -{{$reciept->getStudent->section}}</td>
                     <td>{{$reciept->getStudent->father}}</td>
-                    <td style="text-align: right">₹ {{$reciept->paid}}</td>
+                    <td style="text-align: right">₹ {{number_format($reciept->paid)}}</td>
+                    <td><b>{{$reciept->clerkName->name}}</b></td>
                     <td style="display:flex;">
                         <a href="{{route('reciepts.show' , $reciept->id)}}" style="margin-left:10px;" class="btn btn-md btn-warning">Show</a>
                     </td>
@@ -87,7 +113,7 @@ Reciepts
 
 
         $("#generate").click(function() {
-            window.location.href="/transactionReport?from=" + $("#from").val() + "&to=" + $("#to").val();
+            window.location.href = "/transactionReport?from=" + $("#from").val() + "&to=" + $("#to").val();
         })
 
         console.log($("#from").val());

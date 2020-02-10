@@ -34,35 +34,38 @@ Classes
         </div>
 
         <div class="col-lg-4">
-            <div class="form-group"> <label>Admission Fee</label> <input value="0" name="admission" type="text" class="form-control" placeholder="Enter Fee"> </div>
+            <div class="form-group"> <label>Admission Fee</label> <input value="0" name="admission" type="text" class="form-control" required placeholder="Enter Fee"> </div>
         </div>
         <div class="col-lg-4">
-            <div class="form-group"> <label>Annual Charges</label> <input value="0" name="annual" type="text" class="form-control" placeholder="Enter Fee"> </div>
+            <div class="form-group"> <label>Annual Charges</label> <input value="0" name="annual" type="text" class="form-control" required placeholder="Enter Fee"> </div>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-4">
-            <div class="form-group"> <label>Enter Monthly Fee</label> <input required name="fee" type="text" class="form-control" placeholder="Enter Monthly Fee "> </div>
+            <div class="form-group"> <label>Enter Monthly Fee</label> <input required name="fee" type="text" class="form-control" required placeholder="Enter Monthly Fee "> </div>
         </div>
         <div class="col-lg-4">
-            <div class="form-group"> <label>Enter Computer Fee</label> <input required name="computer_fee" type="text" class="form-control" placeholder="Enter Computer Fee "> </div>
+            <div class="form-group"> <label>Enter Computer Fee</label> <input required name="computer_fee" type="text" required class="form-control" placeholder="Enter Computer Fee "> </div>
         </div>
         <div class="col-lg-4">
-            <div class="form-group"> <label>Id Card</label> <input value="0" name="sports" type="text" class="form-control" placeholder="Enter Fee"> </div>
+            <div class="form-group"> <label>Id Card</label> <input value="0" name="sports" type="text" class="form-control" required placeholder="Enter Fee"> </div>
         </div>
     </div>
 
 
     <div class="row">
 
-        <div class="col-lg-4">
-            <div class="form-group"> <label>Examination Fee</label> <input value="0" name="stationary" type="text" class="form-control" placeholder="Enter Fee"> </div>
+        <div class="col-lg-3">
+            <div class="form-group"> <label>Examination Fee</label> <input value="0" name="stationary" type="text" class="form-control" required placeholder="Enter Fee"> </div>
         </div>
-        <div class="col-lg-4">
-            <div class="form-group"> <label>Stationary Fee</label> <input value="0" name="stationary_fee" type="text" class="form-control" placeholder="Enter Fee"> </div>
+        <div class="col-lg-3">
+            <div class="form-group"> <label>Stationary Fee</label> <input value="0" name="stationary_fee" type="text" class="form-control" required placeholder="Enter Fee"> </div>
         </div>
-        <div class="col-lg-4">
-            <div class="form-group"> <label>Pospectus</label> <input value="0" name="prospectus" type="text" class="form-control" placeholder="Enter Fee"> </div>
+        <div class="col-lg-3">
+            <div class="form-group"> <label>Pospectus</label> <input value="0" name="prospectus" type="text" class="form-control" required placeholder="Enter Fee"> </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group"> <label>Application</label> <input value="0" name="application" type="text" class="form-control" required placeholder="Enter Fee"> </div>
         </div>
     </div>
 
@@ -102,6 +105,7 @@ Classes
                     <th>Annual Charges</th>
                     <th>Admission</th>
                     <th>Prospectus</th>
+                    <th>Application</th>
                     <th>Action</th>
 
                 </tr>
@@ -119,13 +123,8 @@ Classes
                     <td>₹{{$class->annual}}</td>
                     <td>₹{{$class->admission}}</td>
                     <td>₹{{$class->prospectus}}</td>
+                    <td>₹{{$class->application}}</td>
                     <td style="display:flex;">
-                        {!! Form::model($class , [
-                        'action'=>['GradeController@destroy' , $class->id],
-                        'method'=>'DELETE'
-                        ]) !!}
-                        <!--- {!! Form::submit('Delete' , ['class'=>'btn btn-danger btn-md']) !!}---->
-                        {!! Form::close() !!}
                         <a href="{{route('classes.edit' , $class->id)}}" style="margin-left:10px;" class="btn btn-md btn-warning">Edit</a>
                     </td>
                 </tr>

@@ -49,7 +49,7 @@
 
 
 
-            <div class="form-group"> <label>Class</label> <input name="class" value="{{$student->grade->class}}" type="text" class="form-control" placeholder="Enter class"> </div>
+            <div class="form-group"> <label>Class</label> <input name="class" value="{{$student->class}}" type="text" class="form-control" placeholder="Enter class"> </div>
 
 
             <div class="form-group"> <label>Adm No.</label> <input name="adm_no" value="{{$student->adm_no}}" type="text" class="form-control" placeholder="Enter number"> </div>

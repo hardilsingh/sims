@@ -47,11 +47,11 @@
 
 
 
-            <div class="form-group"> <label>Class</label> <input name="class" value="{{$student->grade->class}}" type="text" class="form-control" placeholder="Enter class"> </div>
+            <div class="form-group"> <label>Class</label> <input name="class" value="{{$student->class}}" type="text" class="form-control" placeholder="Enter class"> </div>
 
 
             <div class="form-group"> <label>Adm No.</label> <input name="adm_no" value="{{$student->adm_no}}" type="text" class="form-control" placeholder="Enter number"> </div>
-			<div class="form-group"> <label>Address.</label> <input name="address" value="{{$student->address}}" type="text" class="form-control" placeholder="Enter address"> </div>
+			<div class="form-group"> <label>Address.</label> <input name="address" value="{{$student->vill}}, {{$student->postoffice}}, {{$student->tehsil}}, {{$student->district}}, {{$student->pincode}}, {{$student->state}}" type="text" class="form-control" placeholder="Enter address"> </div>
 			<div class="form-group"> <label>Session.</label> <input name="session" value="{{$student->session}}" type="text" class="form-control" placeholder="Enter session"> </div>
 
 
