@@ -8,23 +8,20 @@
             Pre Nursery-1
             @endif
             @if($certificate->class == 101)
-            L.K.G
+            Nursery
             @endif
             @if($certificate->class == 102)
+            L.K.G
+            @endif
+            @if($certificate->class == 103)
             U.K.G
             @endif
-            @if($certificate->class < 100)
-            <?php
+            @if($certificate->class < 100) <?php
 
-            $a = $certificate->class;
-            echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
+                                        $a = $certificate->class;
+                                        echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
 
-            ?>
-            @endif
-
-
-
-            (Session:{{$certificate->session}})</span> vide Admission no. <span style="font-weight:bolder; text-transform:capitalize; text-decoration:underline">{{$certificate->adm_no}}.</span> His/Her Date of birth is <span style="font-weight:bolder; text-transform:capitalize;">{{date('d-m-Y', strtotime($certificate->dob))}}
+                                        ?> @endif (Session:{{$certificate->session}})</span> vide Admission no. <span style="font-weight:bolder; text-transform:capitalize; text-decoration:underline">{{$certificate->adm_no}}.</span> His/Her Date of birth is <span style="font-weight:bolder; text-transform:capitalize;">{{date('d-m-Y', strtotime($certificate->dob))}}
 
 
 

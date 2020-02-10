@@ -66,17 +66,20 @@
                     Pre Nursery-1
                     @endif
                     @if($reciept->getStudent->class == 101)
-                    L.K.G
+                    Nursery
                     @endif
                     @if($reciept->getStudent->class == 102)
+                    L.K.G
+                    @endif
+                    @if($reciept->getStudent->class == 103)
                     U.K.G
                     @endif
-                    @if($reciept->getStudent->class !== 100 && $reciept->getStudent->class !== 101 &&$reciept->getStudent->class !== 102)
-                    {{$reciept->getStudent->class}}
-                    @endif
-                    -{{$reciept->getStudent->section}}</td>
-            </tr>
-            <tr>
+                    @if($reciept->getStudent->class < 100) <?php
+
+                                                            $a = $reciept->getStudent->class;
+                                                            echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
+
+                                                            ?> @endif -{{$reciept->getStudent->section}}</td> </tr> <tr>
                 <td>
                     Father Name: {{$reciept->getStudent->father}}
 
@@ -132,7 +135,7 @@
                             echo "<td>$j</td>";
                             echo "<td>$particulars[$i]</td>";
                             echo "<td style='text-align: right'>
-                                    ".number_format($fee[$i])."</td>";
+                                    " . number_format($fee[$i]) . "</td>";
                             echo "</tr>";
                         }
 
@@ -248,19 +251,23 @@
 
                     </td>
                     <td> Class & Section @if($reciept->getStudent->class == 100)
-                        'Pre Nursery-1'
+                        Pre Nursery-1
                         @endif
                         @if($reciept->getStudent->class == 101)
-                        'L.K.G'
+                        Nursery
                         @endif
                         @if($reciept->getStudent->class == 102)
-                        'U.K.G'
+                        L.K.G
                         @endif
-                        @if($reciept->getStudent->class !== 100 || $reciept->getStudent->class !== 101 ||$reciept->getStudent->class !== 102)
-                        {{$reciept->getStudent->class}}
-                        @endif -{{$reciept->getStudent->section}}</td>
-                </tr>
-                <tr>
+                        @if($reciept->getStudent->class == 103)
+                        U.K.G
+                        @endif
+                        @if($reciept->getStudent->class < 100) <?php
+
+                                                                $a = $reciept->getStudent->class;
+                                                                echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
+
+                                                                ?> @endif -{{$reciept->getStudent->section}}</td> </tr> <tr>
                     <td>
                         Father Name: {{$reciept->getStudent->father}}
 
@@ -317,7 +324,7 @@
                                 echo "<td>$j</td>";
                                 echo "<td>$particulars[$i]</td>";
                                 echo "<td style='text-align: right'>
-                                    ".number_format($fee[$i])."</td>";
+                                    " . number_format($fee[$i]) . "</td>";
 
 
                                 echo "</tr>";

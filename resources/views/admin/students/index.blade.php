@@ -217,13 +217,15 @@ Register Students
 
                             var gradeName;
 
-                            if(grade == 100) {
+                            if (grade == 100) {
                                 gradeName = 'Pre Nursery-1'
-                            }else if (grade == 101){
-                                gradeName ='LKG'
-                            }else if(grade == 102) {
-                                gradeName = 'UKG'
-                            }else {
+                            } else if (grade == 101) {
+                                gradeName = 'Nursery'
+                            } else if (grade == 102) {
+                                gradeName = 'L.K.G'
+                            } else if (grade == 103) {
+                                gradeName = 'U.K.G'
+                            } else {
                                 gradeName = getNumberWithOrdinal(grade);
                             }
 
@@ -322,13 +324,15 @@ Register Students
 
                             var gradeName;
 
-                            if(grade == 100) {
+                            if (grade == 100) {
                                 gradeName = 'Pre Nursery-1'
-                            }else if (grade == 101){
-                                gradeName ='LKG'
-                            }else if(grade == 102) {
-                                gradeName = 'UKG'
-                            }else {
+                            } else if (grade == 101) {
+                                gradeName = 'Nursery'
+                            } else if (grade == 102) {
+                                gradeName = 'L.K.G'
+                            } else if (grade == 103) {
+                                gradeName = 'U.K.G'
+                            } else {
                                 gradeName = getNumberWithOrdinal(grade);
                             }
 

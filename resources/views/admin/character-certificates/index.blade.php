@@ -42,29 +42,23 @@
                 <td>{{$certificate->mother_name}}</td>
                 <td>
                     @if($certificate->class == 100)
-                    L.K.G
+                    Pre Nursery-1
                     @endif
                     @if($certificate->class == 101)
-                    U.K.G
+                    Nursery
                     @endif
                     @if($certificate->class == 102)
-                    <?php
-
-                    $a = $certificate->class;
-                    echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
-
-                    ?>
+                    L.K.G
                     @endif
-                    @if($certificate->class < 100)
-                    <?php
-
-                    $a = $certificate->class + 1;
-                    echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
-
-                    ?>
+                    @if($certificate->class == 103)
+                    U.K.G
                     @endif
-                </td>
-                <td>{{$certificate->created_at->toDateString()}}</td>
+                    @if($certificate->class < 100) <?php
+
+                                                    $a = $certificate->class;
+                                                    echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
+
+                                                    ?> @endif </td> <td>{{$certificate->created_at->toDateString()}}</td>
                 <td style="display:flex;">
                     <a href="{{route('character-certificates.edit' , $certificate->id)}}" style="margin-left:10px;" class="btn btn-md btn-warning">Edit</a>
                     <a href="{{route('character-certificates.show' , $certificate->id)}}" style="margin-left:10px;" target="_blank" class="btn btn-md btn-success">Show</a>

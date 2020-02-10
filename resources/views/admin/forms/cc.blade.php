@@ -10,9 +10,12 @@
             Pre Nursery-1
             @endif
             @if($certificate->class == 101)
-            L.K.G
+            Nursery
             @endif
             @if($certificate->class == 102)
+            L.K.G
+            @endif
+            @if($certificate->class == 103)
             U.K.G
             @endif
             @if($certificate->class < 100) <?php

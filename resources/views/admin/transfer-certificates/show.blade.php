@@ -202,23 +202,24 @@
         <div style="display: flex; align-items:center; justify-content:space-between; ">
 
             <p>7. Date of Admission in This School/Class-- {{Carbon\Carbon::parse($tc->getStudent->admission_date)->format('d-m-Y')}} /Class -
-                @if($tc->getStudent->class == 100)
-                Pre Nursery-1
-                @endif
-                @if($tc->getStudent->class == 101)
-                L.K.G
-                @endif
-                @if($tc->getStudent->class == 102)
-                U.K.G
-                @endif
-                @if($tc->getStudent->class !== 100 && $tc->getStudent->class !== 101 &&$tc->getStudent->class !== 102)
-                <?php
+            @if($tc->getStudent->class == 100)
+                    Pre Nursery-1
+                    @endif
+                    @if($tc->getStudent->class == 101)
+                    Nursery
+                    @endif
+                    @if($tc->getStudent->class == 102)
+                    L.K.G
+                    @endif
+                    @if($tc->getStudent->class == 103)
+                    U.K.G
+                    @endif
+                    @if($tc->getStudent->class < 100) <?php
 
-                $a = $tc->getStudent->class;
-                echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
+                                                    $a = $tc->getStudent->class;
+                                                    echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
 
-                ?>
-                @endif
+                                                    ?> @endif
 
 
             </p>
@@ -227,23 +228,24 @@
 
             <div>
                 <p>8. Class Which Pupil Last Studied -
-                    @if($tc->getStudent->class == 100)
+                @if($tc->getStudent->class == 100)
                     Pre Nursery-1
                     @endif
                     @if($tc->getStudent->class == 101)
-                    L.K.G
+                    Nursery
                     @endif
                     @if($tc->getStudent->class == 102)
+                    L.K.G
+                    @endif
+                    @if($tc->getStudent->class == 103)
                     U.K.G
                     @endif
-                    @if($tc->getStudent->class !== 100 && $tc->getStudent->class !== 101 &&$tc->getStudent->class !== 102)
-                    <?php
+                    @if($tc->getStudent->class < 100) <?php
 
-                    $a = $tc->getStudent->class;
-                    echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
+                                                    $a = $tc->getStudent->class;
+                                                    echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
 
-                    ?>
-                    @endif
+                                                    ?> @endif
 
 
                 </p>
@@ -258,162 +260,156 @@
                     Pre Nursery-1
                     @endif
                     @if($tc->getStudent->class == 101)
-                    L.K.G
+                    Nursery
                     @endif
                     @if($tc->getStudent->class == 102)
+                    L.K.G
+                    @endif
+                    @if($tc->getStudent->class == 103)
                     U.K.G
                     @endif
-                    @if($tc->getStudent->class !== 100 && $tc->getStudent->class !== 101 &&$tc->getStudent->class !== 102)
-                    <?php
+                    @if($tc->getStudent->class < 100) <?php
 
-                    $a = $tc->getStudent->class;
-                    echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
+                                                    $a = $tc->getStudent->class;
+                                                    echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
 
-                    ?>
-                    @endif
+                                                    ?> @endif </p> </div> </div> <div style="display: flex; align-items:center; justify-content:space-between; ">
 
+                        <div>
+                            <p>10. Weather failed if so once/twice in the same class - {{$tc->failed}}
+                            </p>
+                        </div>
 
-                </p>
             </div>
+            <div style="display: flex; align-items:center; justify-content:space-between; ">
 
-        </div>
-        <div style="display: flex; align-items:center; justify-content:space-between; ">
+                <div>
+                    <p>11. Subjects Studided - {{implode(", ",$subjects)}}
+                    </p>
+                </div>
 
-            <div>
-                <p>10. Weather failed if so once/twice in the same class - {{$tc->failed}}
-                </p>
             </div>
+            <div style="display: flex; align-items:center; justify-content:space-between; ">
 
-        </div>
-        <div style="display: flex; align-items:center; justify-content:space-between; ">
-
-            <div>
-                <p>11. Subjects Studided - {{implode(", ",$subjects)}}
-                </p>
-            </div>
-
-        </div>
-        <div style="display: flex; align-items:center; justify-content:space-between; ">
-
-            <div>
-                <p>12. Weather qualified for promotion to higher class, if so, to which class -
+                <div>
+                    <p>12. Weather qualified for promotion to higher class, if so, to which class -
 
 
                     @if($tc->getStudent->class == 100)
-                    L.K.G
+                    Nursery
                     @endif
                     @if($tc->getStudent->class == 101)
-                    U.K.G
+                    L.K.G
                     @endif
                     @if($tc->getStudent->class == 102)
+                    U.K.G
+                    @endif
+                    @if($tc->getStudent->class == 103)
                     <?php
 
-                    $a = $tc->getStudent->class;
-                    echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
+                                                    $a = 1;
+                                                    echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
 
-                    ?>
+                                                    ?>
                     @endif
-                    @if($tc->getStudent->class !== 100 && $tc->getStudent->class !== 101 &&$tc->getStudent->class !== 102 || $tc->getStudent->class !== 12)
-                    <?php
+                    @if($tc->getStudent->class < 100 && $tc->getStudent->class !== 12 ) <?php
+                                                    $a = $tc->getStudent->class + 1;
+                                                    echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
 
-                    $a = $tc->getStudent->class + 1;
-                    echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
+                                                    ?> @endif
+                    </p>
+                </div>
 
-                    ?>
-                    @endif
-                </p>
+
             </div>
 
+            <div style="display: flex; align-items:center; justify-content:space-between; ">
 
-        </div>
+                <div>
+                    <p>13. Month upto which dues paid - {{$tc->dues}}
+                    </p>
+                </div>
 
-        <div style="display: flex; align-items:center; justify-content:space-between; ">
+            </div>
+            <div style="display: flex; align-items:center; justify-content:space-between; ">
 
-            <div>
-                <p>13. Month upto which dues paid - {{$tc->dues}}
-                </p>
+                <div>
+                    <p>14. Any fee concession available of, if so, the nature of such concession - {{App\Fee::where('student_id' , $tc->student_id)->first()->concession == null ? 'NO' : 'YES'}}
+                    </p>
+                </div>
+
+            </div>
+            <div style="display: flex; align-items:center; justify-content:space-between; ">
+
+                <div>
+                    <p>15. Total present days - {{$tc->tpd}}
+                    </p>
+                </div>
+                <div>
+                    <p>16. Total working days - {{$tc->twd}}
+                    </p>
+                </div>
+
+            </div>
+            <div style="display: flex; align-items:center; justify-content:space-between; ">
+
+                <div>
+                    <p>17. Weather NCC Cadet/Boy Scout/Girl Scout/Girl Guide (Details may be given) - {{$tc->scout}}
+                    </p>
+                </div>
+
+            </div>
+            <div style="display: flex; align-items:center; justify-content:space-between; ">
+
+                <div>
+                    <p>18. Games played or Extra/Curricular Activities in which pupil took part - {{$tc->games}}
+                    </p>
+                </div>
+
+
+
+
+
             </div>
 
-        </div>
-        <div style="display: flex; align-items:center; justify-content:space-between; ">
+            <div style="display: flex; align-items:center; justify-content:space-between; ">
 
-            <div>
-                <p>14. Any fee concession available of, if so, the nature of such concession - {{App\Fee::where('student_id' , $tc->student_id)->first()->concession == null ? 'NO' : 'YES'}}
-                </p>
+                <div>
+                    <p>19. General Conduct - {{$tc->conduct}}
+                    </p>
+                </div>
+
             </div>
+            <div style="display: flex; align-items:center; justify-content:space-between; ">
 
-        </div>
-        <div style="display: flex; align-items:center; justify-content:space-between; ">
+                <div>
+                    <p>20. Date of application for certificate - {{Carbon\Carbon::parse($tc->doa)->format('d-m-Y')}}
+                    </p>
+                </div>
 
-            <div>
-                <p>15. Total present days - {{$tc->tpd}}
-                </p>
             </div>
-            <div>
-                <p>16. Total working days - {{$tc->twd}}
-                </p>
+            <div style="display: flex; align-items:center; justify-content:space-between; ">
+
+                <div>
+                    <p>21. Date of issued certificate - {{$tc->created_at->format('d-m-Y')}}
+                    </p>
+                </div>
+
             </div>
+            <div style="display: flex; align-items:center; justify-content:space-between; margin-top:25px; ">
 
-        </div>
-        <div style="display: flex; align-items:center; justify-content:space-between; ">
+                <div>
+                    <p>Initals of class Teacher/Office assistant
+                    </p>
+                    <p>Date: </p>
+                </div>
 
-            <div>
-                <p>17. Weather NCC Cadet/Boy Scout/Girl Scout/Girl Guide (Details may be given) - {{$tc->scout}}
-                </p>
+                <div>
+                    <p>Signature of Principal -
+                    </p>
+                </div>
+
             </div>
-
-        </div>
-        <div style="display: flex; align-items:center; justify-content:space-between; ">
-
-            <div>
-                <p>18. Games played or Extra/Curricular Activities in which pupil took part - {{$tc->games}}
-                </p>
-            </div>
-
-
-
-
-
-        </div>
-
-        <div style="display: flex; align-items:center; justify-content:space-between; ">
-
-            <div>
-                <p>19. General Conduct - {{$tc->conduct}}
-                </p>
-            </div>
-
-        </div>
-        <div style="display: flex; align-items:center; justify-content:space-between; ">
-
-            <div>
-                <p>20. Date of application for certificate - {{Carbon\Carbon::parse($tc->doa)->format('d-m-Y')}}
-                </p>
-            </div>
-
-        </div>
-        <div style="display: flex; align-items:center; justify-content:space-between; ">
-
-            <div>
-                <p>21. Date of issued certificate - {{$tc->created_at->format('d-m-Y')}}
-                </p>
-            </div>
-
-        </div>
-        <div style="display: flex; align-items:center; justify-content:space-between; margin-top:25px; ">
-
-            <div>
-                <p>Initals of class Teacher/Office assistant
-                </p>
-                <p>Date: </p>
-            </div>
-
-            <div>
-                <p>Signature of Principal -
-                </p>
-            </div>
-
-        </div>
     </section>
 
 

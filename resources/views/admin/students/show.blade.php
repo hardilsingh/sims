@@ -63,19 +63,25 @@ View Student
                 Pre Nursery-1
                 @endif
                 @if($student->class == 101)
-                L.K.G
+                Nursery
                 @endif
                 @if($student->class == 102)
+                L.K.G
+                @endif
+                @if($student->class == 103)
                 U.K.G
                 @endif
-                @if($student->class < 100) <?php
+                @if($student->class < 100)
+                <?php
 
-                                                $a = $student->class;
-                                                echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
+                $a = $student->class;
+                echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
 
-                                                ?> @endif </span> </div> <div class="row">
-                    <span class="heading">Section:</span>
-                    <span class="particular">{{$student->section}}</span>
+                ?>
+                @endif </span> </div>
+        <div class="row">
+            <span class="heading">Section:</span>
+            <span class="particular">{{$student->section}}</span>
         </div>
         <div class="row">
             <span class="heading">Adm No:</span>

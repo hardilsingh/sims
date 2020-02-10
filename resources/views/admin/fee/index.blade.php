@@ -232,9 +232,11 @@ Fee Manager
                             if (grade == 100) {
                                 gradeName = 'Pre Nursery-1'
                             } else if (grade == 101) {
-                                gradeName = 'LKG'
+                                gradeName = 'Nursery'
                             } else if (grade == 102) {
-                                gradeName = 'UKG'
+                                gradeName = 'L.K.G'
+                            } else if (grade == 103) {
+                                gradeName = 'U.K.G'
                             } else {
                                 gradeName = getNumberWithOrdinal(grade);
                             }
@@ -343,9 +345,11 @@ Fee Manager
                             if (grade == 100) {
                                 gradeName = 'Pre Nursery-1'
                             } else if (grade == 101) {
-                                gradeName = 'LKG'
+                                gradeName = 'Nursery'
                             } else if (grade == 102) {
-                                gradeName = 'UKG'
+                                gradeName = 'L.K.G'
+                            } else if (grade == 103) {
+                                gradeName = 'U.K.G'
                             } else {
                                 gradeName = getNumberWithOrdinal(grade);
                             }

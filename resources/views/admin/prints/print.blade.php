@@ -50,21 +50,20 @@ Search Students
                     Pre Nursery-1
                     @endif
                     @if($result->class == 101)
-                    L.K.G
+                    Nursery
                     @endif
                     @if($result->class == 102)
+                    L.K.G
+                    @endif
+                    @if($result->class == 103)
                     U.K.G
                     @endif
-                    @if($result->class !== 100 && $result->class !== 101 &&$result->class !== 102)
-                    <?php
+                    @if($result->class < 100) <?php
 
-                    $a = $result->class;
-                    echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
+                                                            $a = $result->class;
+                                                            echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
 
-                    ?>
-                    @endif
-                </td>
-                <td>{{$result->section}}</td>
+                                                            ?> @endif </td> <td>{{$result->section}}</td>
                 <td>{{$result->tel1}}</td>
                 <td>{{$result->gender == 0 ? 'Male' : 'Female'}}</td>
                 <td>

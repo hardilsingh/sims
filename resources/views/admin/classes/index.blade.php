@@ -111,14 +111,32 @@ Classes
                 </tr>
             </thead>
             <tbody>
-            @php
-            $i = 1
-            @endphp
+                @php
+                $i = 1
+                @endphp
                 @foreach($classes as $class)
                 <tr>
                     <td>{{$i++}}</td>
-                    <td>{{$class->class}}</td>
-                    <td>₹{{$class->fee}}</td>
+                    <td>
+
+                        @if($class->id == 100)
+                        Pre Nursery-1
+                        @endif
+                        @if($class->id == 101)
+                        Nursery
+                        @endif
+                        @if($class->id == 102)
+                        L.K.G
+                        @endif
+                        @if($class->id == 103)
+                        U.K.G
+                        @endif
+                        @if($class->id < 100) <?php
+
+                                                            $a = $class->id;
+                                                            echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
+
+                                                            ?> @endif </td> <td>₹{{$class->fee}}</td>
                     <td>₹{{$class->computer_fee}}</td>
                     <td>₹{{$class->sports}}</td>
                     <td>₹{{$class->stationary}}</td>

@@ -117,7 +117,7 @@ Fee Manager
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-primary d-inline">
                                                         <input type="checkbox" value="{{$student->grade->fee}},April Monthly Fee,1,4" name="amf" id="checkboxPrimary1" {{$fee->amf == 1 ? 'checked' : ''}}>
-                                                        <label for="checkboxPrimary1"> April Monthly Fee {{now()->year}} 
+                                                        <label for="checkboxPrimary1"> April Monthly Fee {{now()->year}}
                                                             <!-- <a href="/exempt?name=amf&id={{$fee->id}}&fee={{$student->grade->fee}}&month=4" class="nav-link">Exempt</a> -->
                                                         </label>
                                                     </div>
@@ -132,7 +132,7 @@ Fee Manager
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-danger d-inline">
                                                         <input type="checkbox" name="acf" id="checkboxDanger1" value="{{$student->grade->computer_fee}},April Computer Fee,2,4" {{$fee->acf == 1 ? 'checked' : ''}}>
-                                                        <label for="checkboxDanger1">April Computer Fee {{now()->year}} 
+                                                        <label for="checkboxDanger1">April Computer Fee {{now()->year}}
                                                             <!-- <a href="/exempt?name=acf&id={{$fee->id}}&fee={{$student->grade->computer_fee}}&month=4" class="nav-link">Exempt</a> -->
                                                         </label>
                                                     </div>
@@ -149,7 +149,7 @@ Fee Manager
                                                     <div class="icheck-success d-inline">
                                                         <input type="checkbox" name="acf" id="checkboxSuccess1" value="{{$student->stationName->fee}},April Transport Fee,3,4" class="transportfee" {{$fee->atf == 1 ? 'checked' : ''}}>
                                                         <label for="checkboxSuccess1">April Transport Fee {{now()->year}}
-                                                             <!-- <a href="/exempt?name=atf&id={{$fee->id}}&fee={{$student->stationName->fee}}&month=4" class="nav-link">Exempt</a> -->
+                                                            <!-- <a href="/exempt?name=atf&id={{$fee->id}}&fee={{$student->stationName->fee}}&month=4" class="nav-link">Exempt</a> -->
                                                         </label>
                                                     </div>
 
@@ -157,7 +157,7 @@ Fee Manager
                                             </div>
                                         </div>
                                         @endif
-                                        @if($student->class == 100 || $student->class == 101 || $student->class == 102)
+                                        @if($student->class == 100 || $student->class == 101 || $student->class == 102 || $student->class == 103)
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <!-- checkbox -->
@@ -165,7 +165,7 @@ Fee Manager
                                                     <div class="icheck-success d-inline">
                                                         <input type="checkbox" name="asf" id="checkboxSuccess1587" value="{{$student->grade->stationary_fee}},April Stationary Fee,4,4" class="stationaryfee" {{$fee->asf == 1 ? 'checked' : ''}}>
                                                         <label for="checkboxSuccess1587">April Stationary Fee {{now()->year}}
-                                                             <!-- <a href="/exempt?name=asf&id={{$fee->id}}&fee={{$student->grade->stationary_fee}}&month=4" class="nav-link">Exempt</a> -->
+                                                            <!-- <a href="/exempt?name=asf&id={{$fee->id}}&fee={{$student->grade->stationary_fee}}&month=4" class="nav-link">Exempt</a> -->
                                                         </label>
                                                     </div>
 
@@ -205,7 +205,7 @@ Fee Manager
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-danger d-inline">
                                                         <input type="checkbox" name="maycf" id="checkboxDanger2" value="{{$student->grade->computer_fee}},May Computer Fee,2,5" {{$fee->maymf == 1 ? 'checked' : ''}}>
-                                                        <label for="checkboxDanger2">May Computer Fee {{now()->year}} 
+                                                        <label for="checkboxDanger2">May Computer Fee {{now()->year}}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -220,7 +220,7 @@ Fee Manager
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-success d-inline">
                                                         <input type="checkbox" value="{{$student->stationName->fee}},May Transport Fee,3,5" name="maytf" id="checkboxSuccess2" {{$fee->maytf == 1 ? 'checked' : ''}}>
-                                                        <label for="checkboxSuccess2">May Transport Fee {{now()->year}} 
+                                                        <label for="checkboxSuccess2">May Transport Fee {{now()->year}}
                                                         </label>
                                                     </div>
 
@@ -228,7 +228,7 @@ Fee Manager
                                             </div>
                                         </div>
                                         @endif
-                                        @if($student->class == 100 || $student->class == 101 || $student->class == 102)
+                                        @if($student->class == 100 || $student->class == 101 || $student->class == 102 || $student->class == 103)
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <!-- checkbox -->
@@ -300,7 +300,7 @@ Fee Manager
 
                                         </div>
                                         @endif
-                                        @if($student->class == 100 || $student->class == 101 || $student->class == 102)
+                                        @if($student->class == 100 || $student->class == 101 || $student->class == 102 || $student->class == 103)
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <!-- checkbox -->
@@ -341,7 +341,7 @@ Fee Manager
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-primary d-inline">
                                                         <input type="checkbox" value="{{$student->grade->fee}},July Monthly Fee,1,7" name="julymf" id="checkboxPrimary4" {{$fee->julymf == 1 ? 'checked' : ''}}>
-                                                        <label for="checkboxPrimary4"> July Monthly Fee {{now()->year}} 
+                                                        <label for="checkboxPrimary4"> July Monthly Fee {{now()->year}}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -385,7 +385,7 @@ Fee Manager
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-warning d-inline">
                                                         <input type="checkbox" value="{{$student->grade->sports}},ID Card Fee ,6,7" name="julyid_card_fee" id="checkboxWarning4" {{$fee->julyid_card_fee == 1 ? 'checked' : ''}}>
-                                                        <label for="checkboxWarning4">July ID Card Fee {{now()->year}} 
+                                                        <label for="checkboxWarning4">July ID Card Fee {{now()->year}}
                                                         </label>
                                                     </div>
 
@@ -393,7 +393,7 @@ Fee Manager
                                             </div>
 
                                         </div>
-                                        @if($student->class == 100 || $student->class == 101 || $student->class == 102)
+                                        @if($student->class == 100 || $student->class == 101 || $student->class == 102 || $student->class == 103)
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <!-- checkbox -->
@@ -427,7 +427,7 @@ Fee Manager
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-primary d-inline">
                                                         <input type="checkbox" value="{{$student->grade->fee}},August Monthly Fee,1,8" name="augmf" id="checkboxPrimary5" {{$fee->augmf == 1 ? 'checked' : ''}}>
-                                                        <label for="checkboxPrimary5"> August Monthly Fee {{now()->year}} 
+                                                        <label for="checkboxPrimary5"> August Monthly Fee {{now()->year}}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -465,7 +465,7 @@ Fee Manager
 
                                         </div>
                                         @endif
-                                        @if($student->class == 100 || $student->class == 101 || $student->class == 102)
+                                        @if($student->class == 100 || $student->class == 101 || $student->class == 102 || $student->class == 103)
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <!-- checkbox -->
@@ -513,7 +513,7 @@ Fee Manager
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-danger d-inline">
                                                         <input type="checkbox" value="{{$student->grade->computer_fee}},September Computer Fee,2,9" name="septcf" id="checkboxDanger6" {{$fee->septcf == 1 ? 'checked' : ''}}>
-                                                        <label for="checkboxDanger6">September Computer Fee {{now()->year}} 
+                                                        <label for="checkboxDanger6">September Computer Fee {{now()->year}}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -528,7 +528,7 @@ Fee Manager
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-success d-inline">
                                                         <input type="checkbox" value="{{$student->stationName->fee}},September Transport Fee,3,9" name="septtf" id="checkboxSuccess6" {{$fee->septtf == 1 ? 'checked' : ''}}>
-                                                        <label for="checkboxSuccess6">September Transport Fee {{now()->year}} 
+                                                        <label for="checkboxSuccess6">September Transport Fee {{now()->year}}
                                                         </label>
                                                     </div>
 
@@ -537,7 +537,7 @@ Fee Manager
 
                                         </div>
                                         @endif
-                                        @if($student->class == 100 || $student->class == 101 || $student->class == 102)
+                                        @if($student->class == 100 || $student->class == 101 || $student->class == 102 || $student->class == 103)
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <!-- checkbox -->
@@ -592,7 +592,7 @@ Fee Manager
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-danger d-inline">
                                                         <input type="checkbox" value="{{$student->grade->computer_fee}},October Computer Fee,2,10" name="octcf" id="checkboxDanger8" {{$fee->octcf == 1 ? 'checked' : ''}}>
-                                                        <label for="checkboxDanger8">October Computer Fee {{now()->year}} 
+                                                        <label for="checkboxDanger8">October Computer Fee {{now()->year}}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -616,14 +616,14 @@ Fee Manager
 
                                         </div>
                                         @endif
-                                        @if($student->class == 100 || $student->class == 101 || $student->class == 102)
+                                        @if($student->class == 100 || $student->class == 101 || $student->class == 102 || $student->class == 103)
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <!-- checkbox -->
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-warning d-inline">
                                                         <input type="checkbox" name="octsf" id="checkboxWarning8" value="{{$student->grade->stationary_fee}},October Stationary Fee,4,10" class="stationaryfee" {{$fee->octsf == 1 ? 'checked' : ''}}>
-                                                        <label for="checkboxWarning8">October Stationary Fee {{now()->year}} 
+                                                        <label for="checkboxWarning8">October Stationary Fee {{now()->year}}
                                                         </label>
                                                     </div>
 
@@ -637,7 +637,7 @@ Fee Manager
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-warning d-inline">
                                                         <input type="checkbox" value="{{$student->grade->stationary}},Examination Fee,5,10" name="octexamination_fee" id="checkboxWarning50" {{$fee->octexamination_fee == 1 ? 'checked' : ''}}>
-                                                        <label for="checkboxWarning50">October Examination Fee {{now()->year}} 
+                                                        <label for="checkboxWarning50">October Examination Fee {{now()->year}}
                                                         </label>
                                                     </div>
 
@@ -664,7 +664,7 @@ Fee Manager
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-primary d-inline">
                                                         <input type="checkbox" value="{{$student->grade->fee}},November Monthly Fee,1,11" name="novmf" id="checkboxPrimary9" {{$fee->novmf == 1 ? 'checked' : ''}}>
-                                                        <label for="checkboxPrimary9"> November Monthly Fee {{now()->year}} 
+                                                        <label for="checkboxPrimary9"> November Monthly Fee {{now()->year}}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -702,7 +702,7 @@ Fee Manager
 
                                         </div>
                                         @endif
-                                        @if($student->class == 100 || $student->class == 101 || $student->class == 102)
+                                        @if($student->class == 100 || $student->class == 101 || $student->class == 102 || $student->class == 103)
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <!-- checkbox -->
@@ -750,7 +750,7 @@ Fee Manager
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-danger d-inline">
                                                         <input type="checkbox" value="{{$student->grade->computer_fee}},December Computer Fee,2,12" name="deccf" id="checkboxDanger10" {{$fee->deccf == 1 ? 'checked' : ''}}>
-                                                        <label for="checkboxDanger10">December Computer Fee {{now()->year}} 
+                                                        <label for="checkboxDanger10">December Computer Fee {{now()->year}}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -774,14 +774,14 @@ Fee Manager
 
                                         </div>
                                         @endif
-                                        @if($student->class == 100 || $student->class == 101 || $student->class == 102)
+                                        @if($student->class == 100 || $student->class == 101 || $student->class == 102 || $student->class == 103)
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <!-- checkbox -->
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-warning d-inline">
                                                         <input type="checkbox" name="decsf" id="checkboxWarning10" value="{{$student->grade->stationary_fee}},December Stationary Fee,4,12" class="stationaryfee" {{$fee->decsf == 1 ? 'checked' : ''}}>
-                                                        <label for="checkboxWarning10">December Stationary Fee {{now()->year}} 
+                                                        <label for="checkboxWarning10">December Stationary Fee {{now()->year}}
                                                         </label>
                                                     </div>
 
@@ -842,7 +842,7 @@ Fee Manager
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-success d-inline">
                                                         <input type="checkbox" value="{{$student->stationName->fee}},January Transport Fee, 3,1" name="jtf" id="checkboxSuccess12" {{$fee->jtf == 1 ? 'checked' : ''}}>
-                                                        <label for="checkboxSuccess12">January Transport Fee {{now()->year}} 
+                                                        <label for="checkboxSuccess12">January Transport Fee {{now()->year}}
                                                         </label>
                                                     </div>
 
@@ -850,14 +850,14 @@ Fee Manager
                                             </div>
                                         </div>
                                         @endif
-                                        @if($student->class == 100 || $student->class == 101 || $student->class == 102)
+                                        @if($student->class == 100 || $student->class == 101 || $student->class == 102 || $student->class == 103)
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <!-- checkbox -->
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-warning d-inline">
                                                         <input type="checkbox" name="jsf" id="checkboxWarning12" value="{{$student->grade->stationary_fee}},January Stationary Fee,4,1" class="stationaryfee" {{$fee->jsf == 1 ? 'checked' : ''}}>
-                                                        <label for="checkboxWarning12">January Stationary Fee {{now()->year}} 
+                                                        <label for="checkboxWarning12">January Stationary Fee {{now()->year}}
                                                         </label>
                                                     </div>
 
@@ -884,7 +884,7 @@ Fee Manager
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-primary d-inline">
                                                         <input type="checkbox" value="{{$student->grade->fee}},February Monthly Fee,1,2" name="fmf" id="checkboxPrimary13" {{$fee->fmf == 1 ? 'checked' : ''}}>
-                                                        <label for="checkboxPrimary13"> February Monthly Fee {{now()->year}} 
+                                                        <label for="checkboxPrimary13"> February Monthly Fee {{now()->year}}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -913,7 +913,7 @@ Fee Manager
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-success d-inline">
                                                         <input type="checkbox" value="{{$student->stationName->fee}},February Transport Fee,3,2" name="ftf" id="checkboxSuccess13" {{$fee->ftf == 1 ? 'checked' : ''}}>
-                                                        <label for="checkboxSuccess13">February Transport Fee {{now()->year}} 
+                                                        <label for="checkboxSuccess13">February Transport Fee {{now()->year}}
                                                         </label>
                                                     </div>
 
@@ -922,7 +922,7 @@ Fee Manager
 
                                         </div>
                                         @endif
-                                        @if($student->class == 100 || $student->class == 101 || $student->class == 102)
+                                        @if($student->class == 100 || $student->class == 101 || $student->class == 102 || $student->class == 103)
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <!-- checkbox -->
@@ -956,7 +956,7 @@ Fee Manager
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-primary d-inline">
                                                         <input type="checkbox" value="{{$student->grade->fee}},March Monthly Fee,1,3" name="mmf" id="checkboxPrimary14" {{$fee->mmf == 1 ? 'checked' : ''}}>
-                                                        <label for="checkboxPrimary14"> March Monthly Fee {{now()->year}} 
+                                                        <label for="checkboxPrimary14"> March Monthly Fee {{now()->year}}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -985,7 +985,7 @@ Fee Manager
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-success d-inline">
                                                         <input type="checkbox" value="{{$student->stationName->fee}},March Transport Fee,3,3" name="mtf" id="checkboxSuccess14" {{$fee->mtf == 1 ? 'checked' : ''}}>
-                                                        <label for="checkboxSuccess14">March Transport Fee {{now()->year}} 
+                                                        <label for="checkboxSuccess14">March Transport Fee {{now()->year}}
                                                         </label>
                                                     </div>
 
@@ -994,14 +994,14 @@ Fee Manager
 
                                         </div>
                                         @endif
-                                        @if($student->class == 100 || $student->class == 101 || $student->class == 102)
+                                        @if($student->class == 100 || $student->class == 101 || $student->class == 102 || $student->class == 103)
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <!-- checkbox -->
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-warning d-inline">
                                                         <input type="checkbox" name="msf" id="checkboxWarning14" value="{{$student->grade->stationary_fee}},March Stationary Fee,4,3" class="stationaryfee" {{$fee->msf == 1 ? 'checked' : ''}}>
-                                                        <label for="checkboxWarning14">March Stationary Fee {{now()->year}} 
+                                                        <label for="checkboxWarning14">March Stationary Fee {{now()->year}}
                                                         </label>
                                                     </div>
 
@@ -1035,7 +1035,7 @@ Fee Manager
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-primary d-inline">
                                                         <input type="checkbox" name="admission_fee" id="checkboxPrimary21" value="{{$student->grade->admission}},Admission Fee,8,4" {{$fee->admission_fee == 1 ? 'checked' : ''}}>
-                                                        <label for="checkboxPrimary21"> Admission Charges {{now()->year}}-{{now()->year + 1}} 
+                                                        <label for="checkboxPrimary21"> Admission Charges {{now()->year}}-{{now()->year + 1}}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -1062,7 +1062,7 @@ Fee Manager
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-primary d-inline">
                                                         <input type="checkbox" name="annual_charges" id="checkboxPrimary20" value="{{$student->grade->annual}},Annual Charges,8,4" {{$fee->annual_charges == 1 ? 'checked' : ''}}>
-                                                        <label for="checkboxPrimary20"> Annual Charges {{now()->year}}-{{now()->year + 1}} 
+                                                        <label for="checkboxPrimary20"> Annual Charges {{now()->year}}-{{now()->year + 1}}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -1514,7 +1514,7 @@ Fee Manager
                     var index = i;
                     particular.splice(index, 1);
                     fee.splice(index, 1);
-                    month.splice(index , 1);
+                    month.splice(index, 1);
                     createTable(particular, fee);
                     calculateToatl(fee)
                 }

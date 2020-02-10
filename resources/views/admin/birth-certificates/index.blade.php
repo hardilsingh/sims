@@ -51,21 +51,20 @@ Birth Certificates
                     Pre Nursery-1
                     @endif
                     @if($certificate->class == 101)
-                    L.K.G
+                    Nursery
                     @endif
                     @if($certificate->class == 102)
+                    L.K.G
+                    @endif
+                    @if($certificate->class == 103)
                     U.K.G
                     @endif
-                    @if($certificate->class < 100)
-                    <?php
+                    @if($certificate->class < 100) <?php
 
-                    $a = $certificate->class;
-                    echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
+                                                $a = $certificate->class;
+                                                echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
 
-                    ?>
-                    @endif
-                </td>
-                <td>{{$certificate->created_at->toDateString()}}</td>
+                                                ?> @endif </td> <td>{{$certificate->created_at->toDateString()}}</td>
                 <td style="display:flex;">
                     <a href="{{route('birth-certificates.edit' , $certificate->id)}}" style="margin-left:10px;" class="btn btn-md btn-warning">Edit</a>
                     <a href="{{route('birth-certificates.show' , $certificate->id)}}" style="margin-left:10px;" target="_blank" class="btn btn-md btn-success">Show</a>
