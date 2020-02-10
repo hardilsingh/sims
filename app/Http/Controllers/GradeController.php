@@ -16,7 +16,7 @@ class GradeController extends Controller
     public function index()
     {
         //
-        $classes = Grade::all();
+        $classes = Grade::orderBy('id' . 'DESC')->get();
         return view('admin.classes.index' , compact("classes"));
     }
 

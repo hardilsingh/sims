@@ -111,9 +111,12 @@ Classes
                 </tr>
             </thead>
             <tbody>
+            @php
+            $i = 1
+            @endphp
                 @foreach($classes as $class)
                 <tr>
-                    <td>{{$class->id}}</td>
+                    <td>{{$i++}}</td>
                     <td>{{$class->class}}</td>
                     <td>₹{{$class->fee}}</td>
                     <td>₹{{$class->computer_fee}}</td>
