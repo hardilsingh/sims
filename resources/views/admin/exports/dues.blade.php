@@ -64,7 +64,7 @@ libxml_use_internal_errors(true);
                     "</td>";
                     echo "<td>" . $tel . "</td>";
 
-                    echo "<td style='font-weight:bolder'> " . $student->total . "</td>";
+                    echo "<td style='font-weight:bolder'> " .$student->total . "</td>";
                     echo "</tr>";
 
         }
