@@ -229,7 +229,6 @@ class FeeController extends Controller
                 'mode' => $request->mode,
                 'refrence' => $request->refrence,
             ]);
-            
         }
         $recipet_id = $reciept->id;
         $request->session()->flash('updated', 'updated');
@@ -309,10 +308,19 @@ class FeeController extends Controller
 
         $id = $_GET['id'];
         $con_id = $_GET['con_id'];
+
         $fee = Fee::where('student_id', $id);
-        $fee->update([
-            'concession' => $con_id,
-        ]);
+        
+        if ($con_id == "") {
+            $fee->update([
+                'concession' => null,
+            ]);
+        }else {
+            $fee->update([
+                'concession' => $con_id,
+            ]);
+        }
+
 
         session()->flash('updated', 'success');
 

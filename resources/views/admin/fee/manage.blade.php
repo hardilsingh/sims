@@ -54,8 +54,9 @@ Fee Manager
                         <td>{{$student->father}}</td>
                         <td>{{$student->tel1}}, {{$student->tel2 == 0 ? 'N/A' : $student->tel2}}</td>
                         <td>{{\Carbon\Carbon::parse($student->admission_date)->format('d/m/Y')}}</td>
-                        <td>
+                        <td style="display: flex; align-items:center; justify-content:space-between">
                             {!! Form::select('concession' , $concession , $fee->concession , ['class'=>'form-control' , 'id'=>'concessionTotal' , 'placeholder'=>'Select concession']) !!}
+                            <button class="btn btn-danger btn-sm" style="margin-left: 10px;" id="remove_con">Remove</button>
                         </td>
                     </tr>
                 </tbody>
@@ -1349,18 +1350,56 @@ Fee Manager
     $('#custom-tabs-one-annual-tab').click();
 
 
+    if ($('#concessionTotal').val() != "") {
+        $('#concessionTotal').prop("disabled", true);
+    }
+
+
+
+
     $('#concessionTotal').change(function() {
         var con_id = $(this).val();
-        $.ajax({
-            url: '/concessionapply?id=' + student_id + '&con_id=' + con_id,
-            type: 'get',
-            dataType: 'json',
-            success: function(response) {
+        if (confirm("Are you sure you want to add concession benifit to the student?")) {
+            if (confirm("You are now going to add the concession for the student.")) {
+                $.ajax({
+                    url: '/concessionapply?id=' + student_id + '&con_id=' + con_id,
+                    type: 'get',
+                    dataType: 'json',
+                    success: function(response) {
 
+                        window.location.href = "/fee/student/" + student_id;
+                    }
+                });
+            } else {
+                window.location.href = "/fee/student/" + student_id;
+
+            }
+        } else {
+            window.location.href = "/fee/student/" + student_id;
+        }
+
+
+    })
+
+    $('#remove_con').click(function() {
+        if (confirm("Are you sure you want to remove the student's concession?")) {
+            if (confirm("You are now going to revoke the concession of the student.")) {
+                $.ajax({
+                    url: '/concessionapply?id=' + student_id + '&con_id=',
+                    type: 'get',
+                    dataType: 'json',
+                    success: function(response) {
+
+                        window.location.href = "/fee/student/" + student_id;
+                    }
+                });
+            } else {
                 window.location.href = "/fee/student/" + student_id;
             }
-        });
-    })
+        } else {
+            window.location.href = "/fee/student/" + student_id;
+        }
+    });
 
 
     var fee = [];
@@ -1508,7 +1547,7 @@ Fee Manager
                     applyConcession = parseInt(data[0]);
                     latestFee = parseInt(data[0])
                 }
-            }else if (data[2] == 8) {
+            } else if (data[2] == 8) {
                 if (onAnnualFee !== 0) {
                     applyConcession = (onAnnualFee / 100) * parseInt(data[0])
                     latestFee = parseInt(data[0]) - applyConcession;
@@ -1516,7 +1555,7 @@ Fee Manager
                     applyConcession = parseInt(data[0]);
                     latestFee = parseInt(data[0])
                 }
-            }else if (data[2] == 10) {
+            } else if (data[2] == 10) {
                 if (onApplicationFee !== 0) {
                     applyConcession = (onApplicationFee / 100) * parseInt(data[0])
                     latestFee = parseInt(data[0]) - applyConcession;
@@ -1524,7 +1563,7 @@ Fee Manager
                     applyConcession = parseInt(data[0]);
                     latestFee = parseInt(data[0])
                 }
-            }else if (data[2] == 9) {
+            } else if (data[2] == 9) {
                 if (onProspectusFee !== 0) {
                     applyConcession = (onProspectusFee / 100) * parseInt(data[0])
                     latestFee = parseInt(data[0]) - applyConcession;
@@ -1571,16 +1610,24 @@ Fee Manager
 
 
     $('#submit').click(function() {
-        $('input[type=checkbox').val(1);
-        var paid = document.getElementById('recieved').value;
-        var balance = document.getElementById('balance').value;
+        if (fee.length > 0 || month.length > 0 || particular.length > 0) {
+            if (confirm("Are you sure you want to generate a reciept?")) {
+                $('input[type=checkbox').val(1);
+                var paid = document.getElementById('recieved').value;
+                var balance = document.getElementById('balance').value;
 
-        $('#a').val(particular);
-        $('#b').val(fee);
-        $('#c').val(paid);
-        $('#d').val(balance);
-        $('#e').val(student_id);
-        $("#f").val(month);
+                $('#a').val(particular);
+                $('#b').val(fee);
+                $('#c').val(paid);
+                $('#d').val(balance);
+                $('#e').val(student_id);
+                $("#f").val(month);
+            }
+        }else {
+            alert("You need to select the months from the above menu.");
+        }
+
+
 
     });
 

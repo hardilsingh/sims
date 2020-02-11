@@ -9,6 +9,8 @@ Register Students
 @section('content')
 
 
+
+
 <style>
     /* Style the form */
 
@@ -98,14 +100,14 @@ Register Students
         <div class="row">
             <div class="col-lg-12" style="display: flex;">
                 <div class="col-lg-4">
-                    <div class="form-group"> <label for="exampleInputName2">Date Of Adm: </label> <span class="badge badge-danger">Required</span> <input type="date" name="date_of_adm" value="{{now()->toDateString()}}" class="form-control" id="exampleInputName2" placeholder="Your name"> </div>
+                    <div class="form-group"> <label for="exampleInputName2">Date Of Adm: </label> <span class="badge badge-danger">Required</span> <input type="date" name="date_of_adm" value="{{now()->toDateString()}}" required class="form-control" id="exampleInputName2" placeholder="Your name"> </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="form-group"> <label for="exampleInputName2">Session</label> <input type="text" class="form-control" name="session" value="{{now()->year}}-{{now()->year+1}}" id="exampleInputName2" placeholder="" readonly> </div>
+                    <div class="form-group"> <label for="exampleInputName2">Session</label> <input type="text" class="form-control" name="session" value="{{now()->year}}-{{now()->year+1}}" id="exampleInputName2" required placeholder="" readonly> </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group"> <label for="exampleInputName2">Adm Type: <span class="badge badge-danger">Required</span></label>
-                        <select name="adm_type" id="" class="form-control">
+                        <select name="adm_type" required id="" class="form-control">
                             <option value="">Select Admission Type</option>
                             <option value="0">New Admission</option>
                             <option value="1">Re Admission</option>
@@ -121,12 +123,12 @@ Register Students
             <div class="col-lg-12" style="display: flex;">
                 <div class="col-lg-4">
                     <div class="form-group"> <label for="exampleInputName2">Class: <span class="badge badge-danger">Required</span></label>
-                        {!! Form::select('grade_id' , $classes , 0 , ['class'=>'form-control' , 'placeholder'=>'Select class' , 'id'=>'select_class']) !!}
+                        {!! Form::select('grade_id' , $classes , 0 , ['class'=>'form-control' , 'placeholder'=>'Select class' , 'id'=>'select_class' , 'required']) !!}
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group"> <label for="exampleInputName2">Section: <span class="badge badge-danger">Required</span></label>
-                        <select name="section_id" id="select_section" class="form-control">
+                        <select required name="section_id" id="select_section" class="form-control">
                             <option value="" selected>Select a section below</option>
                             <option value="Rose">Rose</option>
                             <option value="Lotus">Lotus</option>
@@ -140,7 +142,7 @@ Register Students
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group"> <label for="exampleInputName2">Stream:<span class="badge badge-danger">Required</span></label>
-                        {!! Form::select('stream_id' , $streams , 0 , ['class'=>'form-control' , 'placeholder'=>'Select Streams' , 'id'=>'stream']) !!}
+                        {!! Form::select('stream_id' , $streams , 0 , ['class'=>'form-control' , 'placeholder'=>'Select Streams' , 'id'=>'stream' , 'required']) !!}
                     </div>
                 </div>
             </div>
@@ -149,10 +151,10 @@ Register Students
         <div class="row">
             <div class="col-lg-12" style="display: flex;">
                 <div class="col-lg-4">
-                    <div class="form-group"> <label for="exampleInputName2">Roll No.</label> <input type="text" name="roll_number" class="form-control" value="{{$new_roll}}" id="roll_number" placeholder="Roll No."> </div>
+                    <div class="form-group"> <label for="exampleInputName2">Roll No.</label> <input type="text" name="roll_number" required class="form-control" value="{{$new_roll}}" id="roll_number" placeholder="Roll No."> </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="form-group"> <label for="exampleInputName2">Adm No.</label> <input type="text" class="form-control" name="adm_no" value="{{$new_adm}}" id="exampleInputName2" placeholder="Adm No"> </div>
+                    <div class="form-group"> <label for="exampleInputName2">Adm No.</label> <input type="text" class="form-control" required name="adm_no" value="{{$new_adm}}" id="exampleInputName2" placeholder="Adm No"> </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group"> <label for="exampleInputName2">Photo: <span class="badge badge-warning">Optional</span></label> <input type="file" class="form-control" name="photo" id="exampleInputName2" placeholder=""> </div>
@@ -164,12 +166,12 @@ Register Students
         <div class="row">
             <div class="col-lg-12" style="display: flex;">
                 <div class="col-lg-4">
-                    <div class="form-group"> <label for="exampleInputName2">Name: <span class="badge badge-danger">Required</span></label> <input type="text" name="name" class="form-control" oninput="this.value = this.value.toUpperCase()" id="roll_number" placeholder="Enter Name"> </div>
+                    <div class="form-group"> <label for="exampleInputName2">Name: <span class="badge badge-danger">Required</span></label> <input required type="text" name="name" class="form-control" oninput="this.value = this.value.toUpperCase()" id="roll_number" placeholder="Enter Name"> </div>
 
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group"> <label for="exampleInputName2">Gender: <span class="badge badge-danger">Required</span></label>
-                        <select name="gender" id="" class="form-control">
+                        <select name="gender" required id="" class="form-control">
                             <option value="">Select gender</option>
                             <option value="0">Male</option>
                             <option value="1">Female</option>
@@ -177,7 +179,7 @@ Register Students
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="form-group"> <label for="exampleInputName2">Date Of Birth: <span class="badge badge-danger">Required</span></label> <input type="date" class="form-control" name="DOB" id="exampleInputName2" placeholder="Your name"> </div>
+                    <div class="form-group"> <label for="exampleInputName2">Date Of Birth: <span class="badge badge-danger">Required</span></label> <input type="date" class="form-control" required name="DOB" id="exampleInputName2" placeholder="Your name"> </div>
                 </div>
             </div>
         </div>
@@ -228,7 +230,7 @@ Register Students
 
         <div class="div" style="display: flex">
             <div class="col-lg-6">
-                <div class="form-group"> <label for="exampleInputName2">Father Name: <span class="badge badge-danger">Required</span></label> <input type="text" class="form-control" name="father_name" id="exampleInputName2" oninput="this.value = this.value.toUpperCase()" placeholder="Father Name"> </div>
+                <div class="form-group"> <label for="exampleInputName2">Father Name: <span class="badge badge-danger">Required</span></label> <input type="text" class="form-control" name="father_name" id="exampleInputName2" required oninput="this.value = this.value.toUpperCase()" placeholder="Father Name"> </div>
 
 
                 <div class="form-group"> <label for="exampleInputName2">Father Occupation: <span class="badge badge-warning">Optional</span></label> <input type="text" class="form-control" name="father_occup" oninput="this.value = this.value.toUpperCase()" id="exampleInputName2" placeholder="Occupation Name"> </div>
@@ -241,7 +243,7 @@ Register Students
             </div>
 
             <div class="col-lg-6">
-                <div class="form-group"> <label for="exampleInputName2">Mother Name: <span class="badge badge-danger">Required</span></label> <input type="text" class="form-control" name="mother_name" id="exampleInputName2" oninput="this.value = this.value.toUpperCase()" placeholder="Mother Name"> </div>
+                <div class="form-group"> <label for="exampleInputName2">Mother Name: <span class="badge badge-danger">Required</span></label> <input type="text" class="form-control" name="mother_name" id="exampleInputName2" required oninput="this.value = this.value.toUpperCase()" placeholder="Mother Name"> </div>
 
 
                 <div class="form-group"> <label for="exampleInputName2">Mother Occupation: <span class="badge badge-warning">Optional</span></label> <input type="text" class="form-control" name="mother_occup" oninput="this.value = this.value.toUpperCase()" id="exampleInputName2" placeholder="Occupation Name"> </div>
@@ -270,7 +272,7 @@ Register Students
 
         <div class="row">
             <div class="col-lg-6">
-                <div class="form-group"> <label for="exampleInputName2">Contact No. 1: <span class="badge badge-danger">Required</span></label> <input type="tel" class="form-control" name="tel1" id="exampleInputName2" placeholder="Telephone" minlength="10" maxlength="10"> </div>
+                <div class="form-group"> <label for="exampleInputName2">Contact No. 1: <span class="badge badge-danger">Required</span></label> <input type="tel" class="form-control" name="tel1" id="exampleInputName2" placeholder="Telephone" required minlength="10" maxlength="10"> </div>
             </div>
             <div class="col-lg-6">
                 <div class="form-group"> <label for="exampleInputName2">Contact No. 2: <span class="badge badge-warning">Optional</span></label> <input type="tel" class="form-control" name="tel2" id="exampleInputName2" maxlength="10" minlength="10" placeholder="Telephone" maxlength="12"> </div>
@@ -288,24 +290,24 @@ Register Students
 
         <div class="row">
             <div class="col-lg-4">
-                <div class="form-group"> <label for="exampleInputName65656">Vill/Building/House: <span class="badge badge-danger">Required</span></label> <input type="text" class="form-control" name="vill" oninput="this.value = this.value.toUpperCase()" id="exampleInputName65656" placeholder="Vill/Building/House "> </div>
+                <div class="form-group"> <label for="exampleInputName65656">Vill/Building/House: <span class="badge badge-danger">Required</span></label> <input type="text" class="form-control" name="vill" oninput="this.value = this.value.toUpperCase()" id="exampleInputName65656" required placeholder="Vill/Building/House "> </div>
             </div>
             <div class="col-lg-4">
-                <div class="form-group"> <label for="exampleInputName2">Post Office: <span class="badge badge-danger">Required</span></label> <input oninput="this.value = this.value.toUpperCase()" type="tel" class="form-control" name="postoffice" id="exampleInputName2" placeholder="Post Office"> </div>
+                <div class="form-group"> <label for="exampleInputName2">Post Office: <span class="badge badge-danger">Required</span></label> <input oninput="this.value = this.value.toUpperCase()" type="tel" class="form-control" required name="postoffice" id="exampleInputName2" placeholder="Post Office"> </div>
             </div>
             <div class="col-lg-4">
-                <div class="form-group"> <label for="exampleInputName2">Tehsil <span class="badge badge-danger">Required</span></label> <input oninput="this.value = this.value.toUpperCase()" type="tel" class="form-control" name="tehsil" id="exampleInputName2" placeholder="Tehsil"> </div>
+                <div class="form-group"> <label for="exampleInputName2">Tehsil <span class="badge badge-danger">Required</span></label> <input oninput="this.value = this.value.toUpperCase()" type="tel" class="form-control" required name="tehsil" id="exampleInputName2" placeholder="Tehsil"> </div>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-4">
-                <div class="form-group"> <label for="exampleInputName65656">District: <span class="badge badge-danger">Required</span></label> <input oninput="this.value = this.value.toUpperCase()" type="text" class="form-control" name="district" id="exampleInputName65656" placeholder="District "> </div>
+                <div class="form-group"> <label for="exampleInputName65656">District: <span class="badge badge-danger">Required</span></label> <input oninput="this.value = this.value.toUpperCase()" type="text" class="form-control" required name="district" id="exampleInputName65656" placeholder="District "> </div>
             </div>
             <div class="col-lg-4">
-                <div class="form-group"> <label for="exampleInputName2">Pincode: <span class="badge badge-danger">Required</span></label> <input oninput="this.value = this.value.toUpperCase()" type="tel" class="form-control" name="pincode" id="exampleInputName2" maxlength="6" placeholder="Pincode"> </div>
+                <div class="form-group"> <label for="exampleInputName2">Pincode: <span class="badge badge-danger">Required</span></label> <input oninput="this.value = this.value.toUpperCase()" type="tel" class="form-control" required name="pincode" id="exampleInputName2" maxlength="6" placeholder="Pincode"> </div>
             </div>
             <div class="col-lg-4">
-                <div class="form-group"> <label for="exampleInputName2">State: <span class="badge badge-danger">Required</span></label> <input oninput="this.value = this.value.toUpperCase()" type="tel" class="form-control" name="state" id="exampleInputName2" placeholder="State" value="PUNJAB"> </div>
+                <div class="form-group"> <label for="exampleInputName2">State: <span class="badge badge-danger">Required</span></label> <input oninput="this.value = this.value.toUpperCase()" type="tel" class="form-control" required name="state" id="exampleInputName2" placeholder="State" value="PUNJAB"> </div>
             </div>
         </div>
 
@@ -329,8 +331,8 @@ Register Students
         <div class="form-group">
             <label for="">Convinience required?</label>
             <div style="display: flex">
-                YES<input value="1" id="req" name="required" type="radio">
-                NO<input value="0" id="nreq" name="required" type="radio">
+                YES<input value="1" required id="req" name="required" type="radio">
+                NO<input value="0"  required id="nreq" name="required" type="radio">
             </div>
 
         </div>
@@ -356,13 +358,13 @@ Register Students
         <div class="row">
             <div class="col-lg-6">
                 <div class="form-group"> <label for="exampleInputName2">Caste Category: <span class="badge badge-danger">Required</span></label>
-                    {!! Form::select('caste_id' , $castes , 0 , ['class'=>'form-control' , 'placeholder'=>'Select caste ']) !!}
+                    {!! Form::select('caste_id' , $castes , 0 , ['class'=>'form-control' , 'placeholder'=>'Select caste ' , 'required']) !!}
                 </div>
             </div>
 
             <div class="col-lg-6">
                 <div class="form-group"> <label for="exampleInputName2">Religion: <span class="badge badge-danger">Required</span></label>
-                    {!! Form::select('religion_id' , $religions , 0 , ['class'=>'form-control' , 'placeholder'=>'Select religion']) !!}
+                    {!! Form::select('religion_id' , $religions , 0 , ['class'=>'form-control' , 'placeholder'=>'Select religion' , 'required']) !!}
                 </div>
             </div>
 
@@ -460,6 +462,9 @@ Register Students
 
 <!-- Script to get sections -->
 <script type='text/javascript'>
+
+
+
     var currentTab = 0; // Current tab is set to be the first tab (0)
     showTab(currentTab); // Display the current tab
 

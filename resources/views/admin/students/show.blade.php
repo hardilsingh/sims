@@ -44,7 +44,7 @@ View Student
         @endif
 
         @if($student->path !== 0)
-        <img src="/photos/{{$student->path}}" height="200px" width="200px" style="border-radius:50%; object-fit:cover" alt="">
+        <img src="/photos/{{$student->path}}" height="200px" width="200px" style="border-radius:50%; object-fit:cover;" alt="">
         @endif
     </div>
 
@@ -165,13 +165,13 @@ View Student
         @endif
     </div>
     <div class="col-lg-3">
-        <a href="/birth-certificates/create?student_id={{$student->id}}" style="margin-left:20px;" class="btn btn-primary"> <i class="fa fa-plus-circle"></i> Issue Birth Certificate</a>
+        <a href="/birth-certificates/create?student_id={{$student->id}}" class="btn btn-primary"> <i class="fa fa-plus-circle"></i> Issue Birth Certificate</a>
     </div>
     <div class="col-lg-3">
-        <a href="/transfer-certificates/create?id={{$student->id}}" class="btn btn-danger" style="margin-left:20px;"><i class="fa fa-plus-circle"></i> Issue Transfer Cerificate</a>
+        <a href="/transfer-certificates/create?id={{$student->id}}" class="btn btn-danger"><i class="fa fa-plus-circle"></i> Issue Transfer Cerificate</a>
     </div>
     <div class="col-lg-3">
-        <a href="/character-certificates/create?student_id={{$student->id}}" class="btn btn-primary" style="margin-left:20px;"><i class="fa fa-plus-circle"></i> Issue Character Certificate</a>
+        <a href="/character-certificates/create?student_id={{$student->id}}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Issue Character Certificate</a>
     </div>
 
 
@@ -179,14 +179,17 @@ View Student
 </div>
 
 <div class="row text-center" style="margin-top: 30px;">
-    <div class="col-lg-4">
-        <a href="/gate-passes/create?student_id={{$student->id}}" class="btn btn-warning" style="margin-left:20px;"> <i class="fa fa-plus-circle"></i> Issue Gate Pass</a>
+    <div class="col-lg-3">
+        <a href="/gate-passes/create?student_id={{$student->id}}" class="btn btn-warning" > <i class="fa fa-plus-circle"></i> Issue Gate Pass</a>
     </div>
-    <div class="col-lg-4">
-        <a href="{{route('students.edit' , $student->id)}}" class="btn btn-primary" style="margin-left:20px;"> <i class="fa fa-plus-circle"></i> Edit </a>
+    <div class="col-lg-3">
+        <a href="{{route('students.edit' , $student->id)}}" class="btn btn-primary" > <i class="fa fa-plus-circle"></i> Edit Student's Detail </a>
     </div>
-    <div class="col-lg-4">
-        <a href="/admForm?id={{$student->id}}" class="btn btn-success" style="margin-left:20px; margin-top:10px;"> <i class="fa fa-plus-circle"></i> Admission Form </a>
+    <div class="col-lg-3">
+        <a href="/admForm?id={{$student->id}}" class="btn btn-success"> <i class="fa fa-plus-circle"></i> Student's Admission Form </a>
+    </div>
+    <div class="col-lg-3">
+        <a href="/fee/student/{{$student->id}}" class="btn btn-warning"> <i class="fa fa-plus-circle"></i> Fee Manager </a>
     </div>
 </div>
 @endif

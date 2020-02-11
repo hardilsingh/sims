@@ -8,6 +8,7 @@ use App\ExplicitCon;
 use App\Father;
 use App\Fee;
 use App\Grade;
+use App\Http\Requests\StudentCreateRequest;
 use App\Mother;
 use App\Religion;
 use App\Section;
@@ -75,7 +76,7 @@ class StudentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StudentCreateRequest $request)
     {
         //
 

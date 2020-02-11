@@ -34,8 +34,6 @@
 
 
 
-
-
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed;">
@@ -125,6 +123,7 @@
     <!-- Toastr -->
     <script src="/plugins/toastr/toastr.min.js"></script>
     <script src="/dataTables.min.js"></script>
+    <script src="/validate/simpleform.js"></script>
     <script>
         $(document).ready(function() {
             $('#myTable').DataTable();
@@ -208,8 +207,8 @@
         }
 
         $("#clearSpace").val($(this).val().replace(/ +?/g, ''));
-        
     </script>
+
 
 
 
