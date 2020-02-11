@@ -63,7 +63,7 @@
                 <td colspan="2" style="text-transform: uppercase">{{$student->name}} <br><br> ({{$age}})</td>
                 <td>
                     <div style="height: 150px; width:120px; border:2px solid black; border-radius:7px;">
-                        Student Photo
+                        <span>Student Photo</span>
                     </div>
                 </td>
             </tr>

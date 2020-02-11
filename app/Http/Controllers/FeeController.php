@@ -96,7 +96,7 @@ class FeeController extends Controller
         $get =  Dues::where("student_id", $student->id)->first();
         $total_pending = $get->total - $request->paid;
         DB::update('update dues set total = ' . $total_pending . ' where id = ?', [$get->id]);
-        
+
 
 
 
@@ -141,8 +141,9 @@ class FeeController extends Controller
             }
         }
 
-    
+
         $reciepts = Reciept::orderBy('created_at', 'DESC')->where("student_id", $student_id)->first();
+        $fee = Fee::where('student_id', $student_id)->first();
         if ($reciepts == null) {
             $count = 0;
         } else {
@@ -150,6 +151,9 @@ class FeeController extends Controller
         }
 
         if ($count == 0) {
+
+
+
 
             $monthly = $student->grade->fee * 12;
             if ($student->convinience_req == 1) {
@@ -166,18 +170,54 @@ class FeeController extends Controller
             $admission = $student->grade->admission;
             $annual = $student->grade->annual;
 
-            $total = $monthly + $transport + $sationary + $examination + $computer + $id_card + $admission + $annual;
-            $reciept = Reciept::create([
-                'student_id' => $student_id,
-                'paid' => $paid,
-                'outstanding' => $total - $paid,
-                'particulars' => serialize($particulars),
-                'fee' => serialize($fee),
-                'date' => now()->toDateString(),
-                'mode' => $request->mode,
-                'refrence' => $request->refrence,
-            ]);
-            $recipet_id = $reciept->id;
+
+            if ($fee->concession == null) {
+                $fee_concession = null;
+                $total = $monthly + $transport + $sationary + $examination + $computer + $id_card + $admission + $annual;
+                $reciept = Reciept::create([
+                    'student_id' => $student_id,
+                    'paid' => $paid,
+                    'outstanding' => $total - $paid,
+                    'particulars' => serialize($particulars),
+                    'fee' => serialize($fee),
+                    'date' => now()->toDateString(),
+                    'mode' => $request->mode,
+                    'refrence' => $request->refrence,
+                ]);
+            } else {
+                $fee_concession = Concession::findOrFail($fee->concession);
+
+                $onMonthlyFee = $fee_concession !== null ? $fee_concession->monthly : 0;
+                $onComputerFee = $fee_concession !== null ? $fee_concession->computer : 0;
+                $onTransportFee = $fee_concession !== null ? $fee_concession->transport : 0;
+                $onIdFee = $fee_concession !== null ? $fee_concession->id_card : 0;
+                $onExaminationFee = $fee_concession !== null ? $fee_concession->examination : 0;
+                $onStationaryFee = $fee_concession !== null ? $fee_concession->stationary : 0;
+                $onAnnualFee = $fee_concession !== null ? $fee_concession->annual : 0;
+                $onAdmissionFee = $fee_concession !== null ? $fee_concession->admission : 0;
+
+                $total = ($monthly - (($onMonthlyFee == 0 ? 100 : $onMonthlyFee / 100) * $monthly)) + ($transport - (($onTransportFee == 0 ? 100 : $onTransportFee / 100) * $transport)) +
+                    ($computer - (($onComputerFee == 0 ? 100 : $onComputerFee / 100) * $computer)) +
+                    ($sationary - (($onStationaryFee == 0 ? 100 : $onStationaryFee / 100) * $sationary)) +
+                    ($examination - (($onExaminationFee == 0 ? 100 : $onExaminationFee / 100) * $examination))  +
+                    ($id_card - (($onIdFee == 0 ? 100 : $onIdFee / 100) * $id_card))  +
+                    ($annual - (($onAnnualFee == 0 ? 100 : $onAnnualFee / 100) * $annual))  +
+                    ($admission - (($onAdmissionFee == 0 ? 100 : $onAdmissionFee / 100) * $admission));
+
+
+
+
+                $reciept = Reciept::create([
+                    'student_id' => $student_id,
+                    'paid' => $paid,
+                    'outstanding' => $total - $paid,
+                    'particulars' => serialize($particulars),
+                    'fee' => serialize($fee),
+                    'date' => now()->toDateString(),
+                    'mode' => $request->mode,
+                    'refrence' => $request->refrence,
+                ]);
+            }
         } else {
             $reciept = Reciept::create([
                 'student_id' => $student_id,
@@ -189,8 +229,9 @@ class FeeController extends Controller
                 'mode' => $request->mode,
                 'refrence' => $request->refrence,
             ]);
-            $recipet_id = $reciept->id;
+            
         }
+        $recipet_id = $reciept->id;
         $request->session()->flash('updated', 'updated');
         return redirect('/redirect?id=' . $recipet_id);
     }
@@ -239,16 +280,22 @@ class FeeController extends Controller
         } else {
             $fee_concession = Concession::findOrFail($fee->concession);
 
-            $monthly_fee = $fee_concession->monthly;
-            $transport_fee = $fee_concession->transport;
-            $computer_fee = $fee_concession->computer;
-            $examination_fee = $fee_concession->examination;
-            $activity_fee = $fee_concession->stationary;
+            $onMonthlyFee = $fee_concession !== null ? $fee_concession->monthly : 0;
+            $onComputerFee = $fee_concession !== null ? $fee_concession->computer : 0;
+            $onTransportFee = $fee_concession !== null ? $fee_concession->transport : 0;
+            $onIdFee = $fee_concession !== null ? $fee_concession->id_card : 0;
+            $onExaminationFee = $fee_concession !== null ? $fee_concession->examination : 0;
+            $onStationaryFee = $fee_concession !== null ? $fee_concession->stationary : 0;
+            $onAnnualFee = $fee_concession !== null ? $fee_concession->annual : 0;
+            $onAdmissionFee = $fee_concession !== null ? $fee_concession->admission : 0;
 
-            $total = (($monthly_fee == 0 ? 100 : $monthly_fee / 100) * $monthly) + (($transport_fee == 0 ? 100 : $transport_fee / 100) * $transport) + (($computer_fee == 0 ? 100 : $computer_fee / 100) * $computer) + (($activity_fee == 0 ? 100 : $activity_fee / 100) * $sationary) + (($examination_fee == 0 ? 100 : $examination_fee / 100) * $examination);
-
-
-
+            $total = ($monthly - (($onMonthlyFee == 0 ? 100 : $onMonthlyFee / 100) * $monthly)) + ($transport - (($onTransportFee == 0 ? 100 : $onTransportFee / 100) * $transport)) +
+                ($computer - (($onComputerFee == 0 ? 100 : $onComputerFee / 100) * $computer)) +
+                ($sationary - (($onStationaryFee == 0 ? 100 : $onStationaryFee / 100) * $sationary)) +
+                ($examination - (($onExaminationFee == 0 ? 100 : $onExaminationFee / 100) * $examination))  +
+                ($id_card - (($onIdFee == 0 ? 100 : $onIdFee / 100) * $id_card))  +
+                ($annual - (($onAnnualFee == 0 ? 100 : $onAnnualFee / 100) * $annual))  +
+                ($admission - (($onAdmissionFee == 0 ? 100 : $onAdmissionFee / 100) * $admission));
 
 
 
@@ -266,6 +313,7 @@ class FeeController extends Controller
         $fee->update([
             'concession' => $con_id,
         ]);
+
         session()->flash('updated', 'success');
 
         $sectionData['data'] = 0;

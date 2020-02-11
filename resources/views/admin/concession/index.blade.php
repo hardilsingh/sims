@@ -48,6 +48,20 @@ Concessions
         <div class="col-lg-3">
             <div class="form-group"> <label>Stationary Fee <span class="badge badge-success">(in %)</span> </label> <input name="stationary" required type="text" class="form-control" placeholder="Enter Concession "> </div>
         </div>
+        <div class="col-lg-3">
+            <div class="form-group"> <label>Application Fee <span class="badge badge-success">(in %)</span> </label> <input name="application" required type="text" class="form-control" placeholder="Enter Concession "> </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group"> <label>Admission Fee <span class="badge badge-success">(in %)</span> </label> <input name="admission" required type="text" class="form-control" placeholder="Enter Concession "> </div>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="form-group"> <label>Annual Fee <span class="badge badge-success">(in %)</span> </label> <input name="annual" required type="text" class="form-control" placeholder="Enter Concession "> </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group"> <label>Prospectus Fee <span class="badge badge-success">(in %)</span> </label> <input name="prospectus" required type="text" class="form-control" placeholder="Enter Concession "> </div>
+        </div>
+
 
     </div>
 
@@ -76,12 +90,15 @@ Concessions
                 <tr>
                     <th>#</th>
                     <th>Name</th>
-                    <th>Monthly Fee</th>
-                    <th>Computer Fee</th>
-                    <th>Transport Fee</th>
-                    <th>Id Card Fee</th>
-                    <th>Examination Fee</th>
-                    <th>Stationary Fee</th>
+                    <th>Monthly</th>
+                    <th>Computer</th>
+                    <th>Transport</th>
+                    <th>Id Card</th>
+                    <th>Examination</th>
+                    <th>Stationary</th>
+                    <th>Application</th>
+                    <th>Annual</th>
+                    <th>Admission</th>
                     <th>Action</th>
 
                 </tr>
@@ -97,6 +114,9 @@ Concessions
                     <td>{{$concession->id_card}}%</td>
                     <td>{{$concession->examination}}%</td>
                     <td>{{$concession->stationary}}%</td>
+                    <td>{{$concession->application}}%</td>
+                    <td>{{$concession->annual}}%</td>
+                    <td>{{$concession->admission}}%</td>
                     <td style="display:flex;">
                         <a href="{{route('concession.edit' , $concession->id)}}" style="margin-left:10px;" class="btn btn-md btn-warning">Edit</a>
                     </td>

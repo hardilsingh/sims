@@ -147,7 +147,7 @@ Fee Manager
                                                 <!-- checkbox -->
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-success d-inline">
-                                                        <input type="checkbox" name="acf" id="checkboxSuccess1" value="{{$student->stationName->fee}},April Transport Fee,3,4" class="transportfee" {{$fee->atf == 1 ? 'checked' : ''}}>
+                                                        <input type="checkbox" name="atf" id="checkboxSuccess1" value="{{$student->stationName->fee}},April Transport Fee,3,4" class="transportfee" {{$fee->atf == 1 ? 'checked' : ''}}>
                                                         <label for="checkboxSuccess1">April Transport Fee {{now()->year}}
                                                             <!-- <a href="/exempt?name=atf&id={{$fee->id}}&fee={{$student->stationName->fee}}&month=4" class="nav-link">Exempt</a> -->
                                                         </label>
@@ -384,7 +384,7 @@ Fee Manager
                                                 <!-- checkbox -->
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-warning d-inline">
-                                                        <input type="checkbox" value="{{$student->grade->sports}},ID Card Fee ,6,7" name="julyid_card_fee" id="checkboxWarning4" {{$fee->julyid_card_fee == 1 ? 'checked' : ''}}>
+                                                        <input type="checkbox" value="{{$student->grade->sports}},ID Card Fee ,5,7" name="julyid_card_fee" id="checkboxWarning4" {{$fee->julyid_card_fee == 1 ? 'checked' : ''}}>
                                                         <label for="checkboxWarning4">July ID Card Fee {{now()->year}}
                                                         </label>
                                                     </div>
@@ -636,7 +636,7 @@ Fee Manager
                                                 <!-- checkbox -->
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-warning d-inline">
-                                                        <input type="checkbox" value="{{$student->grade->stationary}},Examination Fee,5,10" name="octexamination_fee" id="checkboxWarning50" {{$fee->octexamination_fee == 1 ? 'checked' : ''}}>
+                                                        <input type="checkbox" value="{{$student->grade->stationary}},Examination Fee,6,10" name="octexamination_fee" id="checkboxWarning50" {{$fee->octexamination_fee == 1 ? 'checked' : ''}}>
                                                         <label for="checkboxWarning50">October Examination Fee {{now()->year}}
                                                         </label>
                                                     </div>
@@ -1034,7 +1034,7 @@ Fee Manager
                                                 <!-- checkbox -->
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-primary d-inline">
-                                                        <input type="checkbox" name="admission_fee" id="checkboxPrimary21" value="{{$student->grade->admission}},Admission Fee,8,4" {{$fee->admission_fee == 1 ? 'checked' : ''}}>
+                                                        <input type="checkbox" name="admission_fee" id="checkboxPrimary21" value="{{$student->grade->admission}},Admission Fee,7,4" {{$fee->admission_fee == 1 ? 'checked' : ''}}>
                                                         <label for="checkboxPrimary21"> Admission Charges {{now()->year}}-{{now()->year + 1}}
                                                         </label>
                                                     </div>
@@ -1088,7 +1088,7 @@ Fee Manager
                                                 <!-- checkbox -->
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-primary d-inline">
-                                                        <input type="checkbox" name="prospectus" id="checkboxPrimary22" value="{{$student->grade->prospectus}},Prospectus Charges,8" {{$fee->prospectus == 1 ? 'checked' : ''}}>
+                                                        <input type="checkbox" name="prospectus" id="checkboxPrimary22" value="{{$student->grade->prospectus}},Prospectus Charges,9" {{$fee->prospectus == 1 ? 'checked' : ''}}>
                                                         <label for="checkboxPrimary22"> Prospectous Charges
                                                         </label>
                                                     </div>
@@ -1114,7 +1114,7 @@ Fee Manager
                                                 <!-- checkbox -->
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-primary d-inline">
-                                                        <input type="checkbox" name="application" id="checkboxPrimary2287" value="{{$student->grade->application}},application Charges,8" {{$fee->application == 1 ? 'checked' : ''}}>
+                                                        <input type="checkbox" name="application" id="checkboxPrimary2287" value="{{$student->grade->application}},application Charges,10" {{$fee->application == 1 ? 'checked' : ''}}>
                                                         <label for="checkboxPrimary2287"> Application Charges
                                                         </label>
                                                     </div>
@@ -1326,8 +1326,12 @@ Fee Manager
     var onIdFee = <?php echo $fee_concession !== null ? $fee_concession->id_card : 0 ?>;
     var onExaminationFee = <?php echo $fee_concession !== null ? $fee_concession->examination : 0 ?>;
     var onStationaryFee = <?php echo $fee_concession !== null ? $fee_concession->stationary : 0 ?>;
+    var onApplicationFee = <?php echo $fee_concession !== null ? $fee_concession->application : 0 ?>;
+    var onAnnualFee = <?php echo $fee_concession !== null ? $fee_concession->annual : 0 ?>;
+    var onAdmissionFee = <?php echo $fee_concession !== null ? $fee_concession->admission : 0 ?>;
+    var onProspectusFee = <?php echo $fee_concession !== null ? $fee_concession->prospectus : 0 ?>;
 
-
+    console.log(onProspectusFee);
     var d = new Date();
     var n = d.getMonth();
 
@@ -1457,7 +1461,7 @@ Fee Manager
                     latestFee = parseInt(data[0])
                 }
             } else if (data[2] == 2) {
-                if (onMonthlyFee !== 0) {
+                if (onComputerFee !== 0) {
                     applyConcession = (onComputerFee / 100) * parseInt(data[0])
                     latestFee = parseInt(data[0]) - applyConcession;
                 } else {
@@ -1465,7 +1469,7 @@ Fee Manager
                     latestFee = parseInt(data[0])
                 }
             } else if (data[2] == 3) {
-                if (onMonthlyFee !== 0) {
+                if (onTransportFee !== 0) {
                     applyConcession = (onTransportFee / 100) * parseInt(data[0])
                     latestFee = parseInt(data[0]) - applyConcession;
                 } else {
@@ -1473,7 +1477,7 @@ Fee Manager
                     latestFee = parseInt(data[0])
                 }
             } else if (data[2] == 4) {
-                if (onMonthlyFee !== 0) {
+                if (onStationaryFee !== 0) {
                     applyConcession = (onStationaryFee / 100) * parseInt(data[0])
                     latestFee = parseInt(data[0]) - applyConcession;
                 } else {
@@ -1481,24 +1485,53 @@ Fee Manager
                     latestFee = parseInt(data[0])
                 }
             } else if (data[2] == 5) {
-                if (onMonthlyFee !== 0) {
-                    applyConcession = (onExaminationFee / 100) * parseInt(data[0])
-                    latestFee = parseInt(data[0]) - applyConcession;
-                } else {
-                    applyConcession = parseInt(data[0]);
-                    latestFee = parseInt(data[0])
-                }
-            } else if (data[2] == 6) {
-                if (onMonthlyFee !== 0) {
+                if (onIdFee !== 0) {
                     applyConcession = (onIdFee / 100) * parseInt(data[0])
                     latestFee = parseInt(data[0]) - applyConcession;
                 } else {
                     applyConcession = parseInt(data[0]);
                     latestFee = parseInt(data[0])
                 }
-            } else if (data[2] == 8) {
-
-                latestFee = parseInt(data[0])
+            } else if (data[2] == 6) {
+                if (onExaminationFee !== 0) {
+                    applyConcession = (onExaminationFee / 100) * parseInt(data[0])
+                    latestFee = parseInt(data[0]) - applyConcession;
+                } else {
+                    applyConcession = parseInt(data[0]);
+                    latestFee = parseInt(data[0])
+                }
+            } else if (data[2] == 7) {
+                if (onAdmissionFee !== 0) {
+                    applyConcession = (onAdmissionFee / 100) * parseInt(data[0])
+                    latestFee = parseInt(data[0]) - applyConcession;
+                } else {
+                    applyConcession = parseInt(data[0]);
+                    latestFee = parseInt(data[0])
+                }
+            }else if (data[2] == 8) {
+                if (onAnnualFee !== 0) {
+                    applyConcession = (onAnnualFee / 100) * parseInt(data[0])
+                    latestFee = parseInt(data[0]) - applyConcession;
+                } else {
+                    applyConcession = parseInt(data[0]);
+                    latestFee = parseInt(data[0])
+                }
+            }else if (data[2] == 10) {
+                if (onApplicationFee !== 0) {
+                    applyConcession = (onApplicationFee / 100) * parseInt(data[0])
+                    latestFee = parseInt(data[0]) - applyConcession;
+                } else {
+                    applyConcession = parseInt(data[0]);
+                    latestFee = parseInt(data[0])
+                }
+            }else if (data[2] == 9) {
+                if (onProspectusFee !== 0) {
+                    applyConcession = (onProspectusFee / 100) * parseInt(data[0])
+                    latestFee = parseInt(data[0]) - applyConcession;
+                } else {
+                    applyConcession = parseInt(data[0]);
+                    latestFee = parseInt(data[0])
+                }
             }
 
 
