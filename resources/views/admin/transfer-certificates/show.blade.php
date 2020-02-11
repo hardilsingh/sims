@@ -63,7 +63,7 @@
             </div>
 
             <div>
-                <p>Gender - {{$tc->getStudent->gender == 1 ? 'Male' : 'Female'}}</p>
+                <p>Gender - {{$tc->getStudent->gender == 0 ? 'Male' : 'Female'}}</p>
             </div>
 
             <div>
