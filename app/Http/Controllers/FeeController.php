@@ -309,13 +309,160 @@ class FeeController extends Controller
         $id = $_GET['id'];
         $con_id = $_GET['con_id'];
 
-        $fee = Fee::where('student_id', $id);
-        
+        $fee = Fee::where('student_id', $id)->first();
+
         if ($con_id == "") {
+
+
+            
+
             $fee->update([
                 'concession' => null,
             ]);
-        }else {
+        } else {
+
+            $student = Students::findOrFail($id);
+
+
+            $monthly = $student->grade->fee;
+            if ($student->convinience_req == 1) {
+                $transport = $student->stationName->fee;
+            } else {
+                $transport = 0;
+            }
+
+            $sationary = $student->grade->stationary_fee;
+
+            $examination = $student->grade->stationary;
+            $computer = $student->grade->computer_fee;
+            $id_card = $student->grade->sports;
+            $admission = $student->grade->admission;
+            $annual = $student->grade->annual;
+
+
+            $totalMonthly = $monthly + $transport + $sationary + $computer;
+            $inApril = $monthly + $transport + $sationary + $computer + $annual  + $admission;
+            $inJuly = $monthly + $transport + $sationary + $computer + $id_card;
+            $inOct = $monthly + $transport + $sationary + $computer + $examination;
+
+
+
+            $count = Dues::where('student_id', $id)->select('5 AS five', '4 as four', '6 as six', '7 as seven', '8 as eight', '9 as nine', '10 as ten', '11 as eleven', '12 as twelve', '1 as one', '2 as two', '3 as three' , 'concession AS concession' , 'total as total')->first();
+
+            $fee_concession = Concession::findOrFail($con_id);
+
+            $onMonthlyFee = $fee_concession !== null ? $fee_concession->monthly : 0;
+            $onComputerFee = $fee_concession !== null ? $fee_concession->computer : 0;
+            $onTransportFee = $fee_concession !== null ? $fee_concession->transport : 0;
+            $onIdFee = $fee_concession !== null ? $fee_concession->id_card : 0;
+            $onExaminationFee = $fee_concession !== null ? $fee_concession->examination : 0;
+            $onStationaryFee = $fee_concession !== null ? $fee_concession->stationary : 0;
+            $onAnnualFee = $fee_concession !== null ? $fee_concession->annual : 0;
+            $onAdmissionFee = $fee_concession !== null ? $fee_concession->admission : 0;
+
+
+            $month = ($monthly - (($onMonthlyFee == 0 ? 100 : $onMonthlyFee / 100) * $monthly)) + ($transport - (($onTransportFee == 0 ? 100 : $onTransportFee / 100) * $transport)) +
+                ($computer - (($onComputerFee == 0 ? 100 : $onComputerFee / 100) * $computer)) +
+                ($sationary - (($onStationaryFee == 0 ? 100 : $onStationaryFee / 100) * $sationary));
+
+            $monthConcession = $totalMonthly - $month;
+
+            $april = ($monthly - (($onMonthlyFee == 0 ? 100 : $onMonthlyFee / 100) * $monthly)) + ($transport - (($onTransportFee == 0 ? 100 : $onTransportFee / 100) * $transport)) +
+                ($computer - (($onComputerFee == 0 ? 100 : $onComputerFee / 100) * $computer)) +
+                ($sationary - (($onStationaryFee == 0 ? 100 : $onStationaryFee / 100) * $sationary)) +  ($annual - (($onAnnualFee == 0 ? 100 : $onAnnualFee / 100) * $annual))  +
+                ($admission - (($onAdmissionFee == 0 ? 100 : $onAdmissionFee / 100) * $admission));
+
+
+                $aprilConcession = $inApril - $april;
+
+
+            $july = ($monthly - (($onMonthlyFee == 0 ? 100 : $onMonthlyFee / 100) * $monthly)) + ($transport - (($onTransportFee == 0 ? 100 : $onTransportFee / 100) * $transport)) +
+                ($computer - (($onComputerFee == 0 ? 100 : $onComputerFee / 100) * $computer)) +
+                ($sationary - (($onStationaryFee == 0 ? 100 : $onStationaryFee / 100) * $sationary)) +
+                ($id_card - (($onIdFee == 0 ? 100 : $onIdFee / 100) * $id_card));
+
+                $julyConcession = $inJuly - $july;
+
+            $oct =  ($monthly - (($onMonthlyFee == 0 ? 100 : $onMonthlyFee / 100) * $monthly)) + ($transport - (($onTransportFee == 0 ? 100 : $onTransportFee / 100) * $transport)) +
+                ($computer - (($onComputerFee == 0 ? 100 : $onComputerFee / 100) * $computer)) +
+                ($sationary - (($onStationaryFee == 0 ? 100 : $onStationaryFee / 100) * $sationary)) + ($examination - (($onExaminationFee == 0 ? 100 : $onExaminationFee / 100) * $examination));
+
+                $octConcession = $inOct - $oct;
+
+
+            if ($count->one > 0) {
+                $redoing = $count->one - $monthConcession;
+                DB::update('update dues set `1` = ' . $redoing . ' where student_id = ?', [$id]);
+            }
+
+            if ($count->two > 0) {
+                $redoing = $count->two - $monthConcession;
+
+                DB::update('update dues set `2` = ' . $redoing . ' where student_id = ?', [$id]);
+            }
+            if ($count->three > 0) {
+                $redoing = $count->three - $monthConcession;
+
+                DB::update('update dues set `3` = ' . $redoing . ' where student_id = ?', [$id]);
+            }
+            if ($count->four > 0) {
+                $redoing = $count->four - $aprilConcession;
+
+                DB::update('update dues set `4` = ' . $redoing . ' where student_id = ?', [$id]);
+            }
+            if ($count->five > 0) {
+                $redoing = $count->five - $monthConcession;
+
+                DB::update('update dues set `5` = ' . $redoing . ' where student_id = ?', [$id]);
+            }
+            if ($count->six > 0) {
+                $redoing = $count->six - $monthConcession;
+
+                DB::update('update dues set `6` = ' . $redoing . ' where student_id = ?', [$id]);
+            }
+            if ($count->seven > 0) {
+                $redoing = $count->seven - $julyConcession;
+
+                DB::update('update dues set `7` = ' . $redoing . ' where student_id = ?', [$id]);
+            }
+            if ($count->eight > 0) {
+                $redoing = $count->eight - $monthConcession;
+
+                DB::update('update dues set `8` = ' . $redoing . ' where student_id = ?', [$id]);
+            }
+            if ($count->nine > 0) {
+                $redoing = $count->nine - $monthConcession;
+
+                DB::update('update dues set `9` = ' . $redoing . ' where student_id = ?', [$id]);
+            }
+            if ($count->ten > 0) {
+                $redoing = $count->ten - $octConcession;
+
+                DB::update('update dues set `10` = ' . $redoing . ' where student_id = ?', [$id]);
+            }
+            if ($count->eleven > 0) {
+                $redoing = $count->eleven - $monthConcession;
+
+                DB::update('update dues set `11` = ' . $redoing . ' where student_id = ?', [$id]);
+            }
+            if ($count->twelve > 0) {
+                $redoing = $count->twelve - $monthConcession;
+
+                DB::update('update dues set `12` = ' . $redoing . ' where student_id = ?', [$id]);
+            }
+
+            $totalInConcession = ($monthConcession * 9) + $aprilConcession + $julyConcession + $octConcession;
+
+
+            DB::update('update dues set concession = '.$totalInConcession.' where student_id = ?', [$id]);
+            $count2 = Dues::where('student_id', $id)->select('5 AS five', '4 as four', '6 as six', '7 as seven', '8 as eight', '9 as nine', '10 as ten', '11 as eleven', '12 as twelve', '1 as one', '2 as two', '3 as three' , 'concession AS concession' , 'total as total')->first();
+
+
+            $newTotal = $count2->one + $count2->two  + $count2->three  + $count2->four  + $count2->five  + $count2->six  + $count2->seven  + $count2->eight  + $count2->nine  + $count2->ten  + $count2->eleven  + $count2->twelve;
+
+            DB::update('update dues set total = '.$newTotal.' where student_id = ?', [$id]);
+
+
             $fee->update([
                 'concession' => $con_id,
             ]);

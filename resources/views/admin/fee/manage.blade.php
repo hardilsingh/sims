@@ -56,7 +56,7 @@ Fee Manager
                         <td>{{\Carbon\Carbon::parse($student->admission_date)->format('d/m/Y')}}</td>
                         <td style="display: flex; align-items:center; justify-content:space-between">
                             {!! Form::select('concession' , $concession , $fee->concession , ['class'=>'form-control' , 'id'=>'concessionTotal' , 'placeholder'=>'Select concession']) !!}
-                            <button class="btn btn-danger btn-sm" style="margin-left: 10px;" id="remove_con">Remove</button>
+                            <!-- <button class="btn btn-danger btn-sm" style="margin-left: 10px;" id="remove_con">Remove</button> -->
                         </td>
                     </tr>
                 </tbody>
