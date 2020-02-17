@@ -45,7 +45,7 @@ class StudentsExport implements FromView
             }
 
 
-            $results = $query->get();
+            $results = $query->orderBy('class' , 'ASC')->orderBy('section' , 'ASC')->orderBy('adm_no' , 'ASC')->get();
 
 
             return view('admin.exports.classWise', compact('results'));

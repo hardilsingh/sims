@@ -142,7 +142,7 @@ class PrintController extends Controller
             }
 
 
-            $results = $query->orderBy('name')->get();
+            $results = $query->orderBy('class' , 'ASC')->orderBy('section' , 'ASC')->orderBy('adm_no' , 'ASC')->get();
 
             return view('admin.prints.print', compact(['results', 'section', 'class', 'gender', 'caste', 'religion']));
         }
