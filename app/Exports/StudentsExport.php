@@ -20,7 +20,7 @@ class StudentsExport implements FromView
             $religion = $_GET['religion'];
 
 
-            $query = DB::table('students');
+            $query = DB::table('students')->where('status' , '1');
 
             if ($class !== "") {
                 $query->where('class', $class);

@@ -16,7 +16,7 @@ class DeactivatedController extends Controller
     {
         //
 
-        $results = Students::orderBy('name')->where('status' , 0)->paginate(6);
+        $results = Students::orderBy('name')->where('status' , 0)->get();
         return view('admin.deactivated.index' , compact('results'));
     }
 
