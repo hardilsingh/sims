@@ -13,12 +13,60 @@
 
 use App\Students;
 use App\Father;
+use App\Fee;
 use App\Mother;
 use App\Reciept;
 use App\User;
 use Illuminate\Support\Carbon;
 
+use App\Dues as AppDues;
+
 Route::get('/', function () {
+    // for ($i = 334; $i <= 1598; $i++) {
+
+    //     $student = Students::findOrFail($i);
+    //     $monthly = $student->grade->fee;
+    //         if ($student->convinience_req == 1) {
+    //             $transport = $student->stationName->fee;
+    //         } else {
+    //             $transport = 0;
+    //         }
+
+    //         $sationary = $student->grade->stationary_fee;
+
+    //         $examination = $student->grade->stationary;
+    //         $computer = $student->grade->computer_fee;
+    //         $id_card = $student->grade->sports;
+    //         $admission = $student->grade->admission;
+    //         $annual = $student->grade->annual;
+
+    //         $total = $monthly + $transport + $sationary + $examination + $computer + $id_card + $admission + $annual;
+
+    //         $gross = ($monthly * 12) + ($transport * 12) + ($sationary * 12) + ($examination * 1) + ($computer * 12) + ($id_card * 1) + ($admission * 1) + ($annual * 1);
+
+
+
+
+    //         $dues = AppDues::create([
+    //             '1' => $monthly + $transport + $sationary + $computer,
+    //             '2' => $monthly + $transport + $sationary + $computer,
+    //             '3' => $monthly + $transport + $sationary + $computer,
+    //             '4' => $monthly + $transport + $sationary + $computer + $admission + $annual,
+    //             '5' => $monthly + $transport + $sationary + $computer,
+    //             '6' => $monthly + $transport + $sationary + $computer,
+    //             '7' => $monthly + $transport + $sationary + $computer + $id_card,
+    //             '8' => $monthly + $transport + $sationary + $computer,
+    //             '9' => $monthly + $transport + $sationary + $computer,
+    //             '10' => $monthly + $transport + $sationary + $computer + $examination,
+    //             '11' => $monthly + $transport + $sationary + $computer,
+    //             '12' => $monthly + $transport + $sationary + $computer,
+    //             'total' => $gross,
+    //             'student_id' => $student->id,
+    //             'session' => $student->session,
+    //         ]);
+
+        
+    // }
     return view('welcome');
 });
 
@@ -99,5 +147,5 @@ Route::get("/transactionReport", function () {
     $users = User::all();
 
 
-    return view("admin.transactions.show", compact(["reciepts", 'sum' , 'users']));
+    return view("admin.transactions.show", compact(["reciepts", 'sum', 'users']));
 });
