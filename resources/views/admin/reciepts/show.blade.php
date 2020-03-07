@@ -34,9 +34,10 @@
             <p style="text-align: center; font-size:23px; text-transform:uppercase">
                 <b>Kalgidhar Internation Sen. Sec. School</b>
             </p>
+			
             <p style="text-align: center; transform:translateY(-20px)">
                 V.P.O. Purana Shalla, Distt. Gurdaspur (Punjab)-143530<br>
-                Contact: 9646155712, 8146060115 Affiliation No. 1630509
+                Contact: 9646155712, 8146060115 CBSE Affiliation No. 1630509
 
             </p>
 
@@ -127,9 +128,7 @@
 
 
                         for ($i = 0; $i < count($particulars); $i++) {
-                            if ($fee[$i] == 0) {
-                                continue;
-                            }
+                      
 
                             echo "<tr>";
                             echo "<td>$j</td>";
@@ -224,7 +223,7 @@
                 </p>
                 <p style="text-align: center; transform:translateY(-20px)">
                     V.P.O. Purana Shalla, Distt. Gurdaspur (Punjab)-143530<br>
-                    Contact: 9646155712, 8146060115 Affiliation No. 1630509
+                    Contact: 9646155712, 8146060115 CBSE Affiliation No. 1630509
 
                 </p>
 
@@ -316,9 +315,7 @@
 
 
                             for ($i = 0; $i < count($particulars); $i++) {
-                                if ($fee[$i] == 0) {
-                                    continue;
-                                }
+                                
 
                                 echo "<tr>";
                                 echo "<td>$j</td>";

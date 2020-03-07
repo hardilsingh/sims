@@ -1437,7 +1437,7 @@ Fee Manager
             array.push(parseInt(getValues));
         }
         var overpaid = document.getElementById("adjustment").value;
-        total = array.reduce((a, b) => a + b, 0) - parseInt(overpaid);
+        total = array.reduce((a, b) => a + b, 0) + (parseInt(overpaid)) ;
         document.getElementById('totalBill').innerHTML = "₹ " + total;
         return total;
     }
@@ -1622,7 +1622,9 @@ Fee Manager
                 $('#d').val(balance);
                 $('#e').val(student_id);
                 $("#f").val(month);
-            }
+            }else {
+				window.history.back();
+			}
         }else {
             alert("You need to select the months from the above menu.");
         }

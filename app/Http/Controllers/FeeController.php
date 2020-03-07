@@ -82,11 +82,10 @@ class FeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         Fee::findOrFail($id)->update($request->except('particulars', 'fee', 'paid', 'student_id', 'myTable_length', 'late', 'mode', 'refrence', 'month'));
 
         $particulars = explode(",", $request->particulars);
-        $fee = explode(",", $request->fee);
+        $fee_ser = explode(",", $request->fee);
         $month = array_map('intval', explode(',', $request->month));
         $paid = $request->paid;
         $student_id = $request->student_id;
@@ -103,40 +102,40 @@ class FeeController extends Controller
         for ($i = 0; $i <= count($month) - 1; $i++) {
             $dues_update = Dues::where("student_id", $student->id)->select('5 AS five', '4 AS four', '6 AS six', '7 AS seven', '8 AS eight', '9 AS nine', '10 AS ten', '11 AS eleven', '12 AS twelve', '1 AS one', '2 AS two', '3 AS three', 'id AS id', 'created_at AS created_at', 'updated_at AS updated_at', 'total AS total')->first();
             if ($month[$i] == 1) {
-                $pending = $dues_update->one - $fee[$i];
+                $pending = $dues_update->one - $fee_ser[$i];
                 DB::update('update dues set `1` = ' . $pending . ' where id = ?', [$dues_update->id]);
             } elseif ($month[$i] == 2) {
-                $pending = $dues_update->two - $fee[$i];
+                $pending = $dues_update->two - $fee_ser[$i];
                 DB::update('update dues set `2` = ' . $pending . ' where id = ?', [$dues_update->id]);
             } elseif ($month[$i] == 3) {
-                $pending =  $dues_update->three - $fee[$i];
+                $pending =  $dues_update->three - $fee_ser[$i];
                 DB::update('update dues set `3` = ' . $pending . ' where id = ?', [$dues_update->id]);
             } elseif ($month[$i] == 4) {
-                $pending = $dues_update->four - $fee[$i];
+                $pending = $dues_update->four - $fee_ser[$i];
                 DB::update('update dues set `4` = ' . $pending . ' where id = ?', [$dues_update->id]);
             } elseif ($month[$i] == 5) {
-                $pending = $dues_update->five - $fee[$i];
+                $pending = $dues_update->five - $fee_ser[$i];
                 DB::update('update dues set `5` = ' . $pending . ' where id = ?', [$dues_update->id]);
             } elseif ($month[$i] == 6) {
-                $pending = $dues_update->six - $fee[$i];
+                $pending = $dues_update->six - $fee_ser[$i];
                 DB::update('update dues set `6` = ' . $pending . ' where id = ?', [$dues_update->id]);
             } elseif ($month[$i] == 7) {
-                $pending = $dues_update->seven - $fee[$i];
+                $pending = $dues_update->seven - $fee_ser[$i];
                 DB::update('update dues set `7` = ' . $pending . ' where id = ?', [$dues_update->id]);
             } elseif ($month[$i] == 8) {
-                $pending = $dues_update->eight - $fee[$i];
+                $pending = $dues_update->eight - $fee_ser[$i];
                 DB::update('update dues set `8` = ' . $pending . ' where id = ?', [$dues_update->id]);
             } elseif ($month[$i] == 9) {
-                $pending = $dues_update->nine - $fee[$i];
+                $pending = $dues_update->nine - $fee_ser[$i];
                 DB::update('update dues set `9` = ' . $pending . ' where id = ?', [$dues_update->id]);
             } elseif ($month[$i] == 10) {
-                $pending = $dues_update->ten - $fee[$i];
+                $pending = $dues_update->ten - $fee_ser[$i];
                 DB::update('update dues set `10` = ' . $pending . ' where id = ?', [$dues_update->id]);
             } elseif ($month[$i] == 11) {
-                $pending = $dues_update->eleven - $fee[$i];
+                $pending = $dues_update->eleven - $fee_ser[$i];
                 DB::update('update dues set `11` = ' . $pending . ' where id = ?', [$dues_update->id]);
             } elseif ($month[$i] == 12) {
-                $pending = $dues_update->twelve - $fee[$i];
+                $pending = $dues_update->twelve - $fee_ser[$i];
                 DB::update('update dues set `12` = ' . $pending . ' where id = ?', [$dues_update->id]);
             }
         }
@@ -179,7 +178,7 @@ class FeeController extends Controller
                     'paid' => $paid,
                     'outstanding' => $total - $paid,
                     'particulars' => serialize($particulars),
-                    'fee' => serialize($fee),
+                    'fee' => serialize($fee_ser),
                     'date' => now()->toDateString(),
                     'mode' => $request->mode,
                     'refrence' => $request->refrence,
@@ -212,7 +211,7 @@ class FeeController extends Controller
                     'paid' => $paid,
                     'outstanding' => $total - $paid,
                     'particulars' => serialize($particulars),
-                    'fee' => serialize($fee),
+                    'fee' => serialize($fee_ser),
                     'date' => now()->toDateString(),
                     'mode' => $request->mode,
                     'refrence' => $request->refrence,
@@ -224,7 +223,7 @@ class FeeController extends Controller
                 'paid' => $paid,
                 'outstanding' => $reciepts->outstanding - $paid,
                 'particulars' => serialize($particulars),
-                'fee' => serialize($fee),
+                'fee' => serialize($fee_ser),
                 'date' => now()->toDateString(),
                 'mode' => $request->mode,
                 'refrence' => $request->refrence,
