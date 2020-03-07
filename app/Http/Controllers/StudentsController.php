@@ -84,6 +84,13 @@ class StudentsController extends Controller
 
         $adm = Students::where("adm_no", $input['adm_no'])->count();
 
+
+        if ($input['grade_id'] == 100 || $input['grade_id'] == 101) {
+            $change_adm = "KG" . $input["adm_no"];
+        } else {
+            $change_adm = $input["adm_no"];
+        }
+
         if ($adm == 0) {
             $student = Students::create([
                 'name' => $input['name'],
@@ -94,7 +101,7 @@ class StudentsController extends Controller
                 'section' => $request->section_id,
                 'stream' => $input['stream_id'],
                 'roll_number' => $input['roll_number'],
-                'adm_no' => $input['adm_no'],
+                'adm_no' => $change_adm,
                 'gender' => $input['gender'],
                 'DOB_certificate' => $request->dob_cer == null ? 0 : $request->dob_cer,
                 'slc' => $request->slc == null ? 0 : $request->slc,
@@ -133,7 +140,7 @@ class StudentsController extends Controller
                 $val = 0;
             }
 
-            if ($student->class == "101" || $student->name == "102" || $student->class == "100") {
+            if ($student->class == "101" || $student->name == "102" || $student->class == "100" || $student->class == "103") {
                 $val2 = 0;
             } else {
                 $val2 = 1;
@@ -379,5 +386,116 @@ class StudentsController extends Controller
         $students_latest = Students::orderBy('admission_date', 'DESC')->paginate(5);
 
         return view('admin.reports.index', compact(['male', 'female', 'students', 'religions', 'classes', 'castes', 'students_dis', 'students_latest', 'report']));
+    }
+
+
+    public function newsession()
+    {
+        $students = Students::where('adm_type' , 1)->get();
+
+        foreach ($students as $student) {
+            if ($student->class !== 12) {
+
+
+                if ($student->class == 103) {
+                    $student->update([
+                        'class' => 1,
+                    ]);
+                } else {
+                    $student->update([
+                        'class' => $student->class + 1,
+                    ]);
+                }
+
+
+
+                if ($student->convinience_req == null || $student->convinience_req == 0) {
+                    $val = 1;
+                } else {
+                    $val = 0;
+                }
+
+                if ($student->class == "101" || $student->name == "102" || $student->class == "100" || $student->class == "103") {
+                    $val2 = 0;
+                } else {
+                    $val2 = 1;
+                }
+
+                $fee = Fee::where('student_id', $student->id);
+                $fee->update([
+                    'student_id' => $student->id,
+                    'jtf' => $val,
+                    'ftf' => $val,
+                    'mtf' => $val,
+                    'atf' => $val,
+                    'maytf' => $val,
+                    'junetf' => $val,
+                    'julytf' => $val,
+                    'augtf' => $val,
+                    'septtf' => $val,
+                    'octtf' => $val,
+                    'novtf' => $val,
+                    'dectf' => $val,
+                    'jsf' => $val2,
+                    'fsf' => $val2,
+                    'msf' => $val2,
+                    'asf' => $val2,
+                    'maysf' => $val2,
+                    'junesf' => $val2,
+                    'julysf' => $val2,
+                    'augsf' => $val2,
+                    'septsf' => $val2,
+                    'octsf' => $val2,
+                    'novsf' => $val2,
+                    'decsf' => $val2,
+                ]);
+
+
+                $monthly = $student->grade->fee;
+                if ($student->convinience_req == 1) {
+                    $transport = $student->stationName->fee;
+                } else {
+                    $transport = 0;
+                }
+
+                $sationary = $student->grade->stationary_fee;
+
+                $examination = $student->grade->stationary;
+                $computer = $student->grade->computer_fee;
+                $id_card = $student->grade->sports;
+                $annual = $student->grade->annual;
+
+                $total = $monthly + $transport + $sationary + $examination + $computer + $id_card + $annual;
+
+                $gross = ($monthly * 12) + ($transport * 12) + ($sationary * 12) + ($examination * 1) + ($computer * 12) + ($id_card * 1) + ($annual * 1);
+
+
+                $dues = AppDues::create([
+                    '1' => $monthly + $transport + $sationary + $computer,
+                    '2' => $monthly + $transport + $sationary + $computer,
+                    '3' => $monthly + $transport + $sationary + $computer,
+                    '4' => $monthly + $transport + $sationary + $computer + $annual,
+                    '5' => $monthly + $transport + $sationary + $computer,
+                    '6' => $monthly + $transport + $sationary + $computer,
+                    '7' => $monthly + $transport + $sationary + $computer + $id_card,
+                    '8' => $monthly + $transport + $sationary + $computer,
+                    '9' => $monthly + $transport + $sationary + $computer,
+                    '10' => $monthly + $transport + $sationary + $computer + $examination,
+                    '11' => $monthly + $transport + $sationary + $computer,
+                    '12' => $monthly + $transport + $sationary + $computer,
+                    'total' => $gross,
+                    'student_id' => $student->id,
+                    'session' => $student->session,
+                ]);
+            } elseif ($student->class == 12) {
+                $student->update([
+                    'status' => 0,
+                ]);
+            }
+        }
+
+
+
+        return redirect("/home?session=yes");
     }
 }

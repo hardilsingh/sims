@@ -77,11 +77,11 @@ Edit Student
             <div class="form-group"> <label for="exampleInputName2">Date Of Birth:</label> <input type="date" value="{{$student->dob}}" class="form-control" name="dob" id="exampleInputName2" placeholder="Your name"> </div>
         </div>
         <div class="col-lg-3">
-            <div class="form-group"> <label for="exampleInputName2">Roll No.</label> <input type="text" name="roll_number" class="form-control" value="{{$student->roll_number}}" id="roll_number" placeholder="Roll No." readonly> </div>
+            <div class="form-group"> <label for="exampleInputName2">Roll No.</label> <input type="text" name="roll_number" class="form-control" value="{{$student->roll_number}}" id="roll_number" placeholder="Roll No."> </div>
         </div>
 
         <div class="col-lg-3">
-            <div class="form-group"> <label for="exampleInputName2">Adm No.</label> <input type="text" class="form-control" name="adm_no" value="{{$student->adm_no}}" id="exampleInputName2" placeholder="Adm No" readonly> </div>
+            <div class="form-group"> <label for="exampleInputName2">Adm No.</label> <input type="text" class="form-control" name="adm_no" value="{{$student->adm_no}}" id="exampleInputName2" placeholder="Adm No" > </div>
         </div>
 
     </div>
@@ -166,10 +166,13 @@ Edit Student
 
 <div id="Contact Details" class="tabcontent">
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <div class="form-group"> <label for="exampleInputName2">Contact No. 1: </label> <input type="tel" value="{{$student->tel1}}" class="form-control" name="tel1" id="exampleInputName2" placeholder="Telephone"> </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-4">
+            <div class="form-group"> <label for="exampleInputName2">Contact No. 2: </label> <input type="tel" value="{{$student->tel2}}" class="form-control" name="tel2" id="exampleInputName2" placeholder="Telephone"> </div>
+        </div>
+        <div class="col-lg-4">
             <div class="form-group"> <label for="exampleInputName2">Aadhar UID: </label> <input type="text" value="{{$student->addhar_number}}" class="form-control" name="addhar_number" id="exampleInputName2" placeholder="Aadhar UID"> </div>
         </div>
 

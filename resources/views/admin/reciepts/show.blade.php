@@ -28,7 +28,7 @@
 
 
     <div style="width: 50%; border-right:1px solid grey; padding:10px">
-        <img src="/images/logo.png" width="50%" alt="" style="position:relative; left:50%; transform:translateX(-50%)">
+        <img src="/images/logo.png" width="100%" alt="" style="position:relative; left:50%; transform:translateX(-50%)">
 
         <div style="padding: 20px 20px;">
             <p style="text-align: center; font-size:23px; text-transform:uppercase">
@@ -131,10 +131,10 @@
                       
 
                             echo "<tr>";
-                            echo "<td>$j</td>";
+                            echo "<td>".$j++."</td>";
                             echo "<td>$particulars[$i]</td>";
                             echo "<td style='text-align: right'>
-                                    " . number_format($fee[$i]) . "</td>";
+                                    " . $fee[$i] . "</td>";
                             echo "</tr>";
                         }
 
@@ -215,7 +215,7 @@
 
         </div>
         <div style="width: 50%; border-right:1px solid grey; padding:10px">
-            <img src="/images/logo.png" width="50%" alt="" style="position:relative; left:50%; transform:translateX(-50%)">
+            <img src="/images/logo.png" width="100%" alt="" style="position:relative; left:50%; transform:translateX(-50%)">
 
             <div style="padding: 20px 30px;">
                 <p style="text-align: center; font-size:23px; text-transform:uppercase">
@@ -318,10 +318,10 @@
                                 
 
                                 echo "<tr>";
-                                echo "<td>$j</td>";
+                                echo "<td>".$j++."</td>";
                                 echo "<td>$particulars[$i]</td>";
                                 echo "<td style='text-align: right'>
-                                    " . number_format($fee[$i]) . "</td>";
+                                    " . $fee[$i] . "</td>";
 
 
                                 echo "</tr>";

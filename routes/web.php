@@ -43,6 +43,7 @@ Route::get("/admForm", function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/newsession', 'StudentsController@newsession');
 Route::resource('/students', 'StudentsController');
 Route::get('getSections/{id}', 'StudentsController@getSections');
 Route::get('getStudents', 'StudentsController@getStudents');
