@@ -173,7 +173,7 @@ Edit Student
             <div class="form-group"> <label for="exampleInputName2">Contact No. 2: </label> <input type="tel" value="{{$student->tel2}}" class="form-control" name="tel2" id="exampleInputName2" placeholder="Telephone"> </div>
         </div>
         <div class="col-lg-4">
-            <div class="form-group"> <label for="exampleInputName2">Aadhar UID: </label> <input type="text" value="{{$student->addhar_number}}" class="form-control" name="addhar_number" id="exampleInputName2" placeholder="Aadhar UID"> </div>
+            <div class="form-group"> <label for="exampleInputName2">Aadhar UID: </label> <input type="text" value="{{$student->addhar_number}}" maxlength="12"class="form-control" name="addhar_number" id="exampleInputName2" placeholder="Aadhar UID"> </div>
         </div>
 
     </div>

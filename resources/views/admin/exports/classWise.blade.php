@@ -12,7 +12,12 @@
             <th scope="col">DOB</th>
             <th scope="col">Telephone1</th>
             <th scope="col">Telephone2</th>
-            <th scope="col">Address</th>
+            <th scope="col">Aadhar Number</th>
+            <th scope="col">Village</th>
+            <th scope="col">Post Office</th>
+            <th scope="col">Tehsil</th>
+            <th scope="col">District</th>
+            <th scope="col">State</th>
             <th scope="col">Pincode</th>
             <th scope="col">Bus Station</th>
             <th scope="col">Documents Verified</th>
@@ -60,7 +65,12 @@
             <td>{{\Carbon\Carbon::parse($result->dob)->format('d/m/Y')}}</td>
             <td>{{$result->tel1}}</td>
             <td>{{$result->tel2}}</td>
-            <td>{{$result->vill}}, {{$result->postoffice}},{{$result->tehsil}},{{$result->district}},{{$result->state}}</td>
+            <td>{{$result->addhar_number}}</td>
+            <td>{{$result->vill}}</td>
+            <td> {{$result->postoffice}}</td>
+            <td>{{$result->tehsil}}</td>
+            <td>{{$result->district}}</td>
+            <td>{{$result->state}}</td>
             <td>{{$result->pincode}}</td>
             <td>{{$result->convinience_req == 1 ? App\Station::findOrFail($result->station)->first('name')->name : "N/A"}}</td>
             <td>{{$result->document_verified == 1 ? 'Verified' : 'Not Verfied'}}</td>
