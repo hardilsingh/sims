@@ -12,7 +12,6 @@
             <th scope="col">DOB</th>
             <th scope="col">Telephone1</th>
             <th scope="col">Telephone2</th>
-            <th scope="col">Aadhar Number</th>
             <th scope="col">Village</th>
             <th scope="col">Post Office</th>
             <th scope="col">Tehsil</th>
@@ -65,7 +64,6 @@
             <td>{{\Carbon\Carbon::parse($result->dob)->format('d/m/Y')}}</td>
             <td>{{$result->tel1}}</td>
             <td>{{$result->tel2}}</td>
-            <td>{{$result->addhar_number}}</td>
             <td>{{$result->vill}}</td>
             <td> {{$result->postoffice}}</td>
             <td>{{$result->tehsil}}</td>
