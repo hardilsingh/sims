@@ -85,11 +85,7 @@ class StudentsController extends Controller
         $adm = Students::where("adm_no", $input['adm_no'])->count();
 
 
-        if ($input['grade_id'] == 100 || $input['grade_id'] == 101) {
-            $change_adm = "KG" . $input["adm_no"];
-        } else {
-            $change_adm = $input["adm_no"];
-        }
+     
 
         if ($adm == 0) {
             $student = Students::create([
@@ -101,7 +97,7 @@ class StudentsController extends Controller
                 'section' => $request->section_id,
                 'stream' => $input['stream_id'],
                 'roll_number' => $input['roll_number'],
-                'adm_no' => $change_adm,
+                'adm_no' => $input['adm_no'],
                 'gender' => $input['gender'],
                 'DOB_certificate' => $request->dob_cer == null ? 0 : $request->dob_cer,
                 'slc' => $request->slc == null ? 0 : $request->slc,
