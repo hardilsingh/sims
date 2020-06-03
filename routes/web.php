@@ -23,6 +23,7 @@ use App\Dues as AppDues;
 
 Route::get('/', function () {
 
+
     return view('welcome');
 });
 

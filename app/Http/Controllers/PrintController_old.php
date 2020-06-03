@@ -27,7 +27,7 @@ class PrintController extends Controller
         $classes = Grade::pluck('class', 'id');
         $castes = Caste::pluck('name', 'id');
         $religions = Religion::pluck('name', 'id');
-        return view('admin.prints.index', compact(['classes' , 'castes' , 'religions']));
+        return view('admin.prints.index', compact(['classes', 'castes', 'religions']));
     }
 
     /**
@@ -108,32 +108,31 @@ class PrintController extends Controller
 
             $query = DB::table('students');
 
-            if($class !== "") {
-                $query->where('class' , $class);
-            }else {
+            if ($class !== "") {
+                $query->where('class', $class);
+            } else {
                 $query->select('*');
             }
 
-            if($section !== "ALL") {
-                $query->where('section' , $section);
+            if ($section !== "ALL") {
+                $query->where('section', $section);
             }
 
-            if($gender !== "" ) {
-                $query->where('gender' , $gender);
+            if ($gender !== "") {
+                $query->where('gender', $gender);
             }
 
-            if($caste !== "") {
-                $query->where('cast_category' , $caste);
-        }
-
-            if($religion !== "") {
-                $query->where('religion' , $religion);
+            if ($caste !== "") {
+                $query->where('cast_category', $caste);
             }
 
+            if ($religion !== "") {
+                $query->where('religion', $religion);
+            }
 
             $results = $query->orderBy('name')->get();
 
-            return view('admin.prints.print', compact(['results' , 'section' , 'class' , 'gender' , 'caste' , 'religion']));
+            return view('admin.prints.print', compact(['results', 'section', 'class', 'gender', 'caste', 'religion']));
         }
     }
 
@@ -143,8 +142,8 @@ class PrintController extends Controller
         return Excel::download(new StudentsExport, 'student.xlsx');
     }
 
-    public function exportDues() {
+    public function exportDues()
+    {
         return Excel::download(new DuesExport, 'dues.xlsx');
-
     }
 }

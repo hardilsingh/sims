@@ -68,8 +68,8 @@
                 <td>
                     {{$gate->father_name}}
                 </td>
-                <td></td>
-                <td></td>
+                <td>Telephone</td>
+                <td>{{$gate->tel}}</td>
             </tr>
             <tr>
                 <td>
@@ -163,8 +163,8 @@
                 <td>
                     {{$gate->father_name}}
                 </td>
-                <td></td>
-                <td></td>
+                <td>Telephone</td>
+                <td>{{$gate->tel}}</td>
             </tr>
             <tr>
                 <td>

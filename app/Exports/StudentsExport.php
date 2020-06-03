@@ -19,7 +19,6 @@ class StudentsExport implements FromView
             $caste = $_GET['caste'];
             $religion = $_GET['religion'];
 
-
             $query = DB::table('students')->where('status' , '1');
 
             if ($class !== "") {

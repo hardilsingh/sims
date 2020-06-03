@@ -25,11 +25,15 @@ Dues List
             <th scope="col">Name</th>
             <th scope="col">Adm No.</th>
             <th scope="col">Father Name</th>
-            <th scope="col">Class & Section</th>
+            <th scope="col">Class</th>
             <th scope="col">Telephone</th>
+            <th scope="col">Admission Type</th>
+            <th scope="col">Gross Payable</th>
+            <th scope="col">Concession</th>
+            <th scope="col">Net Recieved</th>
             <th scope="col">Month</th>
             <th scope="col">Amount</th>
-            <th scope="col">Total Pending</th>
+            <th scope="col">Total Pending</>
         </tr>
     </thead>
     <tbody>
@@ -309,6 +313,7 @@ Dues List
                     $father = $student->getStudent->father;
                     $class = $student->getStudent->class == 100 ? 'Pre-Nursery 1' : $student->getStudent->class . "-" . $student->getStudent->section;
                     $tel = $student->getStudent->tel1;
+                    $adm_type = $student->getStudent->adm_type == 0 ? "New Admission" : "Re admission";
 
                     echo "<tr>";
                     echo "<td>" . $j++ . "</td>";
@@ -340,6 +345,10 @@ Dues List
                 <?php
                     "</td>";
                     echo "<td>" . $tel . "</td>";
+                    echo "<td>" . $adm_type . "</td>";
+                    echo "<td>" . $student->openingBalance . "</td>";
+                    echo "<td>" . ($student->openingBalance - $student->concession) . "</td>";
+                    echo "<td>" . ($student->concession - $student->total) . "</td>";
                     echo "<td> <table style='width:100%' class='table table-striped'> ";
                     for ($i = 0; $i < count($month_array); $i++) {
                         echo "<tr>";
@@ -639,6 +648,8 @@ Dues List
                 $father = $student->getStudent->father;
                 $class = $student->getStudent->class == 100 ? 'Pre-Nursery 1' : $student->getStudent->class . "-" . $student->getStudent->section;
                 $tel = $student->getStudent->tel1;
+                $adm_type = $student->getStudent->adm_type == 0 ? "New Admission" : "Re admission";
+
 
                 echo "<tr>";
                 echo "<td>" . $j++ . "</td>";
@@ -670,6 +681,10 @@ Dues List
                 <?php
                 "</td>";
                 echo "<td>" . $tel . "</td>";
+                echo "<td>" . $adm_type . "</td>";
+                echo "<td>" . $student->openingBalance . "</td>";
+                echo "<td>" . ($student->openingBalance - $student->concession) . "</td>";
+                echo "<td>" . ($student->concession - $student->total) . "</td>";
                 echo "<td> <table style='width:100%' class='table table-striped'> ";
                 for ($i = 0; $i < count($month_array); $i++) {
                     echo "<tr>";
@@ -962,6 +977,8 @@ Dues List
                     $father = $student->getStudent->father;
                     $class = $student->getStudent->class == 100 ? 'Pre-Nursery 1' : $student->getStudent->class . "-" . $student->getStudent->section;
                     $tel = $student->getStudent->tel1;
+                    $adm_type = $student->getStudent->adm_type == 0 ? "New Admission" : "Re admission";
+
     
                     echo "<tr>";
                     echo "<td>" . $j++ . "</td>";
@@ -993,6 +1010,12 @@ Dues List
             <?php
                     "</td>";
                     echo "<td>" . $tel . "</td>";
+                    echo "<td>" . $adm_type . "</td>";
+                    echo "<td>" . $student->openingBalance . "</td>";
+                    echo "<td>" . ($student->openingBalance - $student->concession) . "</td>";
+                    echo "<td>" . $student->openingBalance . "</td>";
+                    echo "<td>" . $student->total . "</td>";
+
                     echo "<td> <table style='width:100%' class='table table-striped'> ";
                     for ($i = 0; $i < count($month_array); $i++) {
                         echo "<tr>";

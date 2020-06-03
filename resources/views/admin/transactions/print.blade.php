@@ -10,6 +10,7 @@
             <th>Section</th>
             <th>Name</th>
             <th>User Name</th>
+            <th>Mode</th>
             <th>Amount Paid</th>
         </tr>
 
@@ -44,6 +45,7 @@
             <td>{{$reciept->getStudent->section}}</td>
             <td>{{$reciept->getStudent->name}}</td>
             <td>{{$reciept->userName->name}}</td>
+            <td>{{$reciept->refrence == null ? 'Cash' : 'Cheque'}}</td>
             <td>{{$reciept->paid}}</td>
         </tr>
 

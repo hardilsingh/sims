@@ -3,7 +3,7 @@
     <p style="text-align:justify; line-height:200%; font-size:20px;   margin-bottom:50px;">
 
 
-        <span style="margin-left:50px;"></span>This is to certify that <span style="font-weight:bolder; text-transform:capitalize; text-decoration:underline">{{$certificate->name}}</span> S/O,D/o: <span style="font-weight:bolder; text-transform:capitalize; text-decoration:underline">{{$certificate->father_name}}; Mother name:{{$certificate->mother_name}}; R/O {{$certificate->address}} </span> is a bonafide student of our school. He/She is studying in Class <span style="font-weight:bolder; text-transform:capitalize;">
+        <span style="margin-left:50px;"></span>This is to certify that <span style="font-weight:bolder; text-transform:capitalize;">{{$certificate->name}}</span> S/O,D/o: <span style="font-weight:bolder; text-transform:capitalize;">{{$certificate->father_name}}; Mother name: {{$certificate->mother_name}}; R/O {{$certificate->address}} </span> is a bonafide student of our school. He/She is studying in Class <span style="font-weight:bolder; text-transform:capitalize;">
             @if($certificate->class == 100)
             Pre Nursery-1
             @endif
@@ -21,7 +21,7 @@
                                         $a = $certificate->class;
                                         echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
 
-                                        ?> @endif (Session:{{$certificate->session}})</span> vide Admission no. <span style="font-weight:bolder; text-transform:capitalize; text-decoration:underline">{{$certificate->adm_no}}.</span> His/Her Date of birth is <span style="font-weight:bolder; text-transform:capitalize;">{{date('d-m-Y', strtotime($certificate->dob))}}
+                                        ?> @endif (Session:{{$certificate->session}})</span> vide Admission no. <span style="font-weight:bolder; text-transform:capitalize;">{{$certificate->adm_no}}.</span> His/Her Date of birth is <span style="font-weight:bolder; text-transform:capitalize;">{{date('d-m-Y', strtotime($certificate->dob))}}
 
 
 

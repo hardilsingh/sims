@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Fee;
 use App\Reciept;
 use App\Station;
+use App\Dues;
 use Illuminate\Http\Request;
 
 class RecieptController extends Controller
@@ -103,13 +105,13 @@ class RecieptController extends Controller
 
         if ($reciept->getStudent->convinience_req == 1) {
             $station = Station::where('id', $reciept->getStudent->station)->first();
-        }else {
+        } else {
             $station = 0;
         }
 
+        $openingBalance = Dues::where('student_id', $reciept->student_id)->first();
 
-
-        return view('admin.reciepts.show', compact(['reciept', 'particulars', 'fee', 'converted', 'prev', 'station']));
+        return view('admin.reciepts.show', compact(['reciept', 'particulars', 'fee', 'converted', 'prev', 'station', 'openingBalance']));
     }
 
     /**

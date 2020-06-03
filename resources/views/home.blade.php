@@ -171,6 +171,29 @@ Dashboard
     </div>
 </div>
 
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Gross Payable</th>
+                    <th>Gross Concession</th>
+                    <th>Net Recieved</th>
+                    <th>Net Outstanding</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{App\Dues::sum('openingBalance')}}</td>
+                    <td>{{App\Dues::where('concession', '>', 0)->sum('openingBalance') - App\Dues::where('concession', '>', 0)->sum('concession') }}</td>
+                    <td>{{App\Reciept::sum('paid')}}</td>
+                    <td>{{App\Dues::sum('total')}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 
 
 

@@ -32,12 +32,12 @@
 
         <div style="padding: 20px 20px;">
             <p style="text-align: center; font-size:23px; text-transform:uppercase">
-                <b>Kalgidhar Internation Sen. Sec. School</b>
+                <b>Kalgidhar International School</b>
             </p>
-			
+
             <p style="text-align: center; transform:translateY(-20px)">
                 V.P.O. Purana Shalla, Distt. Gurdaspur (Punjab)-143530<br>
-                Contact: 9646155712, 8146060115 CBSE Affiliation No. 1630509
+                Contact: 9646155712, 8146060115, 7837498739<br> CBSE Affiliation No. 1630509
 
             </p>
 
@@ -62,7 +62,7 @@
                     Name: {{$reciept->getStudent->name}}
 
                 </td>
-                <td> Class & Section
+                <td> Class
                     @if($reciept->getStudent->class == 100)
                     Pre Nursery-1
                     @endif
@@ -126,17 +126,30 @@
                         @endphp
                         <?php
 
+                        if (count($particulars) > 1) {
+                            for ($i = 0; $i < count($particulars); $i++) {
 
-                        for ($i = 0; $i < count($particulars); $i++) {
-                      
 
-                            echo "<tr>";
-                            echo "<td>".$j++."</td>";
-                            echo "<td>$particulars[$i]</td>";
-                            echo "<td style='text-align: right'>
-                                    " . $fee[$i] . "</td>";
-                            echo "</tr>";
+                                echo "<tr>";
+                                echo "<td>" . $j++ . "</td>";
+                                echo "<td>$particulars[$i]</td>";
+                                echo "<td style='text-align: right'>
+                                        " . $fee[$i] . "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            for ($i = 0; $i < count($particulars); $i++) {
+
+
+                                echo "<tr>";
+                                echo "<td>" . $j++ . "</td>";
+                                echo "<td>Previous Balance</td>";
+                                echo "<td style='text-align: right'>
+                                        " . number_format($reciept->paid) . "</td>";
+                                echo "</tr>";
+                            }
                         }
+
 
 
                         ?>
@@ -164,30 +177,40 @@
             <div class="col-lg-12">
                 <p class="text-bold text-capitalize">
                     For the Period: @for($i = 0; $i < count($particulars) ; $i++) {{$particulars[$i]}}, @endfor </p> </div> </div> <div class="row">
-                        <h4 class="h4">Part Payment Deatils</h4>
-                        <table border="1" style="width: 100%">
-                            <thead>
-                                <th>S.no</th>
-                                <th>Date</th>
-                                <th>Reciept No.</th>
-                                <th style="text-align: right">Amt. Paid</th>
-                                <th style="text-align: right">Balance</th>
-                            </thead>
-                            <tbody>
-                                @php
-                                $i = 1
-                                @endphp
-                                @foreach($prev as $p)
-                                <tr>
-                                    <td>{{$i++}}</td>
-                                    <td>{{\Carbon\Carbon::parse($p->date)->format('d/m/Y')}}</td>
-                                    <td>{{$p->id}}</td>
-                                    <td style="text-align: right">{{number_format($p->paid)}}</td>
-                                    <td style="text-align: right">{{number_format($p->outstanding)}}</td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                        Payment Method: {{$reciept->refrence == null ? 'Cash' : 'Cheque: '. $reciept->refrence}}
+            </div>
+            <div class="row">
+                <h4 class="h4">Part Payment Deatils</h4>
+                <table border="1" style="width: 100%">
+                    <thead>
+                        <th>S.no</th>
+                        <th>Date</th>
+                        <th>Reciept No.</th>
+                        <th style="text-align: right">Amt. Paid</th>
+                        <th style="text-align: right">Balance</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="text-align: right">Opening Balance</td>
+                            <td style="text-align: right">{{$openingBalance->openingBalance}}</td>
+                        </tr>
+                        @php
+                        $i = 1
+                        @endphp
+                        @foreach($prev as $p)
+                        <tr>
+                            <td>{{$i++}}</td>
+                            <td>{{\Carbon\Carbon::parse($p->date)->format('d/m/Y')}}</td>
+                            <td>{{$p->id}}</td>
+                            <td style="text-align: right">{{number_format($p->paid)}}</td>
+                            <td style="text-align: right">{{number_format($p->outstanding)}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
 
 
@@ -202,7 +225,7 @@
             </div>
 
 
-            <p style="text-align: center">Enabled by CBA Infotech, Gurdaspur</p>
+            <p style="text-align: center">Enabled by CBA Infotech, 9888353434</p>
 
 
 
@@ -219,11 +242,12 @@
 
             <div style="padding: 20px 30px;">
                 <p style="text-align: center; font-size:23px; text-transform:uppercase">
-                    <b>Kalgidhar Internation Sen. Sec. School</b>
+                    <b>Kalgidhar International School</b>
                 </p>
                 <p style="text-align: center; transform:translateY(-20px)">
                     V.P.O. Purana Shalla, Distt. Gurdaspur (Punjab)-143530<br>
-                    Contact: 9646155712, 8146060115 CBSE Affiliation No. 1630509
+                    Contact: 9646155712, 8146060115, 7837498739 <br>CBSE Affiliation No. 1630509
+
 
                 </p>
 
@@ -249,7 +273,7 @@
                         Name: {{$reciept->getStudent->name}}
 
                     </td>
-                    <td> Class & Section @if($reciept->getStudent->class == 100)
+                    <td> Class @if($reciept->getStudent->class == 100)
                         Pre Nursery-1
                         @endif
                         @if($reciept->getStudent->class == 101)
@@ -314,17 +338,28 @@
                             <?php
 
 
-                            for ($i = 0; $i < count($particulars); $i++) {
-                                
-
-                                echo "<tr>";
-                                echo "<td>".$j++."</td>";
-                                echo "<td>$particulars[$i]</td>";
-                                echo "<td style='text-align: right'>
-                                    " . $fee[$i] . "</td>";
+                            if (count($particulars) > 1) {
+                                for ($i = 0; $i < count($particulars); $i++) {
 
 
-                                echo "</tr>";
+                                    echo "<tr>";
+                                    echo "<td>" . $j++ . "</td>";
+                                    echo "<td>$particulars[$i]</td>";
+                                    echo "<td style='text-align: right'>
+                " . $fee[$i] . "</td>";
+                                    echo "</tr>";
+                                }
+                            } else {
+                                for ($i = 0; $i < count($particulars); $i++) {
+
+
+                                    echo "<tr>";
+                                    echo "<td>" . $j++ . "</td>";
+                                    echo "<td>Previous Balance</td>";
+                                    echo "<td style='text-align: right'>
+                " . number_format($reciept->paid) . "</td>";
+                                    echo "</tr>";
+                                }
                             }
 
 
@@ -352,30 +387,40 @@
                 <div class="col-lg-12">
                     <p class="text-bold text-capitalize">
                         For the Period: @for($i = 0; $i < count($particulars) ; $i++) {{$particulars[$i]}}, @endfor </p> </div> </div> <div class="row">
-                            <h4 class="h4">Part Payment Deatils</h4>
-                            <table border="1" style="width: 100%">
-                                <thead>
-                                    <th>S.no</th>
-                                    <th>Date</th>
-                                    <th>Reciept No.</th>
-                                    <th style="text-align: right">Amt. Paid</th>
-                                    <th style="text-align: right">Balance</th>
-                                </thead>
-                                <tbody>
-                                    @php
-                                    $i = 1
-                                    @endphp
-                                    @foreach($prev as $p)
-                                    <tr>
-                                        <td>{{$i++}}</td>
-                                        <td>{{\Carbon\Carbon::parse($p->date)->format('d/m/Y')}}</td>
-                                        <td>{{$p->id}}</td>
-                                        <td style="text-align: right">{{number_format($p->paid)}}</td>
-                                        <td style="text-align: right">{{number_format($p->outstanding)}}</td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                            Payment Method: {{$reciept->refrence == null ? 'Cash' : 'Cheque: '. $reciept->refrence}}
+                </div>
+                <div class="row">
+                    <h4 class="h4">Part Payment Deatils</h4>
+                    <table border="1" style="width: 100%">
+                        <thead>
+                            <th>S.no</th>
+                            <th>Date</th>
+                            <th>Reciept No.</th>
+                            <th style="text-align: right">Amt. Paid</th>
+                            <th style="text-align: right">Balance</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="text-align: right">Opening Balance</td>
+                                <td style="text-align: right">{{$openingBalance->openingBalance}}</td>
+                            </tr>
+                            @php
+                            $i = 1
+                            @endphp
+                            @foreach($prev as $p)
+                            <tr>
+                                <td>{{$i++}}</td>
+                                <td>{{\Carbon\Carbon::parse($p->date)->format('d/m/Y')}}</td>
+                                <td>{{$p->id}}</td>
+                                <td style="text-align: right">{{number_format($p->paid)}}</td>
+                                <td style="text-align: right">{{number_format($p->outstanding)}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
 
 
@@ -389,7 +434,7 @@
                     </div>
                 </div>
 
-                <p style="text-align: center">Enabled by CBA Infotech, Gurdaspur</p>
+                <p style="text-align: center">Enabled by CBA Infotech, 9888353434</p>
 
 
 

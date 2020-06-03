@@ -3,7 +3,7 @@
     <p style="text-align:justify; line-height:200%; font-size:20px;   margin-bottom:50px;">
 
 
-        <span style="margin-left:50px;"></span>This is to certify that <span style="font-weight:bolder; text-transform:capitalize; text-decoration:underline">{{$certificate->name}}</span> S/O,D/o: <span style="font-weight:bolder; text-transform:capitalize; text-decoration:underline">{{$certificate->father_name}}; Mother name:{{$certificate->mother_name}}; </span> He/She is studying in Class
+        <span style="margin-left:50px;"></span>This is to certify that <span style="font-weight:bolder; text-transform:capitalize; ">{{$certificate->name}}</span> S/O,D/o:  <span style="font-weight:bolder; text-transform:capitalize; ">{{$certificate->father_name}}; Mother name: {{$certificate->mother_name}}; </span>is a bonafide student of our institute. He/She is studying in Class
         <span style="font-weight:bolder; text-transform:capitalize;">
 
             @if($certificate->class == 100)
@@ -23,7 +23,7 @@
                                             $a = $certificate->class;
                                             echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
 
-                                            ?> @endif (Session:{{$certificate->session}})</span> vide Admission no. <span style="font-weight:bolder; text-transform:capitalize; text-decoration:underline">{{$certificate->adm_no}}.</span> He/She bears a good moral character.
+                                            ?> @endif (Session:{{$certificate->session}})</span> vide Admission no. <span style="font-weight:bolder; text-transform:capitalize; ">{{$certificate->adm_no}}.</span> He/She bears a good moral character.
 
 
 

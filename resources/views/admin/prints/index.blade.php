@@ -65,6 +65,21 @@
                         </label>
                     </div>
 
+                    <div class="form-group">
+                        <label for="admission" style="margin-bottom: 20px">Select admission type:</label> <br>
+
+                        <label for="">Re admission:
+                            <input type="radio" name="adm_type" value="1">
+                        </label>
+                        <label>New admission:
+                            <input type="radio" name="adm_type" value="0">
+                        </label>
+                        <label>Both:
+                            <input type="radio" checked name="adm_type" value="">
+                        </label>
+                    </div>
+                    
+                    
                     <div class="form-group"> <label for="exampleInputName2">Caste Category: <span class="req">(By default all will be displayed) </span></label>
                         {!! Form::select('caste_id' , $castes , 0 , ['class'=>'form-control' , 'placeholder'=>'Select caste ' , 'id'=>'caste']) !!}
                     </div>
@@ -97,7 +112,7 @@
 
 
     $("#search").click(function() {
-        window.location.href = "/searchedlist?classId=" + $('#select_class').val() + "&sectionId=" + $('#select_section').val() + "&gender=" + $("input[name='gender']:checked").val() + "&caste=" + $('#caste').val() + "&religion=" + $('#religion').val() + "&con=" +  $("input[name='con']:checked").val();
+        window.location.href = "/searchedlist?classId=" + $('#select_class').val() + "&sectionId=" + $('#select_section').val() + "&gender=" + $("input[name='gender']:checked").val() + "&caste=" + $('#caste').val() + "&religion=" + $('#religion').val() + "&con=" +  $("input[name='con']:checked").val() + "&adm_type=" + $("input[name='adm_type']:checked").val();
     });
 </script>
 

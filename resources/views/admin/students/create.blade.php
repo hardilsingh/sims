@@ -69,9 +69,18 @@ Register Students
 </style>
 
 
+<div class="row">
+    <div class="col-lg-6">
+        @if($errors->any())
+        {!! implode('', $errors->all('<div class="alert alert-danger">:message</div>')) !!}
+        @endif
+    </div>
+</div>
+
+
+
 
 <div class="form-three widget-shadow">
-
 
     {!! Form::open([
 
@@ -154,7 +163,7 @@ Register Students
                     <div class="form-group"> <label for="exampleInputName2">Roll No.</label> <input type="text" name="roll_number" required class="form-control" value="{{$new_roll}}" id="roll_number" placeholder="Roll No."> </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="form-group"> <label for="exampleInputName2">Adm No.</label> <input type="text" class="form-control" required name="adm_no" value="{{$new_adm}}" id="exampleInputName2" placeholder="Adm No"> </div>
+                    <div class="form-group"> <label for="exampleInputName2">Adm No.</label> <input type="text" class="form-control" required name="adm_no" value="{{$new_roll}}" id="exampleInputName2" placeholder="Adm No"> </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group"> <label for="exampleInputName2">Photo: <span class="badge badge-warning">Optional</span></label> <input type="file" class="form-control" name="photo" id="exampleInputName2" placeholder=""> </div>
@@ -166,7 +175,7 @@ Register Students
         <div class="row">
             <div class="col-lg-12" style="display: flex;">
                 <div class="col-lg-4">
-                    <div class="form-group"> <label for="exampleInputName2">Name: <span class="badge badge-danger">Required</span></label> <input required type="text" name="name" class="form-control" oninput="this.value = this.value.toUpperCase()" id="roll_number" placeholder="Enter Name"> </div>
+                    <div class="form-group"> <label for="exampleInputName2">Name: <span class="badge badge-danger">Required</span></label> <input required type="text" name="name" class="form-control" oninput="this.value = this.value.toUpperCase()" value="{{old('name')}}" id="roll_number" placeholder="Enter Name"> </div>
 
                 </div>
                 <div class="col-lg-4">
@@ -193,19 +202,26 @@ Register Students
 
         </div>
 
-        <div class="form-group">
-            <label for="">Documents (Check if submitted): <span class="badge badge-danger"></span></label>
-
-            <input value="1" name="dob_cer" type="checkbox">DOB Certificate
-            <input value="1" name="slc" type="checkbox">School Leaving Certificate
-
-            <input value="1" name="rc" type="checkbox">Report Card
-
-            <input value="1" name="ac" type="checkbox">Aadhar Card
-
-            <input value="1" name="tc" type="checkbox">Transfer Certificate
-
-        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>DOB certificate</th>
+                    <th>Aadhaar Card</th>
+                    <th>School leaving certificate</th>
+                    <th>Report Card</th>
+                    <th>Online Tc</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input value="1" name="dob_cer" type="checkbox"></td>
+                    <td><input value="1" name="ac" type="checkbox"></td>
+                    <td><input value="1" name="slc" type="checkbox"></td>
+                    <td><input value="1" name="rc" type="checkbox"></td>
+                    <td><input value="1" name="tc" type="checkbox"></td>
+                </tr>
+            </tbody>
+        </table>
 
 
 
@@ -236,7 +252,7 @@ Register Students
                 <div class="form-group"> <label for="exampleInputName2">Father Occupation: <span class="badge badge-warning">Optional</span></label> <input type="text" class="form-control" name="father_occup" oninput="this.value = this.value.toUpperCase()" id="exampleInputName2" placeholder="Occupation Name"> </div>
 
 
-                <div class="form-group"> <label for="exampleInputName2">Father UID: <span class="badge badge-warning">Optional</span></label> <input type="text" class="form-control" name="father_uid" id="exampleInputName2" oninput="this.value = this.value.toUpperCase()" placeholder="Father UID"> </div>
+                <div class="form-group"> <label for="exampleInputName2">Father UID: <span class="badge badge-warning">Optional</span></label> <input type="number" class="form-control" name="father_uid" id="exampleInputName2" maxlength="12" oninput="this.value = this.value.toUpperCase()" placeholder="Father UID"> </div>
 
 
                 <div class="form-group"> <label for="exampleInputName2">Father Qualification: <span class="badge badge-warning">Optional</span></label> <input type="text" class="form-control" name="father_qual" oninput="this.value = this.value.toUpperCase()" id="exampleInputName2" placeholder="Father Qualification"> </div>
@@ -249,7 +265,7 @@ Register Students
                 <div class="form-group"> <label for="exampleInputName2">Mother Occupation: <span class="badge badge-warning">Optional</span></label> <input type="text" class="form-control" name="mother_occup" oninput="this.value = this.value.toUpperCase()" id="exampleInputName2" placeholder="Occupation Name"> </div>
 
 
-                <div class="form-group"> <label for="exampleInputName2">Mother UID: <span class="badge badge-warning">Optional</span></label> <input type="text" class="form-control" name="mother_uid" id="exampleInputName2" oninput="this.value = this.value.toUpperCase()" placeholder="Mother UID"> </div>
+                <div class="form-group"> <label for="exampleInputName2">Mother UID: <span class="badge badge-warning">Optional</span></label> <input type="number" class="form-control" name="mother_uid" id="exampleInputName2" maxlength="12" oninput="this.value = this.value.toUpperCase()" placeholder="Mother UID"> </div>
 
 
                 <div class="form-group"> <label for="exampleInputName2">Mother Qualification: <span class="badge badge-warning">Optional</span></label> <input type="text" class="form-control" name="mother_qual" oninput="this.value = this.value.toUpperCase()" id="exampleInputName2" placeholder="Mother Qualification"> </div>
@@ -332,7 +348,7 @@ Register Students
             <label for="">Convinience required?</label>
             <div style="display: flex">
                 YES<input value="1" required id="req" name="required" type="radio">
-                NO<input value="0"  required id="nreq" name="required" type="radio">
+                NO<input value="0" required id="nreq" name="required" type="radio">
             </div>
 
         </div>
@@ -409,6 +425,7 @@ Register Students
 
 {!! Form::close() !!}
 
+
 </div>
 
 
@@ -462,9 +479,6 @@ Register Students
 
 <!-- Script to get sections -->
 <script type='text/javascript'>
-
-
-
     var currentTab = 0; // Current tab is set to be the first tab (0)
     showTab(currentTab); // Display the current tab
 

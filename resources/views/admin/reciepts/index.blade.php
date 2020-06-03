@@ -51,6 +51,8 @@ Reciepts
             <thead class="thead-dark">
                 <tr>
                     <th>#</th>
+                    <th>Reciept No.</th>
+                    <th>Date</th>
                     <th>Name</th>
                     <th>Class & Section</th>
                     <th>Father Name</th>
@@ -68,6 +70,8 @@ Reciepts
 
                 <tr>
                     <td>{{$j++}}</td>
+                    <td>{{$reciept->id}}</td>
+                    <td>{{\Carbon\Carbon::parse($reciept->created_at)->format('d/m/Y')}}</td>
                     <td>{{$reciept->getStudent->name}}</td>
                     <td>
                         @if($reciept->getStudent->class == 100)

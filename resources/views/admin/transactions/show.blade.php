@@ -7,7 +7,7 @@
 
 
 <section style="text-align:center; line-height:50%">
-    <h2 class="h2">KALGIDHAR INTERNATIONAL SEN. SEC. SCHOOL</h2>
+    <h2 class="h2">KALGIDHAR INTERNATIONAL SCHOOL</h2>
     <p class="p">12 Mile Stone away Gurdaspur-Mukerian National Highway, VPO. Purana Shalla, Distt. Gurdaspur (PB)</p>
 </section>
 
@@ -25,18 +25,18 @@
 
 
 
-<table border="1" style="width: 100%; border-collapse:collapse; transform: translateY(-30px); ">
+<table border="1" style="width: 100%; border-collapse:collapse; transform: translateY(-30px);  ">
     <thead>
         <tr>
             <th>#</th>
             <th>Date</th>
             <th>Session</th>
-            <th>Reciept No.</th>
-            <th>Admission No.</th>
+            <th>Rec No.</th>
+            <th>Adm No.</th>
             <th>Class</th>
-            <th>Section</th>
             <th>Name</th>
-            <th>User Name</th>
+            <th>User</th>
+            <th>Mode</th>
             <th style="text-align: right">Amount Paid</th>
         </tr>
 
@@ -56,25 +56,24 @@
             <td>{{$reciept->getStudent->adm_no}}</td>
             <td>
                 @if($reciept->getStudent->class == 100)
-                Pre Nursery-1
+                Pre Nursery-1-{{$reciept->getStudent->section}}
                 @endif
                 @if($reciept->getStudent->class == 101)
-                Nursery
+                Nursery-{{$reciept->getStudent->section}}
                 @endif
                 @if($reciept->getStudent->class == 102)
-                L.K.G
+                L.K.G-{{$reciept->getStudent->section}}
                 @endif
                 @if($reciept->getStudent->class == 103)
-                U.K.G
+                U.K.G-{{$reciept->getStudent->section}}
                 @endif
                 @if($reciept->getStudent->class < 100) <?php
 
-                                            $a = $reciept->getStudent->class;
-                                            echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
-
-                                            ?> @endif </td> <td>{{$reciept->getStudent->section}}</td>
-            <td>{{$reciept->getStudent->name}}</td>
+                                                        $a = $reciept->getStudent->class;
+                                                        echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2) . '-'.$reciept->getStudent->section;
+                                                        ?> @endif </td> <td>{{$reciept->getStudent->name}}</td>
             <td>{{$reciept->clerkName->name}}</td>
+            <td>{{$reciept->refrence == null ? 'Cash' : 'Cheque'}}</td>
             <td style="text-align: right">{{number_format($reciept->paid)}}</td>
         </tr>
 
@@ -93,12 +92,3 @@
         </tr>
     </tbody>
 </table>
-
-<script type="text/javascript">
-    window.onload = function() {
-        window.print();
-    }
-    window.onafterprint = function(event) {
-        window.location.href = '/reciepts'
-    };
-</script>

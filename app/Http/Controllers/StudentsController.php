@@ -47,8 +47,10 @@ class StudentsController extends Controller
         $stations = Station::pluck('name', 'id');
         $other = ExplicitCon::pluck('name', 'id');
         $streams = Stream::pluck('name', 'id');
-        $roll_number = Students::orderBy('admission_date', 'DESC')->first();
+        $roll_number = Students::orderBy('id', 'DESC')->first();
         $students_latest = Students::orderBy('created_at', 'DESC')->paginate(10);
+
+
 
 
         if ($roll_number == null) {
@@ -57,7 +59,7 @@ class StudentsController extends Controller
             $new_roll = $roll_number->roll_number + 1;
         }
 
-        $adm_number = Students::orderBy('admission_date', 'DESC')->first();
+        $adm_number = Students::orderBy('id', 'DESC')->first();
 
         if ($adm_number == null) {
             $new_adm = 1;
@@ -85,7 +87,7 @@ class StudentsController extends Controller
         $adm = Students::where("adm_no", $input['adm_no'])->count();
 
 
-     
+
 
         if ($adm == 0) {
             $student = Students::create([
@@ -186,12 +188,14 @@ class StudentsController extends Controller
             $examination = $student->grade->stationary;
             $computer = $student->grade->computer_fee;
             $id_card = $student->grade->sports;
-            $admission = $student->grade->admission;
+            $admission = $input['adm_type'] == 0  ? $student->grade->admission : 0;
             $annual = $student->grade->annual;
 
-            $total = $monthly + $transport + $sationary + $examination + $computer + $id_card + $admission + $annual;
+            $prospectus =  $input['adm_type'] == 0  ? $student->grade->prospectus : 0;
+            $application = $student->grade->application;
 
-            $gross = ($monthly * 12) + ($transport * 12) + ($sationary * 12) + ($examination * 1) + ($computer * 12) + ($id_card * 1) + ($admission * 1) + ($annual * 1);
+
+            $gross = ($monthly * 12) + ($transport * 12) + ($sationary * 12) + $prospectus + $application + ($examination * 1) + ($computer * 12) + ($id_card * 1) + ($admission * 1) + ($annual * 1);
 
 
 
@@ -200,7 +204,7 @@ class StudentsController extends Controller
                 '1' => $monthly + $transport + $sationary + $computer,
                 '2' => $monthly + $transport + $sationary + $computer,
                 '3' => $monthly + $transport + $sationary + $computer,
-                '4' => $monthly + $transport + $sationary + $computer + $admission + $annual,
+                '4' => $monthly + $transport + $sationary + $computer + $admission + $annual + $prospectus + $application,
                 '5' => $monthly + $transport + $sationary + $computer,
                 '6' => $monthly + $transport + $sationary + $computer,
                 '7' => $monthly + $transport + $sationary + $computer + $id_card,
@@ -210,6 +214,7 @@ class StudentsController extends Controller
                 '11' => $monthly + $transport + $sationary + $computer,
                 '12' => $monthly + $transport + $sationary + $computer,
                 'total' => $gross,
+                'openingBalance' => $gross,
                 'student_id' => $student->id,
                 'session' => $student->session,
             ]);
@@ -387,7 +392,7 @@ class StudentsController extends Controller
 
     public function newsession()
     {
-        $students = Students::where('adm_type' , 1)->get();
+        $students = Students::where('adm_type', 1)->get();
 
         foreach ($students as $student) {
             if ($student->class !== 12) {
@@ -460,6 +465,9 @@ class StudentsController extends Controller
                 $computer = $student->grade->computer_fee;
                 $id_card = $student->grade->sports;
                 $annual = $student->grade->annual;
+                $admission = $student->adm_type == 0 ? $student->grade->admission : 0;
+                $prospectus = $student->adm_type == 0 ? $student->grade->prospectus : 0;
+                $application = $student->grade->application;
 
                 $total = $monthly + $transport + $sationary + $examination + $computer + $id_card + $annual;
 

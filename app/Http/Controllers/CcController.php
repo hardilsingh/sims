@@ -24,7 +24,7 @@ public function create() {
         if (isset($_GET['student_id'])) {
             $id = $_GET['student_id'];
             $student = Students::findOrFail($id);
-            return view("admin.character-certificates.create" , compact(['student' , 'father' , 'mother' , 'class']));
+            return view("admin.character-certificates.create" , compact(['student']));
         }
     }
 

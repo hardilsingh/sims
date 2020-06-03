@@ -49,6 +49,7 @@
 
             <div class="form-group"> <label>Class</label> <input value="{{$student->grade->class}}-{{$student->section}}" name="class" type="text" class="form-control" placeholder="Enter class"> </div>
 
+            <div class="form-group"> <label>Telephone</label> <input value="{{$student->tel1}}.{{$student->tel2}}" name="tel" type="number" class="form-control" placeholder="Enter number"> </div>
 
 
             <div class="form-group"> <label>With whom</label> <input name="with_whom" type="text" class="form-control" placeholder="Enter name"> </div>

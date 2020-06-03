@@ -17,4 +17,8 @@ class Fee extends Model
         return $this->belongsTo('App\Students' , 'student_id');
     }
 
+    public function getConcession() {
+        return $this->belongsTo('App\Concession' , 'student_id');
+    }
+
 }

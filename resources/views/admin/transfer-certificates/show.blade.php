@@ -25,10 +25,10 @@
             <tbody>
                 <tr>
                     <td></td>
-                    <td style="text-align:center; line-height:110%">
-                        <h2>KALGIDHAR INTERNATIONAL SEN. SEC. SCHOOL</h2>
-                        <h3>Vpo. Purana Shalla, Distt. Gurdaspur. Phone No. 8146060115</h3>
-                        <h3>English Medium School; CBSE Affiliated No. 1630509, School Code 25273</h3>
+                    <td style="text-align:center; line-height:20%">
+                        <h2>KALGIDHAR INTERNATIONAL SCHOOL</h2>
+                        <h5>Vpo. Purana Shalla, Distt. Gurdaspur. Phone No. 8146060115</h5>
+                        <h5>English Medium School; CBSE Affiliated No. 1630509, School Code 25273</h5>
                         <div style="margin-top: 20px; border:1px solid black; border-radius:10px;; position:relative; left:50%; transform:translateX(-50%)">
                             <h2><i>TRANSFER CERTIFICATE</i></h2>
                         </div>
@@ -41,7 +41,7 @@
 
         </table>
 
-        <table border="1" style="width: 100%; font-size:22px; font-weight:800;  border-collapse:collapse; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; text-align:center; margin-top:10px; margin-bottom:10px; border-width:2px;">
+        <table border="1" style="width: 100%; font-size:18px; font-weight:800;  border-collapse:collapse; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; text-align:center; margin-top:10px; margin-bottom:10px; border-width:2px;">
             <tbody>
                 <tr>
 
@@ -197,8 +197,6 @@
 
         </div>
 
-        <hr class="hr">
-
         <div style="display: flex; align-items:center; justify-content:space-between; ">
 
             <p>7. Date of Admission in This School/Class-- {{Carbon\Carbon::parse($tc->getStudent->admission_date)->format('d-m-Y')}} /Class -
@@ -276,7 +274,7 @@
                                                     ?> @endif </p> </div> </div> <div style="display: flex; align-items:center; justify-content:space-between; ">
 
                         <div>
-                            <p>10. Weather failed if so once/twice in the same class - {{$tc->failed}}
+                            <p>10. Whether failed if so once/twice in the same class - {{$tc->failed}}
                             </p>
                         </div>
 
@@ -292,7 +290,7 @@
             <div style="display: flex; align-items:center; justify-content:space-between; ">
 
                 <div>
-                    <p>12. Weather qualified for promotion to higher class, if so, to which class -
+                    <p>12. Whether qualified for promotion to higher class, if so, to which class -
 
 
                     @if($tc->getStudent->class == 100)
@@ -339,14 +337,10 @@
                 </div>
 
             </div>
-            <div style="display: flex; align-items:center; justify-content:space-between; ">
+            <div style="display: flex; align-items:center; justify-content:flex-start; ">
 
                 <div>
-                    <p>15. Total present days - {{$tc->tpd}}
-                    </p>
-                </div>
-                <div>
-                    <p>16. Total working days - {{$tc->twd}}
+                    <p>15. Total present days - {{$tc->tpd}} &nbsp; &nbsp; &nbsp; 16. Total working days - {{$tc->twd}}
                     </p>
                 </div>
 
@@ -354,7 +348,7 @@
             <div style="display: flex; align-items:center; justify-content:space-between; ">
 
                 <div>
-                    <p>17. Weather NCC Cadet/Boy Scout/Girl Scout/Girl Guide (Details may be given) - {{$tc->scout}}
+                    <p>17. Whether NCC Cadet/Boy Scout/Girl Scout/Girl Guide (Details may be given) - {{$tc->scout}}
                     </p>
                 </div>
 
@@ -396,16 +390,32 @@
                 </div>
 
             </div>
-            <div style="display: flex; align-items:center; justify-content:space-between; margin-top:25px; ">
+            <div>
+                <div>
+                    <p>22. Reason for leaving school - {{$tc->reason}}
+                    </p>
+                </div>
+                <div>
+                    <p>23. Any other remarks - {{$tc->remarks}}
+                    </p>
+                </div>
+
+            </div>
+            <div style="display: flex; align-items:center; justify-content:space-between; margin-top:100px; ">
 
                 <div>
-                    <p>Initals of class Teacher/Office assistant
+                    <p>
+                        Class Incharge
                     </p>
-                    <p>Date: </p>
                 </div>
 
                 <div>
-                    <p>Signature of Principal -
+                    <p>Verified By
+                    </p>
+                </div>
+
+                <div>
+                    <p>Signature of Principal
                     </p>
                 </div>
 

@@ -50,11 +50,11 @@
                         @foreach($classes as $class)
                         <tr>
                             <td><span>{{$class->class}}</span></td>
-                            <td>{{$students_dis->where('section' , 'ROSE')->where('class' , $class->id)->count()}}</td>
-                            <td>{{$students_dis->where('section' , 'LOTUS')->where('class' , $class->id)->count()}}</td>
-                            <td>{{$students_dis->where('section' , 'MARIGOLD')->where('class' , $class->id)->count()}}</td>
-                            <td>{{$students_dis->where('section' , 'TULIP')->where('class' , $class->id)->count()}}</td>
-                            <td>{{$students_dis->where('section' , 'VIOLET')->where('class' , $class->id)->count()}}</td>
+                            <td>{{$students_dis->where('section' , 'Rose')->where('class' , $class->id)->count()}}</td>
+                            <td>{{$students_dis->where('section' , 'Lotus')->where('class' , $class->id)->count()}}</td>
+                            <td>{{$students_dis->where('section' , 'Marigold')->where('class' , $class->id)->count()}}</td>
+                            <td>{{$students_dis->where('section' , 'Tulip')->where('class' , $class->id)->count()}}</td>
+                            <td>{{$students_dis->where('section' , 'Violet')->where('class' , $class->id)->count()}}</td>
                             <td>{{$students_dis->where('section' , 'D')->where('class' , $class->id)->count()}}</td>
                             <td>{{$students_dis->where('section' , 'X')->where('class' , $class->id)->count()}}</td>
                         </tr>
@@ -110,10 +110,10 @@
                         @foreach($classes as $class)
                         <tr>
                             <td><span style="font-size: 18px" class="badge badge-lg badge-success">{{$class->class}}</span></td>
-                            <td>{{$students_dis->where('cast' , 1)->where('class' , $class->id)->count()}}</td>
-                            <td>{{$students_dis->where('cast' , 2)->where('class' , $class->id)->count()}}</td>
-                            <td>{{$students_dis->where('cast' , 3)->where('class' , $class->id)->count()}}</td>
-                            <td>{{$students_dis->where('cast' , 4)->where('class' , $class->id)->count()}}</td>
+                            <td>{{$students_dis->where('cast_category' , 1)->where('class' , $class->id)->count()}}</td>
+                            <td>{{$students_dis->where('cast_category' , 2)->where('class' , $class->id)->count()}}</td>
+                            <td>{{$students_dis->where('cast_category' , 3)->where('class' , $class->id)->count()}}</td>
+                            <td>{{$students_dis->where('cast_category' , 4)->where('class' , $class->id)->count()}}</td>
                         </tr>
                         @endforeach
 

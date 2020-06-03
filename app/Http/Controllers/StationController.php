@@ -74,7 +74,7 @@ class StationController extends Controller
 
     public function search()
     {
-        $stations = Station::pluck('name', 'id');
+        $stations = Station::all();
         return view('admin.search.index', compact('stations'));
     }
 
@@ -82,9 +82,15 @@ class StationController extends Controller
     {
         if (isset($_GET['station_id'])) {
             $id = $_GET['station_id'];
-            $sectionData['data'] = $students = Students::orderBy('name')->where('station', $id)->get();
+            if ($id == 0) {
+                $sectionData['data'] = Students::orderBy('name')->get();
+                $stationData['data'] = Station::all();
+            } else {
+                $sectionData['data'] = Students::orderBy('name')->where('station', $id)->get();
+                $stationData['data'] = Station::findById($id);
+            }
 
-            echo json_encode($sectionData);
+            echo json_encode([$sectionData, $stationData]);
             exit;
         }
     }

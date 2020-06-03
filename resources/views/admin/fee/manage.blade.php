@@ -1022,7 +1022,7 @@ Fee Manager
                     <div class="col-lg-12">
                         <div class="row" style="display: flex;">
 
-
+							@if($student->adm_type == 0)
                             <div class="col-lg-3">
                                 <div class="card card-success">
                                     <div class="card-header">
@@ -1049,6 +1049,7 @@ Fee Manager
 
                                 </div>
                             </div>
+							@endif
 
                             <div class="col-lg-3">
                                 <div class="card card-success">
@@ -1076,7 +1077,7 @@ Fee Manager
 
                                 </div>
                             </div>
-
+@if($student->adm_type == 0)
                             <div class="col-lg-3">
                                 <div class="card card-success">
                                     <div class="card-header">
@@ -1089,7 +1090,7 @@ Fee Manager
                                                 <!-- checkbox -->
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-primary d-inline">
-                                                        <input type="checkbox" name="prospectus" id="checkboxPrimary22" value="{{$student->grade->prospectus}},Prospectus Charges,9" {{$fee->prospectus == 1 ? 'checked' : ''}}>
+                                                        <input type="checkbox" name="prospectus" id="checkboxPrimary22" value="{{$student->grade->prospectus}},Prospectus Charges,9,4" {{$fee->prospectus == 1 ? 'checked' : ''}}>
                                                         <label for="checkboxPrimary22"> Prospectous Charges
                                                         </label>
                                                     </div>
@@ -1103,6 +1104,7 @@ Fee Manager
 
                                 </div>
                             </div>
+							@endif
                             <div class="col-lg-3">
                                 <div class="card card-success">
                                     <div class="card-header">
@@ -1115,7 +1117,7 @@ Fee Manager
                                                 <!-- checkbox -->
                                                 <div class="form-group clearfix">
                                                     <div class="icheck-primary d-inline">
-                                                        <input type="checkbox" name="application" id="checkboxPrimary2287" value="{{$student->grade->application}},application Charges,10" {{$fee->application == 1 ? 'checked' : ''}}>
+                                                        <input type="checkbox" name="application" id="checkboxPrimary2287" value="{{$student->grade->application}},Application Charges,10,4" {{$fee->application == 1 ? 'checked' : ''}}>
                                                         <label for="checkboxPrimary2287"> Application Charges
                                                         </label>
                                                     </div>

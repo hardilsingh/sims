@@ -35,7 +35,7 @@
     <section style="text-align:center; line-height:50%">
         <h2 class="h2">KALGIDHAR INTERNATIONAL SEN. SEC. SCHOOL</h2>
         <p class="p">12 Mile Stone away Gurdaspur-Mukerian National Highway, VPO. Purana Shalla, Distt. Gurdaspur (PB)</p>
-        <p class="p"><span><b>Email ID:</b> principalkisps@gmail.com</span> <span style="text-align: right"> <b>Website:</b> www.kalgidharinternationalschool.com</span><span>, Contact No. 81460-60115, 78374-98739</span></p>
+        <p class="p"><span><b>Email ID:</b> principalkisps@gmail.com</span> <span style="text-align: right"> <b>Website:</b> www.kalgidharschool.org.in</span><span>, Contact No. 81460-60115, 78374-98739</span></p>
     </section>
 
     <hr class="hr" style="color: black">
@@ -45,7 +45,7 @@
         <h2 style="text-align: center;"><U>ADMISSION FORM</U></h2>
         <table style="text-transform:capitalize">
             <tr>
-                <td colspan="4">
+                <td colspan="3">
                     DOB Certificate<input value="1" name="DOB_certificate" {{$student->DOB_certificate == 1 ? 'checked' : false}} type="checkbox" style="margin-right: 10px; margin-left:10px">
 
                     School Leaving Certificate<input value="1" name="slc" {{$student->slc == 1 ? 'checked' : false}} type="checkbox" style="margin-right: 10px; margin-left:10px">
@@ -60,7 +60,7 @@
 
             <tr>
                 <td>1. Name of the Student <br><br>(Age on the time of admission)</td>
-                <td colspan="2" style="text-transform: uppercase">{{$student->name}} <br><br> ({{$age}})</td>
+                <td colspan="1" style="text-transform: uppercase">{{$student->name}} &nbsp;&nbsp;&nbsp;({{$student->gender == 0 ? 'Male' : "Female"}}) <br><br> ({{$age}})</td>
                 <td>
                     <div style="height: 150px; width:120px; border:2px solid black; border-radius:7px;">
                         <span>Student Photo</span>
@@ -81,13 +81,12 @@
             </tr>
             <tr>
                 <td>4. Telephone 1</td>
-                <td style="text-transform: uppercase"> {{$student->tel1}} </td>
-                <td>Telephone 2</td>
-                <td style="text-transform: uppercase"> {{$student->tel2 == 0 ? "N/A" : $student->tel2}} </td>
+                <td style="text-transform: uppercase"> {{$student->tel1}} , {{$student->tel2 == 0 ? "N/A" : $student->tel2}} </td>
+
             </tr>
             <tr>
                 <td>5. Date Of Birth</td>
-                <td style="text-transform: uppercase">{{\Carbon\Carbon::parse($student->dob)->format('d/m/Y')}} <br><br>
+                <td style="text-transform: uppercase">{{\Carbon\Carbon::parse($student->dob)->format('d/m/Y')}}<br>
                     DOB in words:
 
                     <?php
@@ -112,14 +111,10 @@
 
                     ?>
                 </td>
-                <td>Gender</td>
-                <td>{{$student->gender == 0 ? 'Male' : "Female"}}</td>
             </tr>
             <tr>
                 <td>6. Caste Category</td>
-                <td style="text-transform: uppercase">{{$student->casteName->name}}</td>
-                <td>Religion</td>
-                <td style="text-transform: uppercase"> {{$student->religionName->name}}</td>
+                <td style="text-transform: uppercase">{{$student->casteName->name}} &nbsp;&nbsp;&nbsp; {{$student->religionName->name}}</td>
             </tr>
             <tr>
                 <td>7. Aadhar Card Number</td>
@@ -139,7 +134,7 @@
             </tr>
             <tr>
                 <td>8. Address</td>
-                <td colspan="2" style="text-transform: uppercase">{{$student->vill}}, {{$student->postoffice}},<br>{{$student->tehsil}}, {{$student->district}}, {{$student->pincode}}, {{$student->state}}</td>
+                <td colspan="2" style="text-transform: uppercase">{{$student->vill}}, {{$student->postoffice}},<br>{{$student->tehsil}}, <br>{{$student->district}}, {{$student->pincode}},<br> {{$student->state}}</td>
             </tr>
             <tr>
                 <td colspan="3">9. Name of the person responsible for paying fee</td>
@@ -165,9 +160,9 @@
         </table>
 
         <b>
-            <p class="p">The school will not be liable for any damages/charges on account of injuries fatal or otherwise, which may be sustained by the student during his/her stay in the school while taking part in sport/games or any other form of activities of the school within the school premises</p>
+            <p class="p" style="font-size: 12px;">The school will not be liable for any damages/charges on account of injuries fatal or otherwise, which may be sustained by the student during his/her stay in the school while taking part in sport/games or any other form of activities of the school within the school premises</p>
 
-            <p>I undertake follow all school rules and the payment of fee and all sundry expenses in advance. I shall give one month's notice of withdrawl or shall pay the amount in lieu of notice.</p>
+            <p style="font-size: 12px;">I undertake follow all school rules and the payment of fee and all sundry expenses in advance. I shall give one month's notice of withdrawl or shall pay the amount in lieu of notice.</p>
         </b>
 
         <div style="display: flex; align-items:center; margin-bottom:120px; transform:translateY(50px);">
@@ -176,16 +171,19 @@
             </div>
 
             <div class="div" style="position:absolute; right:0;">
+            <br><br><br>
                 <p>Signature of parents/guardian_______________________________</p>
-                <p style="text-align: right">Registration/Adm No.&nbsp;&nbsp;&nbsp;&nbsp; <b>{{$student->adm_no}}</b></p>
-                <p style="text-align: right">Date of joining:&nbsp;&nbsp;&nbsp;&nbsp;<b>{{\Carbon\Carbon::parse($student->admission_date)->format('d/m/Y')}}</b></p>
-                <p style="text-align: right">Class to which admitted: &nbsp;&nbsp;&nbsp;&nbsp;<b> {{$student->grade->class}}</b></p>
+                <div style="font-size: 25px">
+                    <p style="text-align: right">Registration/Adm No.&nbsp;&nbsp;&nbsp;&nbsp; <b>{{$student->adm_no}}</b></p>
+                    <p style="text-align: right">Date of joining:&nbsp;&nbsp;&nbsp;&nbsp;<b>{{\Carbon\Carbon::parse($student->admission_date)->format('d/m/Y')}}</b></p>
+                    <p style="text-align: right">Class to which admitted: &nbsp;&nbsp;&nbsp;&nbsp;<b> {{$student->grade->class}}</b></p>
+                </div>
             </div>
 
         </div>
 
 
-        <div style="display: flex; align-items:center; justify-content:space-between;">
+        <div style="display: flex; align-items:center; justify-content:space-between; transform: translateY(50px)">
             <p style="text-align: left">Form Filled By: {{$student->clerkName->name}}</p>
             <p style="text-align:right;">Principal Signature</p>
 

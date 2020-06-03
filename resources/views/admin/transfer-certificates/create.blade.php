@@ -52,10 +52,17 @@
             <select class="js-example-basic-multiple form-control" name="subjects[]" multiple="multiple">
                 <option value="HINDI">Hindi</option>
                 <option value="ENGLISH">English</option>
-                <option value="MATHS">Maths</option>
                 <option value="SCIENCE">Science</option>
                 <option value="PUNJABI">Punjabi</option>
                 <option value="SOCIAL STUDIES">Social Studies</option>
+                <option value="G.K">G.K</option>
+                <option value="COMPUTER">Computer</option>
+                <option value="ART">Art</option>
+                <option value="PHYSICS">Physics</option>
+                <option value="CHEMISTRY">Chemistry</option>
+                <option value="MATHEMATICS">Mathematics</option>
+                <option value="BIOLOGY">Biology</option>
+                <option value="PHYSICAL EDUCATION">Physical Education</option>
             </select>
         </div>
     </div>
@@ -116,6 +123,18 @@
             <label for="">Date of application for certificate</label>
             <input type="date" required class="form-control" name="doa" oninput="this.value = this.value.toUpperCase()"
                 value="{{now()->toDateString()}}">
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="form-group">
+            <label for="">Reason for leaving school</label>
+            <textarea required class="form-control" name="reason"></textarea>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="form-group">
+            <label for="">Remarks</label>
+            <textarea required class="form-control" name="remarks"></textarea>
         </div>
     </div>
 

@@ -97,8 +97,6 @@ class FeeController extends Controller
         DB::update('update dues set total = ' . $total_pending . ' where id = ?', [$get->id]);
 
 
-
-
         for ($i = 0; $i <= count($month) - 1; $i++) {
             $dues_update = Dues::where("student_id", $student->id)->select('5 AS five', '4 AS four', '6 AS six', '7 AS seven', '8 AS eight', '9 AS nine', '10 AS ten', '11 AS eleven', '12 AS twelve', '1 AS one', '2 AS two', '3 AS three', 'id AS id', 'created_at AS created_at', 'updated_at AS updated_at', 'total AS total')->first();
             if ($month[$i] == 1) {
@@ -142,7 +140,6 @@ class FeeController extends Controller
 
 
         $reciepts = Reciept::orderBy('created_at', 'DESC')->where("student_id", $student_id)->first();
-        $fee = Fee::where('student_id', $student_id)->first();
         if ($reciepts == null) {
             $count = 0;
         } else {
@@ -150,73 +147,16 @@ class FeeController extends Controller
         }
 
         if ($count == 0) {
-
-
-
-
-            $monthly = $student->grade->fee * 12;
-            if ($student->convinience_req == 1) {
-                $transport = $student->stationName->fee * 12;
-            } else {
-                $transport = 0;
-            }
-
-            $sationary = $student->grade->stationary_fee * 12;
-
-            $examination = $student->grade->stationary;
-            $computer = $student->grade->computer_fee * 12;
-            $id_card = $student->grade->sports;
-            $admission = $student->grade->admission;
-            $annual = $student->grade->annual;
-
-
-            if ($fee->concession == null) {
-                $fee_concession = null;
-                $total = $monthly + $transport + $sationary + $examination + $computer + $id_card + $admission + $annual;
-                $reciept = Reciept::create([
-                    'student_id' => $student_id,
-                    'paid' => $paid,
-                    'outstanding' => $total - $paid,
-                    'particulars' => serialize($particulars),
-                    'fee' => serialize($fee_ser),
-                    'date' => now()->toDateString(),
-                    'mode' => $request->mode,
-                    'refrence' => $request->refrence,
-                ]);
-            } else {
-                $fee_concession = Concession::findOrFail($fee->concession);
-
-                $onMonthlyFee = $fee_concession !== null ? $fee_concession->monthly : 0;
-                $onComputerFee = $fee_concession !== null ? $fee_concession->computer : 0;
-                $onTransportFee = $fee_concession !== null ? $fee_concession->transport : 0;
-                $onIdFee = $fee_concession !== null ? $fee_concession->id_card : 0;
-                $onExaminationFee = $fee_concession !== null ? $fee_concession->examination : 0;
-                $onStationaryFee = $fee_concession !== null ? $fee_concession->stationary : 0;
-                $onAnnualFee = $fee_concession !== null ? $fee_concession->annual : 0;
-                $onAdmissionFee = $fee_concession !== null ? $fee_concession->admission : 0;
-
-                $total = ($monthly - (($onMonthlyFee == 0 ? 100 : $onMonthlyFee / 100) * $monthly)) + ($transport - (($onTransportFee == 0 ? 100 : $onTransportFee / 100) * $transport)) +
-                    ($computer - (($onComputerFee == 0 ? 100 : $onComputerFee / 100) * $computer)) +
-                    ($sationary - (($onStationaryFee == 0 ? 100 : $onStationaryFee / 100) * $sationary)) +
-                    ($examination - (($onExaminationFee == 0 ? 100 : $onExaminationFee / 100) * $examination))  +
-                    ($id_card - (($onIdFee == 0 ? 100 : $onIdFee / 100) * $id_card))  +
-                    ($annual - (($onAnnualFee == 0 ? 100 : $onAnnualFee / 100) * $annual))  +
-                    ($admission - (($onAdmissionFee == 0 ? 100 : $onAdmissionFee / 100) * $admission));
-
-
-
-
-                $reciept = Reciept::create([
-                    'student_id' => $student_id,
-                    'paid' => $paid,
-                    'outstanding' => $total - $paid,
-                    'particulars' => serialize($particulars),
-                    'fee' => serialize($fee_ser),
-                    'date' => now()->toDateString(),
-                    'mode' => $request->mode,
-                    'refrence' => $request->refrence,
-                ]);
-            }
+            $reciept = Reciept::create([
+                'student_id' => $student_id,
+                'paid' => $paid,
+                'outstanding' => $get->total - $paid,
+                'particulars' => serialize($particulars),
+                'fee' => serialize($fee_ser),
+                'date' => now()->toDateString(),
+                'mode' => $request->mode,
+                'refrence' => $request->refrence,
+            ]);
         } else {
             $reciept = Reciept::create([
                 'student_id' => $student_id,
@@ -255,51 +195,20 @@ class FeeController extends Controller
         $reciepts = Reciept::where('student_id', $student_id)->get();
 
 
-        $monthly = $student->grade->fee * 12;
-        if ($student->convinience_req == 1) {
-            $transport = $student->stationName->fee * 12;
-        } else {
-            $transport = 0;
-        }
-
-        $sationary = $student->grade->stationary_fee * 12;
-
-        $examination = $student->grade->stationary;
-        $computer = $student->grade->computer_fee * 12;
-        $id_card = $student->grade->sports;
-        $admission = $student->grade->admission;
-        $annual = $student->grade->annual;
-
 
         if ($fee->concession == null) {
             $fee_concession = null;
-            $total = $monthly + $transport + $sationary + $examination + $computer + $id_card + $admission + $annual;
-            return view('admin.fee.manage', compact(['student', 'fee',  'concession', 'fee_concession', 'reciepts', 'total']));
+            $count2 = Dues::where('student_id', $student_id)->select('5 AS five', '4 as four', '6 as six', '7 as seven', '8 as eight', '9 as nine', '10 as ten', '11 as eleven', '12 as twelve', '1 as one', '2 as two', '3 as three', 'concession AS concession', 'total as total')->first();
+
+            $total = $count2->one + $count2->two  + $count2->three  + $count2->four  + $count2->five  + $count2->six  + $count2->seven  + $count2->eight  + $count2->nine  + $count2->ten  + $count2->eleven  + $count2->twelve;
         } else {
             $fee_concession = Concession::findOrFail($fee->concession);
+            $count2 = Dues::where('student_id', $student_id)->select('5 AS five', '4 as four', '6 as six', '7 as seven', '8 as eight', '9 as nine', '10 as ten', '11 as eleven', '12 as twelve', '1 as one', '2 as two', '3 as three', 'concession AS concession', 'total as total')->first();
 
-            $onMonthlyFee = $fee_concession !== null ? $fee_concession->monthly : 0;
-            $onComputerFee = $fee_concession !== null ? $fee_concession->computer : 0;
-            $onTransportFee = $fee_concession !== null ? $fee_concession->transport : 0;
-            $onIdFee = $fee_concession !== null ? $fee_concession->id_card : 0;
-            $onExaminationFee = $fee_concession !== null ? $fee_concession->examination : 0;
-            $onStationaryFee = $fee_concession !== null ? $fee_concession->stationary : 0;
-            $onAnnualFee = $fee_concession !== null ? $fee_concession->annual : 0;
-            $onAdmissionFee = $fee_concession !== null ? $fee_concession->admission : 0;
-
-            $total = ($monthly - (($onMonthlyFee == 0 ? 100 : $onMonthlyFee / 100) * $monthly)) + ($transport - (($onTransportFee == 0 ? 100 : $onTransportFee / 100) * $transport)) +
-                ($computer - (($onComputerFee == 0 ? 100 : $onComputerFee / 100) * $computer)) +
-                ($sationary - (($onStationaryFee == 0 ? 100 : $onStationaryFee / 100) * $sationary)) +
-                ($examination - (($onExaminationFee == 0 ? 100 : $onExaminationFee / 100) * $examination))  +
-                ($id_card - (($onIdFee == 0 ? 100 : $onIdFee / 100) * $id_card))  +
-                ($annual - (($onAnnualFee == 0 ? 100 : $onAnnualFee / 100) * $annual))  +
-                ($admission - (($onAdmissionFee == 0 ? 100 : $onAdmissionFee / 100) * $admission));
-
-
-
-
-            return view('admin.fee.manage', compact(['student', 'fee',  'concession', 'fee_concession', 'reciepts', 'total']));
+            $total = $count2->one + $count2->two  + $count2->three  + $count2->four  + $count2->five  + $count2->six  + $count2->seven  + $count2->eight  + $count2->nine  + $count2->ten  + $count2->eleven  + $count2->twelve;
         }
+
+        return view('admin.fee.manage', compact(['student', 'fee',  'concession', 'fee_concession', 'reciepts', 'total']));
     }
 
     public function updateConcession()
@@ -311,10 +220,6 @@ class FeeController extends Controller
         $fee = Fee::where('student_id', $id)->first();
 
         if ($con_id == "") {
-
-
-            
-
             $fee->update([
                 'concession' => null,
             ]);
@@ -335,131 +240,138 @@ class FeeController extends Controller
             $examination = $student->grade->stationary;
             $computer = $student->grade->computer_fee;
             $id_card = $student->grade->sports;
-            $admission = $student->grade->admission;
+            $admission = $student->adm_type == 0 ? $student->grade->admission : 0;
             $annual = $student->grade->annual;
+            $prospectus = $student->adm_type == 0 ? $student->grade->prospectus : 0;
+            $application = $student->grade->application;
 
 
-            $totalMonthly = $monthly + $transport + $sationary + $computer;
-            $inApril = $monthly + $transport + $sationary + $computer + $annual  + $admission;
-            $inJuly = $monthly + $transport + $sationary + $computer + $id_card;
-            $inOct = $monthly + $transport + $sationary + $computer + $examination;
-
-
-
-            $count = Dues::where('student_id', $id)->select('5 AS five', '4 as four', '6 as six', '7 as seven', '8 as eight', '9 as nine', '10 as ten', '11 as eleven', '12 as twelve', '1 as one', '2 as two', '3 as three' , 'concession AS concession' , 'total as total')->first();
+            $count = Dues::where('student_id', $id)->select('5 AS five', '4 as four', '6 as six', '7 as seven', '8 as eight', '9 as nine', '10 as ten', '11 as eleven', '12 as twelve', '1 as one', '2 as two', '3 as three', 'concession AS concession', 'total as total')->first();
 
             $fee_concession = Concession::findOrFail($con_id);
 
-            $onMonthlyFee = $fee_concession !== null ? $fee_concession->monthly : 0;
-            $onComputerFee = $fee_concession !== null ? $fee_concession->computer : 0;
-            $onTransportFee = $fee_concession !== null ? $fee_concession->transport : 0;
-            $onIdFee = $fee_concession !== null ? $fee_concession->id_card : 0;
-            $onExaminationFee = $fee_concession !== null ? $fee_concession->examination : 0;
-            $onStationaryFee = $fee_concession !== null ? $fee_concession->stationary : 0;
-            $onAnnualFee = $fee_concession !== null ? $fee_concession->annual : 0;
-            $onAdmissionFee = $fee_concession !== null ? $fee_concession->admission : 0;
+            $onMonthlyFee = $fee_concession->monthly;
+            $onComputerFee = $fee_concession->computer;
+            $onTransportFee = $fee_concession->transport;
+            $onIdFee = $fee_concession->id_card;
+            $onExaminationFee = $fee_concession->examination;
+            $onStationaryFee = $fee_concession->stationary;
+            $onAnnualFee = $fee_concession->annual;
+            $onAdmissionFee = $fee_concession->admission;
+            $onProspectusFee = $fee_concession->prospectus;
+            $onApplicationFee = $fee_concession->application;
 
 
-            $month = ($monthly - (($onMonthlyFee == 0 ? 100 : $onMonthlyFee / 100) * $monthly)) + ($transport - (($onTransportFee == 0 ? 100 : $onTransportFee / 100) * $transport)) +
-                ($computer - (($onComputerFee == 0 ? 100 : $onComputerFee / 100) * $computer)) +
-                ($sationary - (($onStationaryFee == 0 ? 100 : $onStationaryFee / 100) * $sationary));
-
-            $monthConcession = $totalMonthly - $month;
-
-            $april = ($monthly - (($onMonthlyFee == 0 ? 100 : $onMonthlyFee / 100) * $monthly)) + ($transport - (($onTransportFee == 0 ? 100 : $onTransportFee / 100) * $transport)) +
-                ($computer - (($onComputerFee == 0 ? 100 : $onComputerFee / 100) * $computer)) +
-                ($sationary - (($onStationaryFee == 0 ? 100 : $onStationaryFee / 100) * $sationary)) +  ($annual - (($onAnnualFee == 0 ? 100 : $onAnnualFee / 100) * $annual))  +
-                ($admission - (($onAdmissionFee == 0 ? 100 : $onAdmissionFee / 100) * $admission));
+            $totalMonthly =
+                ($monthly - ($monthly * ($onMonthlyFee / 100))) +
+                ($transport - ($transport * ($onTransportFee / 100))) +
+                ($computer - ($computer * ($onComputerFee / 100))) +
+                ($sationary - ($sationary * ($onStationaryFee / 100)));
 
 
-                $aprilConcession = $inApril - $april;
+
+            $april =
+                ($monthly - ($monthly * ($onMonthlyFee / 100))) +
+                ($transport - ($transport * ($onTransportFee / 100))) +
+                ($computer - ($computer * ($onComputerFee / 100))) +
+                ($sationary - ($sationary * ($onStationaryFee / 100))) +
+                ($admission - ($admission * ($onAdmissionFee / 100))) +
+                ($annual - ($annual * ($onAnnualFee / 100))) +
+                ($application - ($application * ($onApplicationFee / 100))) +
+                ($prospectus - ($prospectus * ($onProspectusFee / 100)));
 
 
-            $july = ($monthly - (($onMonthlyFee == 0 ? 100 : $onMonthlyFee / 100) * $monthly)) + ($transport - (($onTransportFee == 0 ? 100 : $onTransportFee / 100) * $transport)) +
-                ($computer - (($onComputerFee == 0 ? 100 : $onComputerFee / 100) * $computer)) +
-                ($sationary - (($onStationaryFee == 0 ? 100 : $onStationaryFee / 100) * $sationary)) +
-                ($id_card - (($onIdFee == 0 ? 100 : $onIdFee / 100) * $id_card));
 
-                $julyConcession = $inJuly - $july;
 
-            $oct =  ($monthly - (($onMonthlyFee == 0 ? 100 : $onMonthlyFee / 100) * $monthly)) + ($transport - (($onTransportFee == 0 ? 100 : $onTransportFee / 100) * $transport)) +
-                ($computer - (($onComputerFee == 0 ? 100 : $onComputerFee / 100) * $computer)) +
-                ($sationary - (($onStationaryFee == 0 ? 100 : $onStationaryFee / 100) * $sationary)) + ($examination - (($onExaminationFee == 0 ? 100 : $onExaminationFee / 100) * $examination));
 
-                $octConcession = $inOct - $oct;
+            $july =
+                ($monthly - ($monthly * ($onMonthlyFee / 100))) +
+                ($transport - ($transport * ($onTransportFee / 100))) +
+                ($computer - ($computer * ($onComputerFee / 100))) +
+                ($sationary - ($sationary * ($onStationaryFee / 100))) +
+                ($id_card - ($id_card * ($onIdFee / 100)));
+
+
+            $oct =
+                ($monthly - ($monthly * ($onMonthlyFee / 100))) +
+                ($transport - ($transport * ($onTransportFee / 100))) +
+                ($computer - ($computer * ($onComputerFee / 100))) +
+                ($sationary - ($sationary * ($onStationaryFee / 100))) +
+                ($examination - ($examination * ($onExaminationFee / 100)));
+
 
 
             if ($count->one > 0) {
-                $redoing = $count->one - $monthConcession;
+                $redoing = $totalMonthly;
                 DB::update('update dues set `1` = ' . $redoing . ' where student_id = ?', [$id]);
             }
 
             if ($count->two > 0) {
-                $redoing = $count->two - $monthConcession;
+                $redoing = $totalMonthly;
 
                 DB::update('update dues set `2` = ' . $redoing . ' where student_id = ?', [$id]);
             }
             if ($count->three > 0) {
-                $redoing = $count->three - $monthConcession;
+                $redoing =  $totalMonthly;
 
                 DB::update('update dues set `3` = ' . $redoing . ' where student_id = ?', [$id]);
             }
             if ($count->four > 0) {
-                $redoing = $count->four - $aprilConcession;
+                $redoing = $april;
 
                 DB::update('update dues set `4` = ' . $redoing . ' where student_id = ?', [$id]);
             }
             if ($count->five > 0) {
-                $redoing = $count->five - $monthConcession;
+                $redoing = $totalMonthly;
 
                 DB::update('update dues set `5` = ' . $redoing . ' where student_id = ?', [$id]);
             }
             if ($count->six > 0) {
-                $redoing = $count->six - $monthConcession;
+                $redoing = $totalMonthly;
 
                 DB::update('update dues set `6` = ' . $redoing . ' where student_id = ?', [$id]);
             }
             if ($count->seven > 0) {
-                $redoing = $count->seven - $julyConcession;
+                $redoing = $july;
 
                 DB::update('update dues set `7` = ' . $redoing . ' where student_id = ?', [$id]);
             }
             if ($count->eight > 0) {
-                $redoing = $count->eight - $monthConcession;
+                $redoing = $totalMonthly;
 
                 DB::update('update dues set `8` = ' . $redoing . ' where student_id = ?', [$id]);
             }
             if ($count->nine > 0) {
-                $redoing = $count->nine - $monthConcession;
+                $redoing =  $totalMonthly;
 
                 DB::update('update dues set `9` = ' . $redoing . ' where student_id = ?', [$id]);
             }
             if ($count->ten > 0) {
-                $redoing = $count->ten - $octConcession;
+                $redoing = $oct;
 
                 DB::update('update dues set `10` = ' . $redoing . ' where student_id = ?', [$id]);
             }
             if ($count->eleven > 0) {
-                $redoing = $count->eleven - $monthConcession;
+                $redoing = $totalMonthly;
 
                 DB::update('update dues set `11` = ' . $redoing . ' where student_id = ?', [$id]);
             }
             if ($count->twelve > 0) {
-                $redoing = $count->twelve - $monthConcession;
+                $redoing = $totalMonthly;
 
                 DB::update('update dues set `12` = ' . $redoing . ' where student_id = ?', [$id]);
             }
 
-            $totalInConcession = ($monthConcession * 9) + $aprilConcession + $julyConcession + $octConcession;
+            $totalInConcession = ($totalMonthly * 9) + $april + $july + $oct;
 
 
-            DB::update('update dues set concession = '.$totalInConcession.' where student_id = ?', [$id]);
-            $count2 = Dues::where('student_id', $id)->select('5 AS five', '4 as four', '6 as six', '7 as seven', '8 as eight', '9 as nine', '10 as ten', '11 as eleven', '12 as twelve', '1 as one', '2 as two', '3 as three' , 'concession AS concession' , 'total as total')->first();
+            DB::update('update dues set concession = ' . $totalInConcession . ' where student_id = ?', [$id]);
+            $count2 = Dues::where('student_id', $id)->select('5 AS five', '4 as four', '6 as six', '7 as seven', '8 as eight', '9 as nine', '10 as ten', '11 as eleven', '12 as twelve', '1 as one', '2 as two', '3 as three', 'concession AS concession', 'total as total')->first();
 
 
             $newTotal = $count2->one + $count2->two  + $count2->three  + $count2->four  + $count2->five  + $count2->six  + $count2->seven  + $count2->eight  + $count2->nine  + $count2->ten  + $count2->eleven  + $count2->twelve;
 
-            DB::update('update dues set total = '.$newTotal.' where student_id = ?', [$id]);
+            DB::update('update dues set total = ' . $newTotal . ' where student_id = ?', [$id]);
 
 
             $fee->update([

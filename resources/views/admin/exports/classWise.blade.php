@@ -4,6 +4,8 @@
             <th scope="col">#</th>
             <th scope="col">Class</th>
             <th scope="col">Section</th>
+            <th scope="col">Stream</th>
+            <th scope="col">Roll No.</th>
             <th scope="col">Adm No.</th>
             <th scope="col">Name</th>
             <th scope="col">Gender</th>
@@ -18,7 +20,13 @@
             <th scope="col">District</th>
             <th scope="col">State</th>
             <th scope="col">Pincode</th>
+            <th scope="col">Concession</th>
             <th scope="col">Bus Station</th>
+            <th scope="col">Bus Route</th>
+            <th scope="col">Bus No</th>
+            <th scope="col">Father Occupation</th>
+            <th scope="col">Mother Occupation</th>
+            <th scope="col">Family annual income</th>
             <th scope="col">Documents Verified</th>
             <th scope="col">Caste</th>
             <th scope="col">Religion</th>
@@ -56,6 +64,18 @@
                                             echo $a . substr(date('jS', mktime(0, 0, 0, 1, ($a % 10 == 0 ? 9 : ($a % 100 > 20 ? $a % 10 : $a % 100)), 2000)), -2);
 
                                             ?> @endif </td> <td>{{$result->section}}</td>
+            <td>
+                @if($result->stream == 1)
+                'Medical'
+                @endif
+                @if($result->stream == 2)
+                'Non-Medical'
+                @endif
+                @if($result->stream == 3)
+
+                @endif
+            </td>
+            <td>{{$result->roll_number}}</td>
             <td>{{$result->adm_no}}</td>
             <td>{{$result->name}}</td>
             <td>{{$result->gender == 0 ? 'Male' : 'Female'}}</td>
@@ -70,12 +90,33 @@
             <td>{{$result->district}}</td>
             <td>{{$result->state}}</td>
             <td>{{$result->pincode}}</td>
+            <td>
+                @if(App\Fee::where('student_id', $result->id)->first('concession')->concession)
+                {{App\Concession::where('id' , App\Fee::where('student_id', $result->id)->first('concession')->concession)->first('name')->name}}
+                @endif
+
+            </td>
             <td>{{$result->convinience_req == 1 ? App\Station::findOrFail($result->station)->first('name')->name : "N/A"}}</td>
+            <td>
+                {{$result->convinience_req == 1 ? App\Station::findOrFail($result->station)->first('route')->route : "N/A"}}
+            </td>
+            <td>
+                {{$result->convinience_req == 1 ? App\Station::findOrFail($result->station)->first('bus')->bus : "N/A"}}
+            </td>
+            <td>
+                {{App\Father::where('student_id', $result->id)->first('occupation')->occupation}}
+            </td>
+            <td>
+                {{App\Mother::where('student_id', $result->id)->first('occupation')->occupation}}
+            </td>
+            <td>
+                {{$result->annual_income}}
+            </td>
             <td>{{$result->document_verified == 1 ? 'Verified' : 'Not Verfied'}}</td>
             <td>
                 @if($result->cast_category == 1)General @endif
                 @if($result->cast_category == 2)SC @endif
-                @if($result->cast_category == 3)OB @endif
+                @if($result->cast_category == 3)OBC @endif
                 @if($result->cast_category == 4)ST @endif
             </td>
             <td>
@@ -86,7 +127,8 @@
                 @if($result->religion == 5)Christian @endif
                 @if($result->religion == 6)Other @endif
             </td>
-            <td>{{$result->admission_date}}</td>
+            <td>{{\Carbon\Carbon::parse($result->admission_date)->format('d/m/Y')}}</td>
+
             <td> <?php
                     $price = $result->addhar_number;
 

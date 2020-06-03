@@ -6,6 +6,7 @@ use App\Fee;
 use Illuminate\Http\Request;
 use App\Grade;
 use App\Dues as AppDues;
+use App\Reciept;
 
 class DuesController extends Controller
 {
@@ -51,6 +52,7 @@ class DuesController extends Controller
         } elseif ($month == 12) {
             $students = AppDues::where(4, ">", 0)->orWhere(5, ">", 0)->orWhere(6, ">", 0)->orWhere(7, ">", 0)->orWhere(8, ">", 0)->orWhere(9, ">", 0)->orWhere(10, ">", 0)->orWhere(11, ">", 0)->orWhere(12, ">", 0)->get();
         }
+
 
 
 

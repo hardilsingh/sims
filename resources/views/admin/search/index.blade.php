@@ -9,54 +9,86 @@ Search By Station
 <div class="row">
     <div class="col-lg-12">
         <label for="">Select Class:</label>
-        {!! Form::select('stations' , $stations , 0 , ['class'=>'form-control js-example-basic-single' , 'placeholder'=>'Select a station below' , 'id'=>'station'])
-        !!}
+        <select name="stations" class="form-control" id="station">
+            <option value="">Select a station from list</option>
+            <option value="0">All Stations</option>
+            @foreach($stations as $station)
+            <option value="{{$station->id}}">{{$station->name}}</option>
+            @endforeach
+        </select>
     </div>
+    <button id="search" class="btn btn-primary" style="margin: 20px">Search</button>
 </div>
 
 
-<!-- Large modal -->
-<button type="button" id="tmodal" style="display: none" class="btn btn-default" data-toggle="modal" data-target="#modal-xl">
-    Search Results
-</button>
-
-<div class="modal fade" id="modal-xl">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content" style="width:min-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Search Results</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <table class="table" style="padding:20px;" id="myTable">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Adm No.</th>
-                            <th scope="col">Father Name</th>
-                            <th scope="col">Class</th>
-                            <th scope="col">Section</th>
-                            <th scope="col">Telephone</th>
-                            <th scope="col">Gender</th>
-                            <th scope="col">View</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
+@if(isset($_GET['id']))
+<div style="display: none;">
+    {{$students = App\Students::where('station', $_GET['id'])->get()}}
+    {{$station = App\Station::findOrFail($_GET['id'])}}
 </div>
+
+<div class="row" style="margin-bottom: 50px;">
+    <div class="col-lg-12">
+        <table class="table" id="table2">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Sr.</th>
+                    <th>Bus Station name</th>
+                    <th>Bus No.</th>
+                    <th>Route No.</th>
+                    <th>No of Students.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>{{$station->name}}</td>
+                    <td>{{$station->bus}}</td>
+                    <td>{{$station->route}}</td>
+                    <td>{{count($students)}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table" id="table2">
+            <thead>
+                <tr>
+                    <th>Sr.</th>
+                    <th>Adm No.</th>
+                    <th>Name</th>
+                    <th>Father Name.</th>
+                    <th>Contact</th>
+                    <th>Bus Station Name</th>
+                    <th>Bus No</th>
+                    <th>Bus Route</th>
+                </tr>
+            </thead>
+            <tbody>
+                @php
+                $i = 1
+                @endphp
+                @foreach($students as $student)
+                <tr>
+                    <td>{{$i++}}</td>
+                    <td>{{$student->adm_no}}</td>
+                    <td>{{$student->name}}</td>
+                    <td>{{$student->father}}</td>
+                    <td>{{$student->tel1}}</td>
+                    <td>{{$student->stationName->name}}</td>
+                    <td>{{$student->stationName->bus}}</td>
+                    <td>{{$student->stationName->route}}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+@endif
+
 
 <!-- Small modal -->
 
@@ -64,111 +96,10 @@ Search By Station
 @stop
 
 @section('script-plugins')
-
 <script>
-    $(document).ready(function() {
-
-        function getNumberWithOrdinal(n) {
-            var s = ["th", "st", "nd", "rd"],
-                v = n % 100;
-            return n + (s[(v - 20) % 10] || s[v] || s[0]);
-        }
-
-        var id;
-        // Department Change
-        $('#station').change(function() {
-
-            var id = $(this).val();
-            $("#myTable").find("tr:not(:first)").remove();
-
-
-            $.ajax({
-                url: '/stationSearchnow?station_id=' + id,
-                type: 'get',
-                dataType: 'json',
-                success: function(response) {
-
-
-                    var len = 0;
-                    if (response['data'] != null) {
-                        len = response['data'].length;
-                    }
-
-                    if (len > 0) {
-
-
-                        $(document).ready(function() {
-                            $("#tmodal").trigger('click');
-                        });
-
-                        var j = 1
-                        // Read data and create <option >
-                        for (var i = 0; i < len; i++) {
-                            var id = response['data'][i].id;
-                            var name = response['data'][i].name;
-                            var adm_no = response['data'][i].adm_no;
-                            var tel = response['data'][i].tel1;
-                            var father = response['data'][i].father;
-                            var mother = response['data'][i].mother;
-                            var grade = response['data'][i].class;
-                            var section = response['data'][i].section;
-                            var gender = response['data'][i].gender;
-
-                            var table = document.getElementById("myTable");
-
-                            // Create an empty <tr> element and add it to the 1st position of the table:
-                            var row = table.insertRow(-1);
-
-                            // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
-                            var cell1 = row.insertCell(0);
-                            var cell2 = row.insertCell(1);
-                            var cell3 = row.insertCell(2);
-                            var cell4 = row.insertCell(3);
-                            var cell5 = row.insertCell(4);
-                            var cell6 = row.insertCell(5);
-                            var cell7 = row.insertCell(6);
-                            var cell8 = row.insertCell(7);
-                            var cell9 = row.insertCell(8);
-
-
-                            var gradeName;
-
-                            if (grade == 100) {
-                                gradeName = 'Pre Nursery-1'
-                            } else if (grade == 101) {
-                                gradeName = 'Nursery'
-                            } else if (grade == 102) {
-                                gradeName = 'L.K.G'
-                            } else if (grade == 103) {
-                                gradeName = 'U.K.G'
-                            } else {
-                                gradeName = getNumberWithOrdinal(grade);
-                            }
-
-
-
-                            // Add some text to the new cells:
-                            cell1.innerHTML = j++;
-                            cell2.innerHTML = name;
-                            cell3.innerHTML = adm_no;
-                            cell4.innerHTML = father;
-                            cell5.innerHTML = gradeName;
-                            cell6.innerHTML = section;
-                            cell7.innerHTML = tel;
-                            cell8.innerHTML = gender == 0 ? 'Male' : 'Female';
-                            cell9.innerHTML = "<a href='students/" + id + "' class='btn btn-success'>View</a>";
-
-
-
-                        }
-                    } else {
-                        alert("No Data Found")
-                    }
-
-                }
-            });
-        })
-    });
+    document.getElementById("search").addEventListener('click', () => {
+        const id = document.getElementById('station').value
+        $(location).attr('href', `/stationSearch?id=${id}`);
+    })
 </script>
-
 @stop
