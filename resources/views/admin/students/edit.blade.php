@@ -81,7 +81,7 @@ Edit Student
         </div>
 
         <div class="col-lg-3">
-            <div class="form-group"> <label for="exampleInputName2">Adm No.</label> <input type="text" class="form-control" name="adm_no" value="{{$student->adm_no}}" id="exampleInputName2" placeholder="Adm No" > </div>
+            <div class="form-group"> <label for="exampleInputName2">Adm No.</label> <input type="text" class="form-control" name="adm_no" value="{{$student->adm_no}}" id="exampleInputName2" placeholder="Adm No"> </div>
         </div>
 
     </div>
@@ -173,7 +173,7 @@ Edit Student
             <div class="form-group"> <label for="exampleInputName2">Contact No. 2: </label> <input type="tel" value="{{$student->tel2}}" class="form-control" name="tel2" id="exampleInputName2" placeholder="Telephone"> </div>
         </div>
         <div class="col-lg-4">
-            <div class="form-group"> <label for="exampleInputName2">Aadhar UID: </label> <input type="text" value="{{$student->addhar_number}}" maxlength="12"class="form-control" name="addhar_number" id="exampleInputName2" placeholder="Aadhar UID"> </div>
+            <div class="form-group"> <label for="exampleInputName2">Aadhar UID: </label> <input type="text" value="{{$student->addhar_number}}" maxlength="12" class="form-control" name="addhar_number" id="exampleInputName2" placeholder="Aadhar UID"> </div>
         </div>
 
     </div>
@@ -277,19 +277,23 @@ Edit Student
 
     @endif
 
+    @if($student->convinience_req == 0)
     <div style="margin-top:20px; display:none" id="stations" class="form-group"> <label for="exampleInputName2">Stations:
-            {!! Form::select('station' , $stations , $student->station, ['class'=>'form-control' , 'placeholder'=>'Select Station']) !!}
+            {!! Form::select('station' , $stations , 0 , ['class'=>'form-control' , 'placeholder'=>'Select Station']) !!}
     </div>
+    @endif
 
     @if($student->convinience_req == 0)
     <div style="margin-top:20px;" id="other_con" class="form-group"> <label for="exampleInputName2">Other Convinience:
             {!! Form::select('other_con' , $other , $student->other_con , ['class'=>'form-control' , 'placeholder'=>'Select Other convinience']) !!}
     </div>
     @endif
-
+    @if($student->convinience_req == 1)
     <div style="margin-top:20px; display:none;" id="other_con" class="form-group"> <label for="exampleInputName2">Other Convinience:
-            {!! Form::select('other_con' , $other , $student->other_con , ['class'=>'form-control' , 'placeholder'=>'Select Other convinience']) !!}
+            {!! Form::select('other_con' , $other , 0 , ['class'=>'form-control' , 'placeholder'=>'Select Other convinience']) !!}
     </div>
+    @endif
+    
 </div>
 
 <div id="Other Details" class="tabcontent">

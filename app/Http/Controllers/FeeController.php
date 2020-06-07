@@ -12,6 +12,7 @@ use App\Station;
 use App\Students;
 use App\Dues;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class FeeController extends Controller
@@ -156,17 +157,20 @@ class FeeController extends Controller
                 'date' => now()->toDateString(),
                 'mode' => $request->mode,
                 'refrence' => $request->refrence,
+                'user_id' => Auth::user()->id
             ]);
         } else {
             $reciept = Reciept::create([
                 'student_id' => $student_id,
                 'paid' => $paid,
-                'outstanding' => $reciepts->outstanding - $paid,
+                'outstanding' => $get->total - $paid,
                 'particulars' => serialize($particulars),
                 'fee' => serialize($fee_ser),
                 'date' => now()->toDateString(),
                 'mode' => $request->mode,
                 'refrence' => $request->refrence,
+                'user_id' => Auth::user()->id
+
             ]);
         }
         $recipet_id = $reciept->id;
