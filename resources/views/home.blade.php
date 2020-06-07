@@ -154,7 +154,7 @@ Dashboard
                             <a href="/students/{{$student->id}}" class="product-title">{{$student->name}}
                                 <span class="badge badge-warning float-right"></span></a>
                             <span class="product-description">
-                            {{\Carbon\Carbon::parse($student->admission_date)->format('d/m/Y')}} | Class: {{$student->grade->class}}-{{$student->section}} | Admission No. {{$student->adm_no}}
+                                {{\Carbon\Carbon::parse($student->admission_date)->format('d/m/Y')}} | Class: {{$student->grade->class}}-{{$student->section}} | Admission No. {{$student->adm_no}}
                             </span>
                         </div>
                     </li>
@@ -211,8 +211,10 @@ Dashboard
 
 
 <script>
-    var male = @json($male);
-    var female = @json($female);
+    var grossPayable = <?php echo App\Dues::sum('openingBalance') ?>;
+    var grossConcession = <?php echo App\Dues::where('concession', '>', 0)->sum('openingBalance') - App\Dues::where('concession', '>', 0)->sum('concession') ?>;
+    var netRecieved = <?php echo App\Reciept::sum('paid') ?>;
+    var netOutstanding = <?php echo App\Dues::sum('total') ?>;
 
     //-------------
     //- DONUT CHART -
@@ -221,12 +223,14 @@ Dashboard
     var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
     var donutData = {
         labels: [
-            'Male',
-            'Female'
+            'Gross Payable',
+            'Gross Concession',
+            'Net Recieved',
+            'Net Outstanding',
         ],
         datasets: [{
-            data: [male, female],
-            backgroundColor: ['#f56954', '#00a65a'],
+            data: [parseInt(grossPayable), parseInt(grossConcession), parseInt(netRecieved), parseInt(netOutstanding)],
+            backgroundColor: ['#f56954', '#0027DE', '#66E000', '#F900B1'],
         }]
     }
     var donutOptions = {

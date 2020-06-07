@@ -294,7 +294,12 @@ Register Students
 
 
             <div style="margin-top:20px; display:none;" id="stations" class="form-group"> <label for="exampleInputName2">Stations: <span class="badge badge-danger">Required</span></label>
-                {!! Form::select('station_id' , $stations , 0 , ['class'=>'form-control js-example-basic-single' , 'placeholder'=>'Select Station' , 'style'=>'width:100%;']) !!}
+                <select name="" id="" class="form-control js-example-basic-single">
+                    <option value="" selected>Select a station</option>
+                    @foreach($stations as $station)
+                    <option value="{{$station->id}}">{{$station->name}} | ₹{{$station->fee}}</option>
+                    @endforeach
+                </select>
             </div>
 
             <div style="margin-top:20px; display:none;" id="other_con" class="form-group"> <label for="exampleInputName2">Other Convinience: <span class="badge badge-danger">Required</span></label>
@@ -304,7 +309,7 @@ Register Students
 
 
 
-            <div class="form-group"> <label for="exampleInputName2">Parents Annual Income: <span class="badge badge-danger">Required</span></label> <input type="number" name="annual_income" class="form-control" id="exampleInputName2" placeholder="Enter Income"> </div>
+            <div class="form-group"> <label for="exampleInputName2">Parents Annual Income: <span class="badge badge-danger">Required</span></label> <input required type="number" name="annual_income" class="form-control" id="exampleInputName2" placeholder="Enter Income"> </div>
 
 
 
@@ -341,8 +346,8 @@ Register Students
 
 @section('script-plugins')
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js"></script>
+<script src="/jqueryW.js"></script>
+<script src="/validateJquery.js"></script>
 <script src="/jquery.formtowizard.js"></script>
 <script>
     $(function() {

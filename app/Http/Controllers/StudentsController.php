@@ -46,7 +46,7 @@ class StudentsController extends Controller
     {
         //
         $classes = Grade::pluck("class", "id");
-        $stations = Station::pluck('name', 'id');
+        $stations = Station::all();
         $other = ExplicitCon::pluck('name', 'id');
         $streams = Stream::pluck('name', 'id');
         $roll_number = Students::orderBy('id', 'DESC')->first();

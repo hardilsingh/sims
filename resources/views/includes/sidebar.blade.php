@@ -156,17 +156,6 @@
                 </li>
 
 
-
-
-
-
-                <li class="nav-item">
-                    <a href="{{route('promote.index')}}" class="nav-link">
-                        <i class="fa fa-user nav-icon"></i>
-                        <span>Promote Classes</span>
-                    </a>
-                </li>
-
                 <li class="nav-item">
                     <a href="{{route('deactivated.index')}}" class="nav-link">
                         <i class="fas fa-times-circle nav-icon"></i>
