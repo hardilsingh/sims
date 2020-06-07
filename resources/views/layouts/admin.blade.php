@@ -31,8 +31,7 @@
     <link rel="stylesheet" href="/dataTables.min.css">
 
 
-
-
+    @yield('header_plugins')
 
 </head>
 
