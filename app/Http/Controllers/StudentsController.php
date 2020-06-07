@@ -445,7 +445,7 @@ class StudentsController extends Controller
             }
         }
         if ($request->convinience_req == 0) {
-            if ($request->other_con != $othe_con_old) {
+            if ($othe_con_old == 0) {
                 $old_station = Station::findOrFail($station_old);
 
 

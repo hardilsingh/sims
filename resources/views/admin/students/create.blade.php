@@ -294,7 +294,7 @@ Register Students
 
 
             <div style="margin-top:20px; display:none;" id="stations" class="form-group"> <label for="exampleInputName2">Stations: <span class="badge badge-danger">Required</span></label>
-                <select name="" id="" class="form-control js-example-basic-single">
+                <select name="station_id" id="" class="form-control js-example-basic-single">
                     <option value="" selected>Select a station</option>
                     @foreach($stations as $station)
                     <option value="{{$station->id}}">{{$station->name}} | ₹{{$station->fee}}</option>
