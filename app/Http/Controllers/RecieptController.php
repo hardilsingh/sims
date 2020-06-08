@@ -7,6 +7,8 @@ use App\Reciept;
 use App\Station;
 use App\Dues;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
 
 class RecieptController extends Controller
 {
@@ -57,6 +59,8 @@ class RecieptController extends Controller
         $reciept = Reciept::findOrfail($id);
         $particulars = unserialize($reciept->particulars);
         $fee = unserialize($reciept->fee);
+		
+		
 
         $number = $reciept->paid;
         $no = floor($number);
@@ -111,7 +115,7 @@ class RecieptController extends Controller
 
         $openingBalance = Dues::where('student_id', $reciept->student_id)->first();
 
-        return view('admin.reciepts.show', compact(['reciept', 'particulars', 'fee', 'converted', 'prev', 'station', 'openingBalance']));
+        return view('admin.reciepts.show', compact(['reciept' , 'particulars', 'fee', 'converted', 'prev', 'station', 'openingBalance']));
     }
 
     /**

@@ -33,7 +33,7 @@
     </style>
 
     <section style="text-align:center; line-height:50%">
-        <h2 class="h2">KALGIDHAR INTERNATIONAL SEN. SEC. SCHOOL</h2>
+        <h2 class="h2">KALGIDHAR INTERNATIONAL SCHOOL</h2>
         <p class="p">12 Mile Stone away Gurdaspur-Mukerian National Highway, VPO. Purana Shalla, Distt. Gurdaspur (PB)</p>
         <p class="p"><span><b>Email ID:</b> principalkisps@gmail.com</span> <span style="text-align: right"> <b>Website:</b> www.kalgidharschool.org.in</span><span>, Contact No. 81460-60115, 78374-98739</span></p>
     </section>

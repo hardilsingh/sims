@@ -347,8 +347,8 @@ Dues List
                     echo "<td>" . $tel . "</td>";
                     echo "<td>" . $adm_type . "</td>";
                     echo "<td>" . $student->openingBalance . "</td>";
-                    echo "<td>" . ($student->openingBalance - $student->concession) . "</td>";
-                    echo "<td>" . ($student->concession - $student->total) . "</td>";
+                    echo "<td>" . ($student->concession) . "</td>";
+                    echo "<td>" . (App\Reciept::where('student_id', $student->id)->sum('paid')) . "</td>";
                     echo "<td> <table style='width:100%' class='table table-striped'> ";
                     for ($i = 0; $i < count($month_array); $i++) {
                         echo "<tr>";
@@ -683,8 +683,8 @@ Dues List
                 echo "<td>" . $tel . "</td>";
                 echo "<td>" . $adm_type . "</td>";
                 echo "<td>" . $student->openingBalance . "</td>";
-                echo "<td>" . ($student->openingBalance - $student->concession) . "</td>";
-                echo "<td>" . ($student->concession - $student->total) . "</td>";
+                echo "<td>" . ($student->concession) . "</td>";
+                echo "<td>" . (App\Reciept::where('student_id', $student->id)->sum('paid')) . "</td>";
                 echo "<td> <table style='width:100%' class='table table-striped'> ";
                 for ($i = 0; $i < count($month_array); $i++) {
                     echo "<tr>";
@@ -704,7 +704,7 @@ Dues List
 
 
                 echo "</table></td>";
-                echo "<td style='font-weight:bolder'> ₹ " . number_format(array_sum($fee_array)) . "</td>";
+                echo "<td style='font-weight:bolder'> ₹ " .  (array_sum($fee_array) + (App\Fee::where('student_id', $student->getStudent->id)->first('outstanding')->outstanding + 0)) . "</td>";
                 echo "</tr>";
 
 
@@ -978,6 +978,7 @@ Dues List
                     $class = $student->getStudent->class == 100 ? 'Pre-Nursery 1' : $student->getStudent->class . "-" . $student->getStudent->section;
                     $tel = $student->getStudent->tel1;
                     $adm_type = $student->getStudent->adm_type == 0 ? "New Admission" : "Re admission";
+					
 
     
                     echo "<tr>";
@@ -1012,9 +1013,9 @@ Dues List
                     echo "<td>" . $tel . "</td>";
                     echo "<td>" . $adm_type . "</td>";
                     echo "<td>" . $student->openingBalance . "</td>";
-                    echo "<td>" . ($student->openingBalance - $student->concession) . "</td>";
+                    echo "<td>" . ($student->concession) . "</td>";
                     echo "<td>" . $student->openingBalance . "</td>";
-                    echo "<td>" . $student->total . "</td>";
+                    echo "<td>" . (App\Reciept::where('student_id', $student->id)->sum('paid')) . "</td>";
 
                     echo "<td> <table style='width:100%' class='table table-striped'> ";
                     for ($i = 0; $i < count($month_array); $i++) {
@@ -1035,7 +1036,7 @@ Dues List
     
     
                     echo "</table></td>";
-                    echo "<td style='font-weight:bolder'> ₹ " . number_format(array_sum($fee_array)) . "</td>";
+                    echo "<td style='font-weight:bolder'> ₹ " . (array_sum($fee_array) + (App\Fee::where('student_id', $student->getStudent->id)->first('outstanding')->outstanding + 0)) . "</td>";
                     echo "</tr>";
     
     

@@ -11,7 +11,7 @@ Search By Station
         <label for="">Select Class:</label>
         <select name="stations" class="form-control" id="station">
             <option value="">Select a station from list</option>
-            <option value="0">All Stations</option>
+
             @foreach($stations as $station)
             <option value="{{$station->id}}">{{$station->name}}</option>
             @endforeach

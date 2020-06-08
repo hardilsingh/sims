@@ -109,6 +109,7 @@
 
         </table>
 
+		<p style="text-align: right; position:relative; right: 30px">Previous Dues: {{$reciept->previous_balance}}</p>
         <div class="row">
             <div class="col-lg-12">
 
@@ -121,6 +122,7 @@
 
                     </thead>
                     <tbody>
+					
                         @php
                         $j = 1
                         @endphp
@@ -157,6 +159,11 @@
                             <td></td>
                             <td>Amount Recieved</td>
                             <td style="text-align: right; font-size:20px;"><b>{{number_format($reciept->paid)}}</b></td>
+                        </tr>
+						                        <tr>
+                            <td></td>
+                            <td>Outstanding Balance</td>
+                            <td style="text-align: right; font-size:20px;"><b>{{$reciept->balance}}</b></td>
                         </tr>
                     </tbody>
                 </table>
@@ -318,7 +325,7 @@
                 </tr>
 
             </table>
-
+<p style="text-align: right; position:relative; right: 30px">Previous Dues: {{$reciept->previous_balance}}</p>
             <div class="row">
                 <div class="col-lg-12">
 
@@ -331,6 +338,7 @@
 
                         </thead>
                         <tbody>
+						
                             @php
                             $j = 1
                             @endphp
@@ -366,9 +374,14 @@
                             ?>
                             <tr>
                                 <td></td>
-                                <td>Amount Recieved</td>
+                                <td>Amount Paid</td>
                                 <td style="text-align: right; font-size:20px;"><b>{{number_format($reciept->paid)}}</b></td>
                             </tr>
+							<tr>
+                            <td></td>
+                            <td>Outstanding Balance</td>
+                            <td style="text-align: right; font-size:20px;"><b>{{$reciept->balance}}</b></td>
+                        </tr>
                         </tbody>
                     </table>
 

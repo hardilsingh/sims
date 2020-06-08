@@ -109,11 +109,12 @@ class PrintController extends Controller
             $caste = $_GET['caste'];
             $religion = $_GET['religion'];
             $con = $_GET['con'];
+			$adm_type = $_GET['adm_type'];
 
 
 
             $query = DB::table('students')->where('status' , '1');
-
+			
             if ($class !== "") {
                 $query->where('class', $class);
             } else {
@@ -140,11 +141,15 @@ class PrintController extends Controller
             if ($religion !== "") {
                 $query->where('religion', $religion);
             }
+			
+			if ($adm_type !== "") {
+                $query->where('adm_type', $adm_type);
+            }
 
 
             $results = $query->orderBy('class' , 'ASC')->orderBy('section' , 'ASC')->orderBy('adm_no' , 'ASC')->get();
 
-            return view('admin.prints.print', compact(['results', 'section', 'class', 'gender', 'caste', 'religion']));
+            return view('admin.prints.print', compact(['results', 'section', 'class', 'gender', 'caste', 'religion', 'adm_type']));
         }
     }
 

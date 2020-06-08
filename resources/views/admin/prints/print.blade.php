@@ -7,7 +7,7 @@ Search Students
 
 <div class="row">
     <div class="col-lg-12 text-center">
-        <a href="/export?classId={{$class}}&sectionId={{$section}}&gender={{$gender}}&caste={{$caste}}&religion={{$religion}}" class="btn btn-warning btn-md" style="margin-bottom: 10px;">Export Student List</a>
+        <a href="/export?classId={{$class}}&sectionId={{$section}}&gender={{$gender}}&caste={{$caste}}&religion={{$religion}}&adm_type={{$adm_type}}" class="btn btn-warning btn-md" style="margin-bottom: 10px;">Export Student List</a>
     </div>
 </div>
 
@@ -28,6 +28,7 @@ Search Students
                 <th scope="col">Gender</th>
                 <th scope="col">Caste</th>
                 <th scope="col">Religion</th>
+				<th scope="col">UID</th>
             </tr>
         </thead>
         <tbody>
@@ -80,6 +81,9 @@ Search Students
                     @if($result->religion == 5)Christian @endif
                     @if($result->religion == 6)Other @endif
                 </td>
+				 <td>
+				 {{$result->addhar_number}}
+                </td>
 
             </tr>
 
@@ -92,7 +96,7 @@ Search Students
 
 <div class="row">
     <div class="col-lg-12 text-center">
-        <a href="/export?classId={{$class}}&sectionId={{$section}}&gender={{$gender}}&caste={{$caste}}&religion={{$religion}}" class="btn btn-warning btn-md" style="margin-bottom: 10px;">Export Student List</a>
+        <a href="/export?classId={{$class}}&sectionId={{$section}}&gender={{$gender}}&caste={{$caste}}&religion={{$religion}}&adm_type={{$adm_type}}"" class="btn btn-warning btn-md" style="margin-bottom: 10px;">Export Student List</a>
     </div>
 </div>
 

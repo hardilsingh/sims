@@ -18,6 +18,7 @@ class StudentsExport implements FromView
             $gender = $_GET['gender'];
             $caste = $_GET['caste'];
             $religion = $_GET['religion'];
+			$adm_type = $_GET['adm_type'];
 
             $query = DB::table('students')->where('status' , '1');
 
@@ -41,6 +42,10 @@ class StudentsExport implements FromView
 
             if ($religion !== "") {
                 $query->where('religion', $religion);
+            }
+			
+			if ($adm_type !== "") {
+                $query->where('adm_type', $adm_type);
             }
 
 

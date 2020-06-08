@@ -157,9 +157,13 @@ class FeeController extends Controller
                 'date' => now()->toDateString(),
                 'mode' => $request->mode,
                 'refrence' => $request->refrence,
-                'user_id' => Auth::user()->id
+                'user_id' => Auth::user()->id,
+				'balance' => $request->outstanding,
+				'previous_balance'=> 0
             ]);
         } else {
+			
+			$previous = Reciept::orderBy('created_at', 'DESC')->where('student_id', $student_id)->first('balance')->balance;
             $reciept = Reciept::create([
                 'student_id' => $student_id,
                 'paid' => $paid,
@@ -169,7 +173,9 @@ class FeeController extends Controller
                 'date' => now()->toDateString(),
                 'mode' => $request->mode,
                 'refrence' => $request->refrence,
-                'user_id' => Auth::user()->id
+                'user_id' => Auth::user()->id,
+				'balance' => $request->outstanding,
+				'previous_balance'=> $previous,
 
             ]);
         }
